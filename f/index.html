@@ -285,9 +285,8 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
 .page{display:none}
 .page.on{display:block}
 
-/* the engine hides things only once it is actually running */
-html.motion .anim{opacity:0}
-html.motion .hline span{display:block;transform:translateY(105%)}
+/* nothing here hides content. Motion hides an element for a moment only
+   after it has proved it can animate it back. */
 
 @media (max-width:1000px){
   .hgrid,.steps,.dgrid,.dossier{grid-template-columns:1fr}
@@ -339,8 +338,6 @@ html.motion .hline span{display:block;transform:translateY(105%)}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation:none !important;transition-duration:.01ms !important}
-  html.motion .anim{opacity:1}
-  html.motion .hline span{transform:none}
 }
 </style>
 </head>
@@ -810,38 +807,62 @@ addEventListener("hashchange", function(){ route(false); });
    MOTION: the Motion library, the engine behind Framer Motion.
    If the module fails to load, everything is already visible.
    ========================================================================= */
-var M = null;
+var M = null, reduced = matchMedia("(prefers-reduced-motion:reduce)").matches;
+
+function clearHidden(root){
+  $$(".anim,.hline span", root || document).forEach(function(el){
+    el.style.opacity = "";
+    el.style.transform = "";
+  });
+}
+
 function playPage(){
   var page = $(".page.on");
-  if(!page || !M) return;
-  var lines = $$(".hline span", page);
-  if(lines.length){
-    M.animate(lines, { transform:["translateY(105%)","translateY(0%)"] },
-      { delay:M.stagger(0.08), duration:.9, easing:[.16,1,.3,1] });
+  if(!page) return;
+  if(!M || reduced){ clearHidden(page); return; }
+  try{
+    var lines = $$(".hline span", page);
+    lines.forEach(function(el, i){
+      el.style.transform = "translateY(105%)";
+      M.animate(el, { transform:["translateY(105%)","translateY(0%)"] },
+        { duration:.9, delay:.05 + i * .08, ease:[.16,1,.3,1] });
+    });
+
+    var items = $$(".anim", page);
+    items.forEach(function(el){ el.style.opacity = "0"; });
+    M.inView(items, function(el){
+      M.animate(el, { opacity:[0,1], transform:["translateY(20px)","translateY(0px)"] },
+        { duration:.7, ease:[.16,1,.3,1] });
+      return function(){};
+    }, { amount:.12 });
+
+    var rule = $("#hrule", page);
+    if(rule) M.animate(rule, { transform:["scaleX(0)","scaleX(1)"] }, { duration:1.1, delay:.3, ease:[.16,1,.3,1] });
+  }catch(err){
+    clearHidden(page);          /* anything unexpected and the page just shows */
   }
-  var items = $$(".anim", page);
-  items.forEach(function(el){ el.style.opacity = 0; });
-  M.inView(items, function(el){
-    M.animate(el, { opacity:[0,1], transform:["translateY(22px)","translateY(0px)"] },
-      { type:"spring", stiffness:120, damping:20 });
-    return function(){};
-  }, { amount:0.15 });
-  var rule = $("#hrule", page);
-  if(rule) M.animate(rule, { transform:["scaleX(0)","scaleX(1)"] }, { duration:1.1, delay:.3, easing:[.16,1,.3,1] });
+  /* belt and braces: whatever happens, nothing stays invisible */
+  setTimeout(function(){
+    $$(".anim", page).forEach(function(el){
+      if(getComputedStyle(el).opacity === "0") el.style.opacity = "";
+    });
+  }, 1600);
 }
 
 import("https://cdn.jsdelivr.net/npm/motion@11.15.0/+esm").then(function(mod){
+  if(!mod || typeof mod.animate !== "function" || typeof mod.inView !== "function") return;
   M = mod;
-  document.documentElement.classList.add("motion");
   playPage();
-  if(matchMedia("(min-width:1000px)").matches && $("#hero")){
-    mod.scroll(
-      mod.animate("#fan .f1", { transform:["translateY(-50%) rotate(-7deg)","translateY(-64%) rotate(-11deg)"] }, { easing:"linear" }),
-      { target: $("#hero"), offset:["start start","end start"] });
-    mod.scroll(
-      mod.animate("#fan .f3", { transform:["translateY(-50%) rotate(7deg)","translateY(-36%) rotate(11deg)"] }, { easing:"linear" }),
-      { target: $("#hero"), offset:["start start","end start"] });
-  }
+  try{
+    if(!reduced && matchMedia("(min-width:1000px)").matches && $("#hero") && typeof mod.scroll === "function"){
+      mod.scroll(
+        mod.animate("#fan .f1", { transform:["translateY(-50%) rotate(-7deg)","translateY(-62%) rotate(-11deg)"] }, { ease:"linear" }),
+        { target: $("#hero"), offset:["start start","end start"] });
+      mod.scroll(
+        mod.animate("#fan .f3", { transform:["translateY(-50%) rotate(7deg)","translateY(-38%) rotate(11deg)"] }, { ease:"linear" }),
+        { target: $("#hero"), offset:["start start","end start"] });
+    }
+  }catch(err){}
 }).catch(function(){});
 
 /* ---------- header and steps ---------- */

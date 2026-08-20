@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Dr. Ralph Tyga Uzokwe</title>
-<meta name="description" content="Author, entrepreneur, speaker. Books that solve the problems life hands you.">
+<meta name="description" content="Author, entrepreneur, speaker. Five books that solve the problems life hands you.">
 <meta name="theme-color" content="#1C2230">
 <link rel="canonical" href="https://drralphuzokwe.com/">
 <meta property="og:type" content="website">
@@ -14,35 +14,23 @@
 <meta property="og:image" content="assets/og.webp">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="assets/og.webp">
-<link rel="preload" as="image" href="assets/caod.webp" fetchpriority="high">
-<link rel="preload" as="image" href="assets/supernatural.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="assets/caod.webp" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ==========================================================================
    Dr. Ralph Tyga Uzokwe : palette A (Slate and Royal Blue)
-   Only the block below changes between the four versions.
+   Covers are never cropped anywhere on this site. Motion runs on the Motion
+   library (the engine behind Framer Motion) with a plain visible fallback.
    ========================================================================== */
 :root{
-  --ground:#1C2230;
-  --ground-2:#161B27;
-  --veil:rgba(18,22,32,.66);
-  --acc:#3566B2;
-  --acc-2:#C4E7E9;
-  --acc-ink:#FFFFFF;
-  --acc-3:#C4E7E9;
-  --acc-4:#3566B2;
-  --acc-5:#3566B2;
-  --tone-1:#3566B2;
-  --tone-2:#BD6E9E;
-  --tone-3:rgba(53,102,178,.30);
-
-  --paper:#F6F4F7;
-  --paper-2:rgba(246,244,247,.72);
-  --paper-3:rgba(246,244,247,.48);
+  --ground:#1C2230; --ground-2:#161B27; --veil:rgba(18,22,32,.66);
+  --acc:#3566B2; --acc-2:#C4E7E9; --acc-ink:#FFFFFF;
+  --acc-3:#C4E7E9; --acc-4:#3566B2; --acc-5:#3566B2;
+  --tone-1:#3566B2; --tone-2:#BD6E9E; --tone-3:rgba(53,102,178,.30);
+  --paper:#F6F4F7; --paper-2:rgba(246,244,247,.72); --paper-3:rgba(246,244,247,.48);
   --line:rgba(246,244,247,.15);
-
   --disp:"Sora","Helvetica Neue",Arial,sans-serif;
   --ui:"Manrope","Helvetica Neue",Arial,sans-serif;
   --spring:cubic-bezier(.16,1,.3,1);
@@ -50,7 +38,7 @@
 }
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--ground);color:var(--paper);font-family:var(--ui);font-size:18px;line-height:1.6;
+body{margin:0;background:var(--ground);color:var(--paper);font-family:var(--ui);font-size:18px;line-height:1.62;
   -webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
@@ -60,321 +48,299 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .skip{position:absolute;left:-9999px;top:12px;z-index:400;background:var(--paper);color:var(--ground-2);
   padding:12px 18px;border-radius:6px;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
 .skip:focus{left:16px}
-.wrap{width:min(100% - 44px,1320px);margin-inline:auto;position:relative}
+.wrap{width:min(100% - 44px,1280px);margin-inline:auto;position:relative}
 
-h1,h2,h3{margin:0;font-family:var(--disp);font-weight:700;letter-spacing:-.035em;line-height:1}
-.xl{font-size:clamp(2.5rem,7vw,6.6rem)}
-.lg{font-size:clamp(1.75rem,4.2vw,3.6rem)}
+h1,h2,h3{margin:0;font-family:var(--disp);font-weight:700;letter-spacing:-.03em;line-height:1.02;overflow-wrap:break-word}
+.xl{font-size:clamp(2.4rem,6.2vw,5.6rem);line-height:1.02}
+.lg{font-size:clamp(1.7rem,3.8vw,3.1rem);line-height:1.06}
 p{margin:0 0 1.05em}
-.lede{font-size:clamp(1rem,1.28vw,1.16rem);color:var(--paper-2);max-width:52ch}
-.tag{font-family:var(--ui);font-size:.63rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--acc-2)}
-.num{font-family:var(--ui);font-size:.63rem;font-weight:700;letter-spacing:.22em;color:var(--paper-3)}
+.lede{font-size:clamp(1rem,1.24vw,1.14rem);color:var(--paper-2);max-width:52ch}
+.tag{font-family:var(--ui);font-size:.63rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--acc-2);
+  display:block;margin:0 0 8px}
+.num{font-family:var(--ui);font-size:.63rem;font-weight:700;letter-spacing:.2em;color:var(--paper-3)}
 
-/* ---------- ground: two slow washes on desktop, a painted still on phones ---------- */
+/* ---------- ground ---------- */
 #field{position:fixed;inset:-20%;z-index:0;pointer-events:none;contain:strict}
-#field i{position:absolute;display:block;border-radius:50%;filter:blur(60px);opacity:.5;will-change:transform}
-#field .a{width:60vw;height:60vw;left:-12vw;top:-16vw;background:var(--tone-1);animation:d1 34s var(--smooth) infinite alternate}
-#field .b{width:52vw;height:52vw;right:-14vw;bottom:-14vw;background:var(--tone-2);animation:d2 44s var(--smooth) infinite alternate}
-@keyframes d1{to{transform:translate3d(12vw,9vh,0) scale(1.14)}}
-@keyframes d2{to{transform:translate3d(-11vw,-10vh,0) scale(1.18)}}
+#field i{position:absolute;display:block;border-radius:50%;filter:blur(64px);opacity:.46;will-change:transform}
+#field .a{width:58vw;height:58vw;left:-12vw;top:-16vw;background:var(--tone-1);animation:d1 38s var(--smooth) infinite alternate}
+#field .b{width:50vw;height:50vw;right:-14vw;bottom:-14vw;background:var(--tone-2);animation:d2 48s var(--smooth) infinite alternate}
+@keyframes d1{to{transform:translate3d(11vw,8vh,0) scale(1.12)}}
+@keyframes d2{to{transform:translate3d(-10vw,-9vh,0) scale(1.16)}}
 #veil{position:fixed;inset:0;z-index:1;pointer-events:none;background:var(--veil)}
-main,header,footer,#bar,#curtain,#mobile{position:relative;z-index:3}
+main,header,footer,#curtain,#mobile{position:relative;z-index:3}
 
-/* ---------- progress and page change ---------- */
 #curtain{position:fixed;inset:0;z-index:300;background:var(--acc);transform:translateY(100%);pointer-events:none;will-change:transform}
-#curtain.in{animation:wipe .85s var(--spring) forwards}
+#curtain.in{animation:wipe .8s var(--spring) forwards}
 @keyframes wipe{0%{transform:translateY(100%)}45%{transform:translateY(0)}100%{transform:translateY(-100%)}}
-#bar{position:fixed;top:0;left:0;height:2px;width:100%;background:var(--acc);z-index:200;
-  transform:scaleX(0);transform-origin:left;will-change:transform}
 
 /* ---------- nav ---------- */
-header{position:fixed;top:0;left:0;right:0;z-index:150;padding:16px 0;transition:transform .5s var(--spring);will-change:transform}
-header.hide{transform:translateY(-130%)}
-.nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
-.brand{font-family:var(--disp);font-weight:700;font-size:.95rem;letter-spacing:-.01em}
+header{position:fixed;top:0;left:0;right:0;z-index:150;padding:15px 0;transition:transform .5s var(--spring);will-change:transform}
+header.hide{transform:translateY(-135%)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.brand{font-family:var(--disp);font-weight:700;font-size:.92rem;letter-spacing:-.01em;white-space:nowrap}
 .pill{display:flex;gap:2px;padding:4px;border-radius:99px;background:rgba(246,244,247,.07);border:1px solid var(--line)}
-.pill a{font-size:.72rem;font-weight:600;padding:10px 16px;border-radius:99px;color:var(--paper-2);
+.pill a{font-size:.71rem;font-weight:600;padding:9px 15px;border-radius:99px;color:var(--paper-2);white-space:nowrap;
   transition:color .3s var(--smooth),background .3s var(--smooth)}
 .pill a:hover{color:var(--paper)}
 .pill a.on{background:var(--paper);color:var(--ground-2)}
 .burger{display:none;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);
-  align-items:center;justify-content:center;flex-direction:column;gap:5px}
+  align-items:center;justify-content:center;flex-direction:column;gap:5px;flex:none}
 .burger i{display:block;width:17px;height:1.6px;background:var(--paper);transition:transform .35s var(--spring),opacity .25s}
 .burger.x i:nth-child(1){transform:translateY(6.6px) rotate(45deg)}
 .burger.x i:nth-child(2){opacity:0}
 .burger.x i:nth-child(3){transform:translateY(-6.6px) rotate(-45deg)}
 #mobile{position:fixed;inset:0;z-index:140;background:var(--ground-2);display:none;flex-direction:column;justify-content:center;padding:0 26px}
 #mobile.open{display:flex}
-#mobile a{font-family:var(--disp);font-weight:700;font-size:clamp(1.8rem,8.5vw,2.7rem);letter-spacing:-.035em;
-  padding:13px 0;border-bottom:1px solid var(--line)}
+#mobile a{font-family:var(--disp);font-weight:700;font-size:clamp(1.7rem,8vw,2.5rem);letter-spacing:-.03em;
+  padding:12px 0;border-bottom:1px solid var(--line)}
 #mobile a:last-of-type{border-bottom:0}
-#mobile .mfoot{margin-top:24px;font-size:.66rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--paper-3)}
+#mobile .mfoot{margin-top:22px;font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--paper-3)}
 
-/* ---------- buttons: glow near the pointer, never move ---------- */
+/* ---------- buttons ---------- */
 .btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:10px;
-  font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:17px 28px;border-radius:6px;
-  background:var(--paper);color:var(--ground-2);isolation:isolate;
+  font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:16px 26px;border-radius:6px;
+  background:var(--paper);color:var(--ground-2);isolation:isolate;line-height:1.1;text-align:center;
   transition:box-shadow .4s var(--smooth),background .35s var(--smooth),color .35s var(--smooth)}
 .btn::after{content:"";position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .35s var(--smooth);
   background:radial-gradient(150px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.4),transparent 60%)}
 .btn:hover::after,.btn.near::after{opacity:1}
-.btn.near{box-shadow:0 0 0 1px var(--line),0 14px 34px -16px var(--acc)}
-.btn:active{transform:scale(.985)}
+.btn.near{box-shadow:0 0 0 1px var(--line),0 14px 32px -16px var(--acc)}
 .btn.acc{background:var(--acc);color:var(--acc-ink)}
-.btn.acc.near{box-shadow:0 16px 42px -14px var(--acc)}
+.btn.acc.near{box-shadow:0 16px 40px -14px var(--acc)}
 .btn.line{background:transparent;color:var(--paper);border:1px solid var(--line)}
-.btn.line.near{border-color:var(--acc-2);box-shadow:0 14px 34px -18px var(--acc-2)}
+.btn.line.near{border-color:var(--acc-2);box-shadow:0 14px 32px -18px var(--acc-2)}
 
-/* ---------- motion primitives ---------- */
-.mask{display:block;overflow:hidden}
-.mask>*{display:block;transform:translateY(108%);transition:transform 1s var(--spring)}
-.mask.in>*{transform:none}
-.fade{opacity:0;transform:translateY(22px);transition:opacity .8s var(--smooth),transform .8s var(--spring)}
-.fade.in{opacity:1;transform:none}
-
-/* ---------- hero: the rack ---------- */
-.hero{min-height:100svh;display:flex;align-items:center;padding:104px 0 40px}
-.hgrid{display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(28px,4vw,68px);align-items:center;width:100%}
+/* ---------- hero ---------- */
+.hero{min-height:100svh;display:flex;align-items:center;padding:106px 0 46px}
+.hgrid{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(30px,4vw,64px);align-items:center;width:100%}
 .hero h1 em{font-style:normal;color:var(--acc)}
-.kern{display:flex;align-items:baseline;gap:.28em;flex-wrap:wrap}
-.hrule{height:1px;background:var(--line);margin:26px 0 24px;transform:scaleX(0);transform-origin:left;
-  transition:transform 1.2s var(--spring) .3s}
-.hero.ready .hrule{transform:none}
-.hbtns{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
-.hmeta{display:flex;gap:20px;flex-wrap:wrap;margin-top:28px;font-size:.65rem;font-weight:700;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--paper-3)}
+.hline{overflow:hidden;display:block}
+.hrule{height:1px;background:var(--line);margin:24px 0 22px;transform-origin:left}
+.hbtns{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.hmeta{display:flex;flex-wrap:wrap;column-gap:20px;row-gap:10px;margin-top:26px;font-size:.64rem;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--paper-3)}
 
-/* five books standing like spines, they open on hover */
-.rack{display:flex;gap:10px;align-items:flex-end;height:clamp(300px,46vh,470px)}
-.spine{position:relative;flex:1 1 0;height:100%;border-radius:8px;overflow:hidden;cursor:pointer;
-  box-shadow:0 30px 60px -34px rgba(0,0,0,.9);border:1px solid rgba(255,255,255,.08);
-  transition:flex-grow .7s var(--spring),transform .7s var(--spring),box-shadow .7s var(--spring)}
-.spine img{width:100%;height:100%;object-fit:cover;object-position:26% center;transition:object-position .7s var(--spring)}
-.spine .lab{position:absolute;left:0;right:0;bottom:0;padding:14px 10px 12px;z-index:2;
-  background:linear-gradient(180deg,transparent,rgba(0,0,0,.82));
-  font-size:.56rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-align:center;
-  opacity:0;transition:opacity .5s var(--smooth)}
-.spine.ph{display:grid;place-content:center;padding:16px 8px;text-align:center;
-  background:linear-gradient(170deg,var(--acc),var(--ground-2) 78%)}
-.spine.ph span{font-family:var(--disp);font-weight:700;font-size:.82rem;line-height:1.2;letter-spacing:-.01em;
-  writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;overflow:hidden;max-height:100%}
-.rack:hover .spine{flex-grow:.72}
-.spine:hover,.spine:focus-visible{flex-grow:3.1;transform:translateY(-10px);outline:none;
-  box-shadow:0 44px 74px -34px rgba(0,0,0,.95)}
-.spine:hover img,.spine:focus-visible img{object-position:center}
-.spine:hover .lab,.spine:focus-visible .lab{opacity:1}
-.rackcap{display:flex;justify-content:space-between;gap:14px;margin-top:16px;font-size:.62rem;font-weight:700;
-  letter-spacing:.2em;text-transform:uppercase;color:var(--paper-3)}
+/* three whole covers, fanned, nothing ever cut off */
+.fan{position:relative;width:100%;max-width:560px;margin-inline:auto;aspect-ratio:1/.92}
+.fan a{position:absolute;top:50%;width:44%;aspect-ratio:2/3;border-radius:8px;overflow:hidden;
+  box-shadow:0 34px 60px -34px rgba(0,0,0,.92);border:1px solid rgba(255,255,255,.08);
+  transition:transform .7s var(--spring),box-shadow .7s var(--spring)}
+.fan a img{width:100%;height:100%;object-fit:contain;background:#0c0d11}
+.fan .f1{left:0;   transform:translateY(-50%) rotate(-7deg)}
+.fan .f2{left:28%; transform:translateY(-52%) rotate(0deg); z-index:3}
+.fan .f3{right:0;  transform:translateY(-50%) rotate(7deg); z-index:2}
+.fan a:hover{z-index:5;box-shadow:0 46px 74px -34px rgba(0,0,0,.95)}
+.fan .f1:hover{transform:translateY(-56%) rotate(-4deg) scale(1.05)}
+.fan .f2:hover{transform:translateY(-58%) rotate(0deg) scale(1.05)}
+.fan .f3:hover{transform:translateY(-56%) rotate(4deg) scale(1.05)}
+.fancap{margin-top:16px;text-align:center;font-size:.62rem;font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--paper-3)}
 
 /* ---------- stats ---------- */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border-block:1px solid var(--line)}
-.stat{background:var(--ground);padding:28px 20px 24px}
-.stat b{display:block;font-family:var(--disp);font-size:clamp(1.7rem,3.8vw,3rem);font-weight:700;letter-spacing:-.04em;line-height:1;color:var(--acc-3)}
-.stat span{display:block;margin-top:9px;font-size:.57rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--paper-3)}
+.stat{background:var(--ground);padding:26px 18px 22px;min-width:0}
+.stat b{display:block;font-family:var(--disp);font-size:clamp(1.6rem,3.4vw,2.7rem);font-weight:700;letter-spacing:-.035em;
+  line-height:1.06;color:var(--acc-3)}
+.stat span{display:block;margin-top:10px;font-size:.57rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--paper-3);line-height:1.5}
 
 /* ---------- sections ---------- */
-.section{padding:clamp(56px,7.5vw,124px) 0;content-visibility:auto;contain-intrinsic-size:auto 700px}
-.sh{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;
-  padding-bottom:16px;border-bottom:1px solid var(--line);margin-bottom:clamp(26px,3.4vw,50px)}
+.section{padding:clamp(54px,7vw,116px) 0;content-visibility:auto;contain-intrinsic-size:auto 720px}
+.sh{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;flex-wrap:wrap;
+  padding-bottom:16px;border-bottom:1px solid var(--line);margin-bottom:clamp(26px,3.2vw,48px)}
 
 /* ---------- voice ---------- */
-.voice{position:relative;border-radius:14px;overflow:hidden;padding:clamp(22px,3.6vw,54px);
+.voice{position:relative;border-radius:14px;overflow:hidden;padding:clamp(22px,3.2vw,46px);
   background:var(--ground-2);border:1px solid var(--line)}
 .voice::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--acc-4)}
-.vhead{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;flex-wrap:wrap;margin-bottom:26px}
+.vhead{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;flex-wrap:wrap;margin-bottom:24px}
 .vlist{display:grid;gap:10px}
-.vrow{display:grid;grid-template-columns:56px 1fr auto;gap:16px;align-items:center;padding:15px 16px;border-radius:10px;
+.vrow{display:grid;grid-template-columns:54px minmax(0,1fr) auto;gap:16px;align-items:center;padding:14px 16px;border-radius:10px;
   background:rgba(246,244,247,.04);border:1px solid var(--line);
-  transition:background .4s var(--smooth),border-color .4s var(--smooth)}
+  transition:background .35s var(--smooth),border-color .35s var(--smooth)}
 .vrow:hover{background:rgba(246,244,247,.08);border-color:var(--acc-4)}
-.vplay{width:50px;height:50px;border-radius:50%;background:var(--paper);color:var(--ground-2);display:grid;place-items:center;
+.vplay{width:48px;height:48px;border-radius:50%;background:var(--paper);color:var(--ground-2);display:grid;place-items:center;flex:none;
   transition:background .35s var(--smooth),color .35s var(--smooth)}
 .vrow:hover .vplay{background:var(--acc-4);color:var(--ground-2)}
 .vrow.on .vplay{background:var(--acc);color:var(--acc-ink)}
-.vname{font-family:var(--disp);font-weight:600;font-size:1rem;letter-spacing:-.02em;margin:0}
-.vsub{font-size:.75rem;color:var(--paper-3);margin:3px 0 0}
-.wave{display:flex;align-items:center;gap:3px;height:26px;margin-top:9px}
+.vname{font-family:var(--disp);font-weight:600;font-size:.98rem;letter-spacing:-.02em;margin:0;line-height:1.3}
+.vsub{font-size:.74rem;color:var(--paper-3);margin:4px 0 0;line-height:1.45}
+.wave{display:flex;align-items:center;gap:3px;height:24px;margin-top:9px}
 .wave b{display:block;width:3px;border-radius:3px;background:rgba(246,244,247,.24)}
 .vrow.on .wave b{background:var(--acc-4);animation:bob .9s infinite var(--smooth)}
 @keyframes bob{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
-.vtime{font-size:.64rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--paper-3);white-space:nowrap}
-.vnote{margin:20px 0 0;font-size:.85rem;color:var(--paper-3)}
+.vtime{font-size:.63rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--paper-3);white-space:nowrap}
+.vnote{margin:18px 0 0;font-size:.84rem;color:var(--paper-3)}
+
+/* ---------- finder ---------- */
+.finder{border:1px solid var(--line);border-radius:14px;padding:clamp(22px,3.2vw,46px);background:var(--ground-2)}
+.fq{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.fq button{border:1px solid var(--line);border-radius:99px;padding:12px 17px;font-size:.8rem;font-weight:600;
+  color:var(--paper-2);line-height:1.3;text-align:left;
+  transition:border-color .3s var(--smooth),color .3s var(--smooth),background .3s var(--smooth)}
+.fq button:hover{border-color:var(--acc-2);color:var(--paper)}
+.fq button.on{background:var(--acc);border-color:var(--acc);color:var(--acc-ink)}
+.fout{display:grid;grid-template-columns:96px minmax(0,1fr);gap:20px;align-items:center;margin-top:24px;padding-top:22px;
+  border-top:1px solid var(--line)}
+.fout img{border-radius:6px;box-shadow:0 18px 36px -22px rgba(0,0,0,.85);width:96px;height:auto}
+.fout h3{font-size:clamp(1.05rem,1.7vw,1.35rem);letter-spacing:-.02em;margin:0 0 6px}
+.fout p{margin:0 0 12px;font-size:.88rem;color:var(--paper-2);line-height:1.5}
 
 /* ---------- shelf ---------- */
-.shelfhead{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;flex-wrap:wrap;margin-bottom:24px}
+.shelfhead{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;flex-wrap:wrap;margin-bottom:22px}
 .arrows{display:flex;gap:8px}
-.arrows button{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;
+.arrows button{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;
   transition:background .3s var(--smooth),color .3s var(--smooth)}
 .arrows button:hover{background:var(--paper);color:var(--ground-2)}
 .arrows button[disabled]{opacity:.3;pointer-events:none}
-.shelf{display:flex;gap:clamp(14px,2vw,30px);overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;
-  padding:4px 2px 22px;margin:0 -2px;scrollbar-width:none;cursor:grab;overscroll-behavior-x:contain}
+.shelf{display:flex;gap:clamp(14px,1.8vw,26px);overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;
+  padding:4px 2px 20px;margin:0 -2px;scrollbar-width:none;cursor:grab;overscroll-behavior-x:contain}
 .shelf::-webkit-scrollbar{display:none}
 .shelf.drag{cursor:grabbing;scroll-snap-type:none}
 .shelfbar{height:2px;background:var(--line);position:relative}
 .shelfbar i{position:absolute;inset:0 auto 0 0;background:var(--acc-3);width:20%;will-change:transform}
-.bookcard{flex:0 0 clamp(200px,21vw,290px);scroll-snap-align:start;opacity:0;transform:translateY(20px);
-  transition:opacity .7s var(--smooth),transform .7s var(--spring)}
-.bookcard.in{opacity:1;transform:none}
-.bookcard .art{position:relative;border-radius:10px;overflow:hidden;box-shadow:0 26px 50px -34px rgba(0,0,0,.85);
-  transition:transform .6s var(--spring)}
-.bookcard .art img{aspect-ratio:2/3;object-fit:cover;width:100%}
-.bookcard:hover .art{transform:translateY(-8px)}
-.bookcard h3{margin-top:16px;font-size:1.08rem;letter-spacing:-.02em;line-height:1.18}
-.bookcard p{margin:7px 0 0;font-size:.86rem;color:var(--paper-3)}
-.bookcard .go{margin-top:11px;display:inline-block;font-size:.59rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--acc-2)}
-.cardamz{display:inline-block;margin-top:9px;font-size:.71rem;color:var(--paper-3);border-bottom:1px solid var(--line);padding-bottom:2px;
+.bookcard{flex:0 0 clamp(180px,19vw,250px);scroll-snap-align:start;min-width:0}
+.bookcard .art{position:relative;border-radius:8px;overflow:hidden;background:#0c0d11;aspect-ratio:2/3;
+  box-shadow:0 24px 44px -32px rgba(0,0,0,.85);transition:transform .55s var(--spring)}
+.bookcard .art img{width:100%;height:100%;object-fit:contain}
+.bookcard:hover .art{transform:translateY(-7px)}
+.bookcard h3{margin-top:15px;font-size:1rem;line-height:1.25;letter-spacing:-.015em;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.bookcard p{margin:7px 0 0;font-size:.83rem;color:var(--paper-3);line-height:1.5;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.bookcard .go{margin-top:10px;display:inline-block;font-size:.58rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acc-2)}
+.cardamz{display:inline-block;margin-top:8px;font-size:.7rem;color:var(--paper-3);border-bottom:1px solid var(--line);padding-bottom:2px;
   transition:color .3s var(--smooth),border-color .3s var(--smooth)}
 .cardamz:hover{color:var(--acc-2);border-color:var(--acc-2)}
-.flag{position:absolute;top:10px;left:10px;z-index:2;border-radius:4px;padding:6px 10px;font-size:.53rem;font-weight:700;
-  letter-spacing:.16em;text-transform:uppercase;background:var(--paper);color:var(--ground-2)}
-.phcover{aspect-ratio:2/3;display:grid;grid-template-rows:auto 1fr auto;gap:10px;padding:20px 16px;text-align:center;
-  background:linear-gradient(160deg,var(--acc),var(--ground-2) 74%)}
-.phcover .k{font-size:.49rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--paper-2)}
-.phcover .t{font-family:var(--disp);font-weight:700;font-size:1rem;line-height:1.16;align-self:center;letter-spacing:-.02em}
-.phcover .r{width:24px;height:2px;background:var(--acc-2);margin:0 auto}
-
-/* ---------- problem finder ---------- */
-.finder{border:1px solid var(--line);border-radius:14px;padding:clamp(22px,3.4vw,48px);background:var(--ground-2)}
-.fq{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
-.fq button{border:1px solid var(--line);border-radius:99px;padding:13px 18px;font-size:.82rem;font-weight:600;
-  color:var(--paper-2);transition:border-color .3s var(--smooth),color .3s var(--smooth),background .3s var(--smooth)}
-.fq button:hover{border-color:var(--acc-2);color:var(--paper)}
-.fq button.on{background:var(--acc);border-color:var(--acc);color:var(--acc-ink)}
-.fout{display:grid;grid-template-columns:104px 1fr;gap:22px;align-items:center;margin-top:26px;padding-top:24px;
-  border-top:1px solid var(--line);opacity:0;transform:translateY(12px);
-  transition:opacity .6s var(--smooth),transform .6s var(--spring)}
-.fout.show{opacity:1;transform:none}
-.fout img{border-radius:8px;box-shadow:0 20px 40px -24px rgba(0,0,0,.85)}
-.fout .k{font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--acc-2);margin:0}
-.fout h3{font-size:clamp(1.1rem,1.9vw,1.5rem);letter-spacing:-.02em;margin:8px 0 6px}
-.fout p{margin:0 0 12px;font-size:.9rem;color:var(--paper-2)}
-@media (max-width:640px){.fout{grid-template-columns:74px 1fr;gap:16px}}
 
 /* ---------- dossier ---------- */
-.dossier{display:grid;grid-template-columns:.62fr 1.38fr;gap:clamp(26px,4.5vw,70px);align-items:center}
-.dframe{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--line);box-shadow:0 44px 70px -44px rgba(0,0,0,.9)}
-.dframe img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 18%}
-.dframe::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.6))}
-.dcap{position:absolute;left:16px;bottom:14px;margin:0;z-index:2;font-size:.58rem;font-weight:700;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--paper-2)}
-.drows{margin-top:26px;border-top:1px solid var(--line)}
-.drows div{display:grid;grid-template-columns:146px 1fr;gap:16px;padding:13px 0;border-bottom:1px solid var(--line)}
-.drows span{font-size:.57rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--paper-3);padding-top:5px}
-.drows b{font-family:var(--disp);font-weight:600;font-size:.98rem;letter-spacing:-.015em}
+.dossier{display:grid;grid-template-columns:280px minmax(0,1fr);gap:clamp(26px,4vw,64px);align-items:start}
+.dframe{position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--line);
+  box-shadow:0 34px 60px -40px rgba(0,0,0,.9);max-width:280px}
+.dframe img{width:100%;height:auto;display:block}
+.dcap{margin:12px 0 0;font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--paper-3)}
+.drows{margin-top:24px;border-top:1px solid var(--line)}
+.drows div{display:grid;grid-template-columns:144px minmax(0,1fr);gap:16px;padding:13px 0;border-bottom:1px solid var(--line)}
+.drows span{font-size:.57rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--paper-3);padding-top:5px;line-height:1.5}
+.drows b{font-family:var(--disp);font-weight:600;font-size:.96rem;letter-spacing:-.015em;line-height:1.4}
 
 /* ---------- rows, steps ---------- */
 .rows{border-top:1px solid var(--line)}
-.row{display:grid;grid-template-columns:58px 1fr auto;gap:18px;align-items:center;padding:clamp(16px,2vw,28px) 0;
+.row{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:18px;align-items:center;padding:clamp(16px,1.9vw,26px) 0;
   border-bottom:1px solid var(--line);position:relative;transition:padding-left .5s var(--spring)}
-.row:hover{padding-left:18px}
+.row:hover{padding-left:16px}
 .row::before{content:"";position:absolute;inset:0;background:rgba(246,244,247,.05);transform:scaleX(0);transform-origin:left;
-  transition:transform .6s var(--spring)}
+  transition:transform .55s var(--spring)}
 .row:hover::before{transform:none}
-.row>*{position:relative}
-.row h3{font-size:clamp(1.05rem,1.9vw,1.7rem);letter-spacing:-.025em}
-.row .sub{font-size:.75rem;color:var(--paper-3);max-width:34ch}
-.steps{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(26px,4.5vw,72px);align-items:start}
+.row>*{position:relative;min-width:0}
+.row h3{font-size:clamp(1.02rem,1.8vw,1.6rem);line-height:1.2}
+.row .sub{font-size:.74rem;color:var(--paper-3);max-width:32ch;line-height:1.5}
+.steps{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(26px,4vw,68px);align-items:start}
 .stepstick{position:sticky;top:18vh}
-.step{padding:26px 0;border-top:1px solid var(--line);opacity:.42;transition:opacity .5s var(--smooth)}
+.step{padding:24px 0;border-top:1px solid var(--line);opacity:.42;transition:opacity .5s var(--smooth)}
 .step.act{opacity:1}
 .step.act b{color:var(--acc-3)}
-.step b{display:block;font-family:var(--disp);font-size:clamp(1.15rem,2vw,1.6rem);font-weight:700;letter-spacing:-.025em;margin:8px 0 7px}
-.step p{margin:0;color:var(--paper-2);font-size:.94rem}
-.quote{font-family:var(--disp);font-weight:700;letter-spacing:-.03em;line-height:1.08;font-size:clamp(1.55rem,3.6vw,2.9rem);max-width:20ch}
+.step b{display:block;font-family:var(--disp);font-size:clamp(1.1rem,1.9vw,1.5rem);font-weight:700;letter-spacing:-.02em;
+  margin:8px 0 7px;line-height:1.2}
+.step p{margin:0;color:var(--paper-2);font-size:.93rem}
+.quote{font-family:var(--disp);font-weight:700;letter-spacing:-.028em;line-height:1.12;font-size:clamp(1.5rem,3.2vw,2.6rem);max-width:19ch}
 .quote em{font-style:normal;color:var(--acc-2)}
 
 /* ---------- detail ---------- */
-.detail{padding:122px 0 0}
-.dgrid{display:grid;grid-template-columns:.66fr 1.34fr;gap:clamp(26px,4.5vw,72px);align-items:start}
-.dstick{position:sticky;top:104px}
-.dstick .art{border-radius:10px;overflow:hidden;box-shadow:0 44px 76px -44px rgba(0,0,0,.9)}
-.solves{margin:26px 0;border-block:1px solid var(--line);padding:22px 0}
-.solves h4{margin:0 0 15px;font-size:.59rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--acc-2);font-family:var(--ui)}
+.detail{padding:118px 0 0}
+.dgrid{display:grid;grid-template-columns:300px minmax(0,1fr);gap:clamp(26px,4vw,66px);align-items:start}
+.dstick{position:sticky;top:100px;max-width:300px}
+.dstick .art{border-radius:8px;overflow:hidden;background:#0c0d11;box-shadow:0 40px 70px -44px rgba(0,0,0,.9)}
+.dstick .art img{width:100%;height:auto;display:block}
+.solves{margin:24px 0;border-block:1px solid var(--line);padding:20px 0}
+.solves h4{margin:0 0 14px;font-size:.58rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--acc-2);font-family:var(--ui)}
 .solves ol{margin:0;padding:0;list-style:none;counter-reset:s}
-.solves li{counter-increment:s;display:grid;grid-template-columns:36px 1fr;gap:8px;margin-bottom:11px;color:var(--paper-2)}
-.solves li::before{content:counter(s,decimal-leading-zero);font-size:.59rem;font-weight:700;letter-spacing:.14em;color:var(--acc-5);padding-top:6px}
-.buy{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:22px}
-.amzlink{flex-basis:100%;margin-top:4px;font-size:.77rem;color:var(--paper-3);border-bottom:1px solid var(--line);padding-bottom:3px;
+.solves li{counter-increment:s;display:grid;grid-template-columns:34px minmax(0,1fr);gap:8px;margin-bottom:11px;color:var(--paper-2);line-height:1.55}
+.solves li::before{content:counter(s,decimal-leading-zero);font-size:.58rem;font-weight:700;letter-spacing:.12em;color:var(--acc-5);padding-top:7px}
+.buy{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:20px}
+.amzlink{flex-basis:100%;margin-top:2px;font-size:.76rem;color:var(--paper-3);border-bottom:1px solid var(--line);padding-bottom:3px;
   align-self:flex-start;transition:color .3s var(--smooth),border-color .3s var(--smooth)}
 .amzlink:hover{color:var(--acc-2);border-color:var(--acc-2)}
-.facts{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
-.facts span{display:block;font-size:.54rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--paper-3);margin-bottom:5px}
-.facts b{font-family:var(--disp);font-weight:600;font-size:.96rem}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:14px;margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}
+.facts span{display:block;font-size:.54rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--paper-3);margin-bottom:5px;line-height:1.5}
+.facts b{font-family:var(--disp);font-weight:600;font-size:.94rem;line-height:1.35}
 
 /* ---------- cta and footer ---------- */
-.ctaband{border-radius:14px;padding:clamp(26px,4.5vw,66px);border:1px solid var(--line);background:var(--ground-2);position:relative;overflow:hidden}
+.ctaband{border-radius:14px;padding:clamp(24px,4vw,60px);border:1px solid var(--line);background:var(--ground-2);position:relative;overflow:hidden}
 .ctaband::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--acc-5)}
-.field{display:grid;grid-template-columns:1fr auto;gap:12px;max-width:520px;margin-top:24px}
+.field{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;max-width:520px;margin-top:22px}
 .field input{border:0;border-bottom:1px solid var(--line);background:transparent;padding:13px 2px;font-family:var(--ui);font-size:1rem;color:var(--paper);min-width:0}
 .field input::placeholder{color:var(--paper-3)}
 .field input:focus{outline:none;border-color:var(--acc-2)}
-footer{padding:58px 0 32px;border-top:1px solid var(--line)}
-.fmark{display:block;width:100%;height:auto}
-.fmark text{font-family:var(--disp);font-weight:700;letter-spacing:-.02em;fill:var(--paper)}
-.fsub{margin:14px 0 0;color:var(--paper-3);max-width:44ch;font-size:.92rem}
-.flinks{display:flex;gap:20px;flex-wrap:wrap;margin-top:24px;font-size:.72rem;font-weight:600}
+footer{padding:54px 0 30px;border-top:1px solid var(--line)}
+.fname{margin:0;font-family:var(--disp);font-weight:700;letter-spacing:-.035em;line-height:1.02;
+  font-size:clamp(1.7rem,7.4vw,5rem)}
+.fsub{margin:14px 0 0;color:var(--paper-3);max-width:46ch;font-size:.9rem}
+.flinks{display:flex;gap:18px;flex-wrap:wrap;margin-top:22px;font-size:.72rem;font-weight:600}
 .flinks a{color:var(--paper-2)}
 .flinks a:hover{color:var(--acc-2)}
-.fbot{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:30px;padding-top:18px;border-top:1px solid var(--line);
-  font-size:.59rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--paper-3)}
+.fbot{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:28px;padding-top:18px;border-top:1px solid var(--line);
+  font-size:.58rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--paper-3);line-height:1.7}
 
 .page{display:none}
 .page.on{display:block}
 
-/* ---------- responsive ---------- */
+/* the engine hides things only once it is actually running */
+html.motion .anim{opacity:0}
+html.motion .hline span{display:block;transform:translateY(105%)}
+
 @media (max-width:1000px){
   .hgrid,.steps,.dgrid,.dossier{grid-template-columns:1fr}
-  .rack{height:clamp(230px,32vh,300px)}
-  .dportrait{max-width:360px}
+  .fan{max-width:440px}
+  .dframe{max-width:240px}
   .drows div{grid-template-columns:1fr;gap:2px}
   .stepstick{position:static}
-  .dstick{position:static;max-width:280px}
+  .dstick{position:static;max-width:230px}
   .stats{grid-template-columns:1fr 1fr}
 }
 @media (max-width:760px){
   body{font-size:16.5px}
-  .wrap{width:min(100% - 30px,1320px)}
+  .wrap{width:min(100% - 30px,1280px)}
   .pill{display:none}
   .burger{display:flex}
-  header{padding:11px 0}
-  .hero{min-height:auto;padding:88px 0 34px}
-  .xl{font-size:clamp(2.1rem,10.5vw,3.2rem)}
-  .lg{font-size:clamp(1.55rem,7vw,2.2rem)}
-  .btn{padding:15px 20px;font-size:.62rem;flex:1 1 auto}
-  .hmeta{gap:12px;font-size:.58rem}
-  .rack{height:200px;gap:7px}
-  .spine .lab{display:none}
-  .section{padding:46px 0}
-  .stat{padding:20px 14px 18px}
-  .voice{padding:20px 16px}
-  .vrow{grid-template-columns:44px 1fr;gap:13px;padding:13px}
-  .vplay{width:42px;height:42px}
+  header{padding:10px 0}
+  .hero{min-height:auto;padding:84px 0 30px}
+  .xl{font-size:clamp(2rem,9.4vw,3rem)}
+  .lg{font-size:clamp(1.5rem,6.6vw,2.1rem)}
+  .btn{padding:14px 18px;font-size:.61rem;flex:1 1 auto}
+  .fan{max-width:none;aspect-ratio:auto;display:flex;gap:10px;justify-content:center}
+  .fan a{position:static;width:31%;transform:none !important;aspect-ratio:2/3}
+  .section{padding:44px 0}
+  .stat{padding:18px 12px 16px}
+  .voice,.finder,.ctaband{padding:20px 16px}
+  .vrow{grid-template-columns:42px minmax(0,1fr);gap:12px;padding:12px}
+  .vplay{width:40px;height:40px}
   .vtime{grid-column:2;margin-top:2px}
   .arrows{display:none}
-  .shelf{gap:13px;scroll-snap-type:x mandatory}
-  .bookcard{flex:0 0 60vw}
-  .row{grid-template-columns:38px 1fr;gap:12px}
+  .shelf{gap:12px;scroll-snap-type:x mandatory}
+  .bookcard{flex:0 0 46vw}
+  .row{grid-template-columns:34px minmax(0,1fr);gap:12px}
   .row .sub{display:none}
-  .row:hover{padding-left:8px}
-  .detail{padding:96px 0 0}
-  .dstick{max-width:200px}
+  .row:hover{padding-left:6px}
+  .detail{padding:92px 0 0}
+  .dstick{max-width:180px}
+  .fout{grid-template-columns:72px minmax(0,1fr);gap:14px}
+  .fout img{width:72px}
   .field{grid-template-columns:1fr}
   .field .btn{width:100%}
-  .quote{font-size:clamp(1.45rem,6.6vw,1.9rem)}
+  .quote{font-size:clamp(1.4rem,6.2vw,1.85rem)}
 }
-/* phones: no blur passes, no fixed washes. One painted background, everything scrolls cheap. */
 @media (max-width:900px),(pointer:coarse){
   #field,#veil{display:none}
   body{background:
-    radial-gradient(120% 80% at 10% 0%, var(--tone-3) 0%, transparent 55%),
-    radial-gradient(110% 70% at 100% 100%, var(--tone-2) 0%, transparent 52%),
+    radial-gradient(120% 80% at 8% 0%, var(--tone-3) 0%, transparent 55%),
+    radial-gradient(110% 70% at 100% 100%, var(--tone-2) 0%, transparent 50%),
     var(--ground)}
-  .bookcard,.fade{transition-duration:.5s}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation:none !important;transition-duration:.01ms !important}
-  .mask>*,.fade,.bookcard{transform:none;opacity:1}
+  html.motion .anim{opacity:1}
+  html.motion .hline span{transform:none}
 }
 </style>
 </head>
@@ -384,7 +350,6 @@ footer{padding:58px 0 32px;border-top:1px solid var(--line)}
 <div id="field"><i class="a"></i><i class="b"></i></div>
 <div id="veil"></div>
 <div id="curtain"></div>
-<div id="bar"></div>
 
 <header id="hdr">
   <div class="wrap nav">
@@ -396,7 +361,7 @@ footer{padding:58px 0 32px;border-top:1px solid var(--line)}
       <a href="#/about" data-link>About</a>
       <a href="#/speaking" data-link>Speaking</a>
     </nav>
-    <a class="btn acc glow" href="#/books" data-link style="padding:13px 20px">Get the book</a>
+    <a class="btn acc glow" href="#/books" data-link style="padding:12px 18px">Get the book</a>
     <button class="burger" id="burger" aria-label="Menu"><i></i><i></i><i></i></button>
   </div>
 </header>
@@ -418,48 +383,48 @@ footer{padding:58px 0 32px;border-top:1px solid var(--line)}
   <div class="wrap hero" id="hero">
     <div class="hgrid">
       <div>
-        <p class="tag fade">Author : Entrepreneur : Speaker</p>
-        <h1 class="xl" style="margin-top:14px">
-          <span class="mask"><span>Change,</span></span>
-          <span class="mask"><span>adapt,</span></span>
-          <span class="mask"><span><em>or die.</em></span></span>
+        <span class="tag anim">Author : Entrepreneur : Speaker</span>
+        <h1 class="xl" id="headline">
+          <span class="hline"><span>Change,</span></span>
+          <span class="hline"><span>adapt,</span></span>
+          <span class="hline"><span><em>or die.</em></span></span>
         </h1>
-        <div class="hrule"></div>
-        <p class="lede fade">
+        <div class="hrule anim" id="hrule"></div>
+        <p class="lede anim">
           Five books written from thirty years of building businesses on two continents. Each one answers
           a single question: what problem does this solve for you?
         </p>
-        <div class="hbtns fade">
+        <div class="hbtns anim">
           <a class="btn acc glow" href="#/books" data-link>Explore the books</a>
           <a class="btn line glow" href="#/voice" data-link>Hear it in his voice</a>
         </div>
-        <div class="hmeta fade">
+        <div class="hmeta anim">
           <span>Atlanta</span><span>30+ ventures</span><span>5 books</span><span>PhD, business strategy</span>
         </div>
       </div>
 
-      <div class="fade">
-        <div class="rack" id="rack"></div>
-        <div class="rackcap"><span>Five books on the shelf</span><span>Hover to open one</span></div>
+      <div class="anim">
+        <div class="fan" id="fan"></div>
+        <p class="fancap">Five books. Start with the one that names your problem.</p>
       </div>
     </div>
   </div>
 
   <div class="wrap">
     <div class="stats">
-      <div class="stat"><b>30+</b><span>Businesses built</span></div>
-      <div class="stat"><b>4</b><span>Countries of operation</span></div>
-      <div class="stat"><b>5</b><span>Books published</span></div>
-      <div class="stat"><b>231</b><span>Pages in the new book</span></div>
+      <div class="stat anim"><b>30+</b><span>Businesses built</span></div>
+      <div class="stat anim"><b>4</b><span>Countries of operation</span></div>
+      <div class="stat anim"><b>5</b><span>Books published</span></div>
+      <div class="stat anim"><b>231</b><span>Pages in the new book</span></div>
     </div>
   </div>
 
   <div class="wrap section" style="padding-bottom:0">
-    <div class="voice fade">
+    <div class="voice anim">
       <div class="vhead">
         <div>
-          <p class="tag">In his own voice</p>
-          <h2 class="lg" style="margin-top:12px">Two minutes with the author,<br>before you buy a word.</h2>
+          <span class="tag">In his own voice</span>
+          <h2 class="lg">Two minutes with the author,<br>before you buy a word.</h2>
         </div>
         <p class="num">Press play</p>
       </div>
@@ -468,65 +433,63 @@ footer{padding:58px 0 32px;border-top:1px solid var(--line)}
     </div>
   </div>
 
+  <div class="wrap section" style="padding-bottom:0">
+    <div class="finder anim">
+      <span class="tag">Start with the problem</span>
+      <h2 class="lg">Which one is yours right now?</h2>
+      <p class="lede" style="margin-top:12px">Pick the sentence closest to your week and I will point you at the right book.</p>
+      <div class="fq" id="fq"></div>
+      <div class="fout" id="fout" hidden></div>
+    </div>
+  </div>
+
   <div class="wrap section">
     <div class="shelfhead">
       <div>
-        <p class="tag fade">The library</p>
-        <h2 class="lg fade" style="margin-top:12px">Five books, five problems.</h2>
+        <span class="tag anim">The library</span>
+        <h2 class="lg anim">Five books, five problems.</h2>
       </div>
       <div class="arrows">
-        <button id="prev" aria-label="Previous"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 5l-7 7 7 7"/></svg></button>
-        <button id="next" aria-label="Next"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 5l7 7-7 7"/></svg></button>
+        <button id="prev" aria-label="Previous books"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button id="next" aria-label="Next books"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 5l7 7-7 7"/></svg></button>
       </div>
     </div>
     <div class="shelf" id="shelf"></div>
     <div class="shelfbar"><i id="shelfbar"></i></div>
   </div>
 
-  <div class="wrap section" style="padding-bottom:0">
-    <div class="finder fade">
-      <p class="tag">Start with the problem</p>
-      <h2 class="lg" style="margin:12px 0 6px">Which one is yours right now?</h2>
-      <p class="lede">Pick the sentence closest to your week and I will point you at the right book.</p>
-      <div class="fq" id="fq"></div>
-      <div class="fout" id="fout"></div>
-    </div>
-  </div>
-
-  <div class="wrap section" style="padding-top:clamp(30px,4vw,70px)">
+  <div class="wrap section" style="padding-top:0">
     <div class="dossier">
-      <div class="dportrait fade" style="position:relative">
-        <div class="dframe"><img src="assets/ralph.webp" alt="Dr. Ralph Tyga Uzokwe" width="760" height="929" loading="lazy" decoding="async"></div>
+      <div class="anim">
+        <div class="dframe"><img src="assets/ralph.webp" alt="Dr. Ralph Tyga Uzokwe" width="640" height="782" loading="lazy" decoding="async"></div>
         <p class="dcap">Atlanta, Georgia</p>
       </div>
       <div>
-        <p class="tag fade">The man behind the books</p>
-        <h2 class="lg fade" style="margin:14px 0 18px">
-          I arrived with two suitcases and an accent<br>people asked me to repeat.
-        </h2>
-        <p class="lede fade">
+        <span class="tag anim">The man behind the books</span>
+        <h2 class="lg anim">I arrived with two suitcases and an accent<br>people asked me to repeat.</h2>
+        <p class="lede anim" style="margin-top:16px">
           Nigeria gave me the education. America gave me the market. Everything after that I had to build
           twice, because the first version of most things does not survive contact with reality.
         </p>
-        <p class="fade" style="color:var(--paper-2);max-width:56ch">
+        <p class="anim" style="color:var(--paper-2);max-width:56ch">
           Thirty plus ventures later, clinics, real estate, retail, services and the capital company I run
           today, the lesson has not changed. Businesses do not die from competition. They die from comfort.
         </p>
-        <div class="drows fade">
+        <div class="drows anim">
           <div><span>Doctorate</span><b>Business Strategy and Positioning</b></div>
           <div><span>Built in</span><b>Nigeria, London, Ghana, United States</b></div>
           <div><span>Ventures</span><b>Clinics, property, retail, capital</b></div>
           <div><span>On stage</span><b>Boardrooms, universities, congregations</b></div>
         </div>
-        <a class="btn line glow fade" href="#/about" data-link style="margin-top:24px">The full story</a>
+        <a class="btn line glow anim" href="#/about" data-link style="margin-top:22px">The full story</a>
       </div>
     </div>
   </div>
 
   <div class="wrap section" style="padding-top:0">
-    <div class="sh fade"><h2 class="lg">How a book of mine works</h2><span class="num">Four moves</span></div>
+    <div class="sh anim"><h2 class="lg">How a book of mine works</h2><span class="num">Four moves</span></div>
     <div class="steps">
-      <div class="stepstick fade"><p class="quote">Every chapter ends with something you can <em>do on Monday.</em></p></div>
+      <div class="stepstick anim"><p class="quote">Every chapter ends with something you can <em>do on Monday.</em></p></div>
       <div>
         <div class="step" data-step><p class="num">Recognition</p><b>The problem, named out loud</b>
           <p>You will see yourself in the first ten pages, or the book has failed before it started.</p></div>
@@ -541,17 +504,17 @@ footer{padding:58px 0 32px;border-top:1px solid var(--line)}
   </div>
 
   <div class="wrap section" style="padding-top:0">
-    <div class="sh fade"><h2 class="lg">On stage</h2><span class="num">Six talks</span></div>
+    <div class="sh anim"><h2 class="lg">On stage</h2><span class="num">Six talks</span></div>
     <div class="rows">
-      <a class="row fade" href="#/speaking" data-link><span class="num">01</span><h3>Change, Adapt, or Die</h3><span class="sub">Why market leaders fall and what outlives them</span></a>
-      <a class="row fade" href="#/speaking" data-link><span class="num">02</span><h3>Wealth That Survives You</h3><span class="sub">Why most fortunes never reach a third generation</span></a>
-      <a class="row fade" href="#/speaking" data-link><span class="num">03</span><h3>Activate Your Greatness</h3><span class="sub">Turning potential into measurable results</span></a>
-      <a class="row fade" href="#/speaking" data-link><span class="num">04</span><h3>The Immigrant Advantage</h3><span class="sub">Turning a hard start into an unfair advantage</span></a>
+      <a class="row anim" href="#/speaking" data-link><span class="num">01</span><h3>Change, Adapt, or Die</h3><span class="sub">Why market leaders fall and what outlives them</span></a>
+      <a class="row anim" href="#/speaking" data-link><span class="num">02</span><h3>Wealth That Survives You</h3><span class="sub">Why most fortunes never reach a third generation</span></a>
+      <a class="row anim" href="#/speaking" data-link><span class="num">03</span><h3>Activate Your Greatness</h3><span class="sub">Turning potential into measurable results</span></a>
+      <a class="row anim" href="#/speaking" data-link><span class="num">04</span><h3>The Immigrant Advantage</h3><span class="sub">Turning a hard start into an unfair advantage</span></a>
     </div>
   </div>
 
-  <div class="wrap" style="padding-bottom:clamp(46px,6vw,100px)">
-    <div class="ctaband fade">
+  <div class="wrap" style="padding-bottom:clamp(44px,6vw,96px)">
+    <div class="ctaband anim">
       <h2 class="lg">Read the first chapter<br>before you buy.</h2>
       <p class="lede" style="margin-top:14px">
         Leave your email and the opening chapter arrives immediately, with a note when the next book lands.
@@ -566,14 +529,11 @@ footer{padding:58px 0 32px;border-top:1px solid var(--line)}
 
 <!-- ============================ BOOKS ============================ -->
 <section class="page" data-page="books">
-  <div class="wrap" style="padding:122px 0 0">
-    <p class="tag fade">The library</p>
-    <h1 class="lg" style="margin:14px 0 18px">
-      <span class="mask"><span>Every book solves</span></span>
-      <span class="mask"><span>one real problem.</span></span>
-    </h1>
-    <p class="lede fade">Five titles across change, the mind, love, leadership and destiny.</p>
-    <div id="grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:clamp(20px,2.6vw,40px);margin-top:44px"></div>
+  <div class="wrap" style="padding:118px 0 0">
+    <span class="tag anim">The library</span>
+    <h1 class="lg anim">Every book solves one real problem.</h1>
+    <p class="lede anim" style="margin-top:16px">Five titles across change, the mind, love, leadership and destiny.</p>
+    <div id="grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:clamp(18px,2.4vw,36px);margin-top:40px"></div>
   </div>
 </section>
 
@@ -582,47 +542,36 @@ footer{padding:58px 0 32px;border-top:1px solid var(--line)}
 
 <!-- ============================ VOICE ============================ -->
 <section class="page" data-page="voice">
-  <div class="wrap" style="padding:122px 0 0">
-    <p class="tag fade">Listen</p>
-    <h1 class="lg" style="margin:14px 0 18px">
-      <span class="mask"><span>Every book, explained</span></span>
-      <span class="mask"><span>by the man who wrote it.</span></span>
-    </h1>
-    <p class="lede fade">Two to three minutes per book. What is inside it, who it is for, and the problem it solves.</p>
-    <div class="voice fade" style="margin-top:40px"><div class="vlist" id="vlist2"></div>
+  <div class="wrap" style="padding:118px 0 0">
+    <span class="tag anim">Listen</span>
+    <h1 class="lg anim">Every book, explained by the man who wrote it.</h1>
+    <p class="lede anim" style="margin-top:16px">Two to three minutes per book. What is inside it, who it is for, and the problem it solves.</p>
+    <div class="voice anim" style="margin-top:36px"><div class="vlist" id="vlist2"></div>
       <p class="vnote">Recorded by Dr. Uzokwe himself.</p></div>
   </div>
 </section>
 
 <!-- ============================ ABOUT ============================ -->
 <section class="page" data-page="about">
-  <div class="wrap" style="padding:122px 0 0">
-    <div class="hgrid">
+  <div class="wrap" style="padding:118px 0 0">
+    <div class="dossier">
+      <div class="anim">
+        <div class="dframe"><img src="assets/ralph.webp" alt="Dr. Ralph Tyga Uzokwe" width="640" height="782" loading="lazy" decoding="async"></div>
+        <p class="dcap">Atlanta, Georgia</p>
+      </div>
       <div>
-        <p class="tag fade">About</p>
-        <h1 class="xl" style="margin:16px 0 22px">
-          <span class="mask"><span>Built it,</span></span>
-          <span class="mask"><span>lost some,</span></span>
-          <span class="mask"><span><em>built again.</em></span></span>
-        </h1>
-        <p class="lede fade">
+        <span class="tag anim">About</span>
+        <h1 class="xl anim">Built it, lost some,<br><em style="font-style:normal;color:var(--acc)">built again.</em></h1>
+        <p class="lede anim" style="margin-top:18px">
           Nigeria raised me, America tested me, and thirty plus ventures taught me the one thing that never
           appears in a business plan: comfort kills faster than competition.
         </p>
-      </div>
-      <div class="dportrait fade" style="position:relative">
-        <div class="dframe"><img src="assets/ralph.webp" alt="Dr. Ralph Tyga Uzokwe" width="760" height="929" loading="lazy" decoding="async"></div>
-      </div>
-    </div>
-    <div class="steps section">
-      <div class="stepstick fade"><p class="quote">You only fail when you <em>give up.</em></p></div>
-      <div class="fade">
-        <p class="lede" style="max-width:60ch">
+        <p class="anim" style="color:var(--paper-2);max-width:60ch">
           I studied at night, worked through the day, and put whatever was left into the first business,
           then the next one. Some worked in a month. Some took years. A few closed, and those taught me the
           most, because a business that dies tells you exactly where you stopped paying attention.
         </p>
-        <div class="rows" style="margin-top:28px">
+        <div class="rows anim" style="margin-top:24px">
           <div class="row"><span class="num">Arrival</span><h3>America</h3><span class="sub">Study at night, work by day, the first business</span></div>
           <div class="row"><span class="num">2008</span><h3>The pivot</h3><span class="sub">Out of housing, into commercial property, mid crash</span></div>
           <div class="row"><span class="num">Doctorate</span><h3>Business strategy and positioning</h3><span class="sub">Language for what the work already taught</span></div>
@@ -635,14 +584,11 @@ footer{padding:58px 0 32px;border-top:1px solid var(--line)}
 
 <!-- ============================ SPEAKING ============================ -->
 <section class="page" data-page="speaking">
-  <div class="wrap" style="padding:122px 0 0">
-    <p class="tag fade">Speaking</p>
-    <h1 class="xl" style="margin:16px 0 22px">
-      <span class="mask"><span>Bring me to</span></span>
-      <span class="mask"><span><em>your room.</em></span></span>
-    </h1>
-    <p class="lede fade">Boardrooms, congregations, associations, universities. Never theory alone.</p>
-    <div class="rows" style="margin-top:40px">
+  <div class="wrap" style="padding:118px 0 0">
+    <span class="tag anim">Speaking</span>
+    <h1 class="xl anim">Bring me to your room.</h1>
+    <p class="lede anim" style="margin-top:18px">Boardrooms, congregations, associations, universities. Never theory alone.</p>
+    <div class="rows anim" style="margin-top:36px">
       <div class="row"><span class="num">01</span><h3>Change, Adapt, or Die</h3><span class="sub">60 minutes, keynote</span></div>
       <div class="row"><span class="num">02</span><h3>Wealth That Survives You</h3><span class="sub">45 minutes, keynote</span></div>
       <div class="row"><span class="num">03</span><h3>Activate Your Greatness</h3><span class="sub">Half day workshop</span></div>
@@ -650,7 +596,7 @@ footer{padding:58px 0 32px;border-top:1px solid var(--line)}
       <div class="row"><span class="num">05</span><h3>The Immigrant Advantage</h3><span class="sub">60 minutes, keynote</span></div>
       <div class="row"><span class="num">06</span><h3>Living with Artificial Intelligence</h3><span class="sub">60 minutes, keynote</span></div>
     </div>
-    <div class="ctaband fade" style="margin:50px 0 80px">
+    <div class="ctaband anim" style="margin:44px 0 72px">
       <h2 class="lg">Tell me about your event.</h2>
       <form class="field" onsubmit="return sent(this)">
         <input type="email" required placeholder="your@email.com" aria-label="Email">
@@ -664,9 +610,7 @@ footer{padding:58px 0 32px;border-top:1px solid var(--line)}
 
 <footer>
   <div class="wrap">
-    <svg class="fmark" viewBox="0 0 1000 108" role="img" aria-label="Dr. Ralph Tyga Uzokwe">
-      <text x="0" y="86" font-size="104" textLength="1000" lengthAdjust="spacingAndGlyphs">Ralph Tyga Uzokwe</text>
-    </svg>
+    <p class="fname">Dr. Ralph Tyga Uzokwe</p>
     <p class="fsub">Books that solve the problems life hands you. Written from a life spent building, losing, and building again.</p>
     <div class="flinks">
       <a href="#/books" data-link>Books</a>
@@ -742,50 +686,23 @@ var BOOKS = [
 
 var $  = function(s,r){ return (r||document).querySelector(s); };
 var $$ = function(s,r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); };
-function art(b, lazy){
-  return '<img src="'+b.cover+'" alt="Cover of '+b.title+'" width="600" height="900"'
-       + (lazy ? ' loading="lazy" decoding="async"' : ' fetchpriority="high"') + '>';
-}
+function byId(id){ var f = null; BOOKS.forEach(function(b){ if(b.id === id) f = b; }); return f; }
 
-/* hero rack */
-$("#rack").innerHTML = BOOKS.map(function(b, i){
-  return '<a class="spine" href="#/book/'+b.id+'" data-link aria-label="'+b.title+'">'
-       + '<img src="'+b.cover+'" alt="'+b.title+'"'+(i < 2 ? '' : ' loading="lazy"')+' decoding="async">'
-       + '<span class="lab">'+b.title+'</span></a>';
-}).join("");
-
-/* ---------- the problem finder: his own thesis, made usable ---------- */
-var PROBLEMS = [
-  { q:"My industry is shifting under me",        id:"caod",         why:"It shows you where four giants stopped moving, and exactly what it cost each of them." },
-  { q:"I am capable of more and cannot show it", id:"supernatural", why:"A daily system that turns potential into something you can measure by Friday." },
-  { q:"My marriage has gone quiet",              id:"woman",        why:"The difference between hearing her and understanding her, in ordinary daily terms." },
-  { q:"I have the title but not the room",       id:"leadership",   why:"Authority is given. This is about earning the part nobody hands you." },
-  { q:"I keep stalling in the same place",       id:"unstoppable",  why:"Desire, discipline and the company you keep, rebuilt into something repeatable." },
-  { q:"I am starting over after a loss",         id:"caod",         why:"Written by someone who moved his whole business mid crash and lived to describe it." }
-];
+/* ---------- hero fan: three whole covers ---------- */
 (function(){
-  var box = $("#fq"), out = $("#fout");
-  if(!box) return;
-  box.innerHTML = PROBLEMS.map(function(p, i){ return '<button type="button" data-p="'+i+'">'+p.q+'</button>'; }).join("");
-  box.addEventListener("click", function(e){
-    var b = e.target.closest("button");
-    if(!b) return;
-    $$("#fq button").forEach(function(x){ x.classList.remove("on"); });
-    b.classList.add("on");
-    var p = PROBLEMS[+b.getAttribute("data-p")], book = null;
-    BOOKS.forEach(function(x){ if(x.id === p.id) book = x; });
-    out.innerHTML = '<img src="'+book.cover+'" alt="'+book.title+'" width="104" height="156" loading="lazy">'
-      + '<div><p class="k">Start here</p><h3>'+book.title+'</h3><p>'+p.why+'</p>'
-      + '<a class="btn acc glow" href="#/book/'+book.id+'" data-link style="padding:13px 20px">Open this book</a></div>';
-    out.classList.add("show");
-    glowInit();
-  });
+  var order = ["caod","supernatural","woman"], cls = ["f1","f2","f3"];
+  $("#fan").innerHTML = order.map(function(id, i){
+    var b = byId(id);
+    return '<a class="'+cls[i]+'" href="#/book/'+b.id+'" data-link aria-label="'+b.title+'">'
+         + '<img src="'+b.cover+'" alt="'+b.title+'" width="900" height="1350"'
+         + (i ? ' loading="lazy"' : ' fetchpriority="high"') + ' decoding="async"></a>';
+  }).join("");
 })();
 
 function card(b){
   return '<div class="bookcard">'
     + '<a href="#/book/'+b.id+'" data-link>'
-    +   '<div class="art"><span class="flag">Out now</span>'+art(b,true)+'</div>'
+    +   '<div class="art"><img src="'+b.cover+'" alt="Cover of '+b.title+'" width="900" height="1350" loading="lazy" decoding="async"></div>'
     +   '<h3>'+b.title+'</h3><p>'+b.short+'</p><span class="go">What it solves</span>'
     + '</a>'
     + '<a class="cardamz" href="'+b.amazon+'" target="_blank" rel="noopener">Or read it on Amazon</a></div>';
@@ -800,13 +717,12 @@ function bars(n){
 }
 function voiceRow(b){
   return '<div class="vrow">'
-    + '<button class="vplay" aria-label="Play"><svg width="17" height="17" viewBox="0 0 16 16" fill="currentColor"><path d="M4 2.5v11l9-5.5z"/></svg></button>'
+    + '<button class="vplay" aria-label="Play the summary of '+b.title+'"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M4 2.5v11l9-5.5z"/></svg></button>'
     + '<div><p class="vname">'+b.title+'</p><p class="vsub">The author on what this book solves</p>'
-    + '<div class="wave">'+bars(26)+'</div></div><div class="vtime">'+b.audio+'</div></div>';
+    + '<div class="wave">'+bars(24)+'</div></div><div class="vtime">'+b.audio+'</div></div>';
 }
 $("#vlist").innerHTML  = BOOKS.slice(0,3).map(voiceRow).join("");
 $("#vlist2").innerHTML = BOOKS.map(voiceRow).join("");
-
 document.addEventListener("click", function(e){
   var row = e.target.closest ? e.target.closest(".vrow") : null;
   if(!row) return;
@@ -815,32 +731,59 @@ document.addEventListener("click", function(e){
   if(!playing) row.classList.add("on");
 });
 
+/* ---------- problem finder ---------- */
+var PROBLEMS = [
+  { q:"My industry is shifting under me",        id:"caod",         why:"It shows you where four giants stopped moving, and exactly what it cost each of them." },
+  { q:"I am capable of more and cannot show it", id:"supernatural", why:"A daily system that turns potential into something you can measure by Friday." },
+  { q:"My marriage has gone quiet",              id:"woman",        why:"The difference between hearing her and understanding her, in ordinary daily terms." },
+  { q:"I have the title but not the room",       id:"leadership",   why:"Authority is given. This is about earning the part nobody hands you." },
+  { q:"I keep stalling in the same place",       id:"unstoppable",  why:"Desire, discipline and the company you keep, rebuilt into something repeatable." },
+  { q:"I am starting over after a loss",         id:"caod",         why:"Written by someone who moved his whole business mid crash and lived to describe it." }
+];
+(function(){
+  var box = $("#fq"), out = $("#fout");
+  box.innerHTML = PROBLEMS.map(function(p,i){ return '<button type="button" data-p="'+i+'">'+p.q+'</button>'; }).join("");
+  box.addEventListener("click", function(e){
+    var b = e.target.closest("button");
+    if(!b) return;
+    $$("#fq button").forEach(function(x){ x.classList.remove("on"); });
+    b.classList.add("on");
+    var p = PROBLEMS[+b.getAttribute("data-p")], book = byId(p.id);
+    out.hidden = false;
+    out.innerHTML = '<img src="'+book.cover+'" alt="'+book.title+'" width="96" height="144" loading="lazy">'
+      + '<div><span class="tag">Start here</span><h3>'+book.title+'</h3><p>'+p.why+'</p>'
+      + '<a class="btn acc glow" href="#/book/'+book.id+'" data-link style="padding:12px 18px">Open this book</a></div>';
+    glowInit();
+    if(M) M.animate(out, { opacity:[0,1], transform:["translateY(10px)","translateY(0px)"] }, { duration:.5, easing:[.16,1,.3,1] });
+  });
+})();
+
+/* ---------- detail ---------- */
 function detail(id){
-  var b = null;
-  BOOKS.forEach(function(x){ if(x.id === id) b = x; });
-  if(!b) b = BOOKS[0];
+  var b = byId(id) || BOOKS[0];
   $("#detail").innerHTML =
-    '<a class="num" href="#/books" data-link style="display:inline-block;margin-bottom:24px">Back to all books</a>'
-  + '<div class="dgrid"><div class="dstick"><div class="art">'+art(b)+'</div>'
+    '<a class="num" href="#/books" data-link style="display:inline-block;margin-bottom:22px">Back to all books</a>'
+  + '<div class="dgrid"><div class="dstick"><div class="art">'
+  +   '<img src="'+b.cover+'" alt="Cover of '+b.title+'" width="900" height="1350" fetchpriority="high" decoding="async"></div>'
   +   '<div class="facts">'
   +     '<div><span>Genre</span><b>'+b.genre+'</b></div><div><span>Published</span><b>'+b.year+'</b></div>'
   +     '<div><span>Length</span><b>'+b.pages+'</b></div><div><span>Formats</span><b>Print and e-book</b></div>'
   +   '</div></div>'
-  + '<div><p class="tag">'+b.genre+'</p><h1 class="lg" style="margin:12px 0 12px">'+b.title+'</h1>'
-  +   '<p class="lede">'+b.sub+'</p>'
+  + '<div><span class="tag">'+b.genre+'</span><h1 class="lg">'+b.title+'</h1>'
+  +   '<p class="lede" style="margin-top:12px">'+b.sub+'</p>'
   +   b.summary.map(function(p){ return '<p style="color:var(--paper-2);margin-top:16px">'+p+'</p>'; }).join("")
   +   '<div class="solves"><h4>What this book will solve for you</h4><ol>'
   +     b.solves.map(function(s){ return '<li><span>'+s+'</span></li>'; }).join("") + '</ol></div>'
-  +   '<div class="voice" style="padding:18px"><p class="tag">In his own voice</p>'
+  +   '<div class="voice" style="padding:18px"><span class="tag">In his own voice</span>'
   +     '<div class="vlist" style="margin-top:12px">'+voiceRow(b)+'</div></div>'
   +   '<div class="buy"><a class="btn acc glow" href="#">Buy the hard copy '+b.price+'</a>'
   +     '<a class="btn line glow" href="#">E-book '+b.ebook+'</a>'
   +     '<a class="amzlink" href="'+b.amazon+'" target="_blank" rel="noopener">Read it on Kindle, over on Amazon</a></div>'
   + '</div></div>';
-  observe(); glowInit();
+  glowInit();
 }
 
-/* router */
+/* ---------- router ---------- */
 var curtain = $("#curtain");
 function show(page, sub){
   $$(".page").forEach(function(p){ p.classList.toggle("on", p.dataset.page === page); });
@@ -850,8 +793,7 @@ function show(page, sub){
   });
   if(page === "book") detail(sub);
   window.scrollTo(0,0);
-  observe(); runMasks(); glowInit();
-  var hero = $("#hero"); if(hero) setTimeout(function(){ hero.classList.add("ready"); }, 120);
+  playPage();
 }
 function route(first){
   var parts = (location.hash || "#/").replace("#/","").split("/").filter(Boolean);
@@ -860,54 +802,66 @@ function route(first){
   closeMobile();
   if(first){ show(page, parts[1]); return; }
   curtain.classList.remove("in"); void curtain.offsetWidth; curtain.classList.add("in");
-  setTimeout(function(){ show(page, parts[1]); }, 400);
+  setTimeout(function(){ show(page, parts[1]); }, 380);
 }
 addEventListener("hashchange", function(){ route(false); });
 
-/* reveals */
-var io;
-function observe(){
-  if(!io) io = new IntersectionObserver(function(es){
-    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
-  },{rootMargin:"0px 0px -5% 0px",threshold:.06});
-  $$(".fade:not(.in),.mask:not(.in),.bookcard:not(.in)").forEach(function(el,i){
-    el.style.transitionDelay = Math.min(i % 6, 5) * 60 + "ms";
-    io.observe(el);
-  });
-}
-function runMasks(){
-  var page = $(".page.on"); if(!page) return;
-  $$(".mask", page).forEach(function(m,i){
-    m.classList.remove("in");
-    setTimeout(function(){ m.classList.add("in"); }, 100 + i * 80);
-  });
+/* =========================================================================
+   MOTION: the Motion library, the engine behind Framer Motion.
+   If the module fails to load, everything is already visible.
+   ========================================================================= */
+var M = null;
+function playPage(){
+  var page = $(".page.on");
+  if(!page || !M) return;
+  var lines = $$(".hline span", page);
+  if(lines.length){
+    M.animate(lines, { transform:["translateY(105%)","translateY(0%)"] },
+      { delay:M.stagger(0.08), duration:.9, easing:[.16,1,.3,1] });
+  }
+  var items = $$(".anim", page);
+  items.forEach(function(el){ el.style.opacity = 0; });
+  M.inView(items, function(el){
+    M.animate(el, { opacity:[0,1], transform:["translateY(22px)","translateY(0px)"] },
+      { type:"spring", stiffness:120, damping:20 });
+    return function(){};
+  }, { amount:0.15 });
+  var rule = $("#hrule", page);
+  if(rule) M.animate(rule, { transform:["scaleX(0)","scaleX(1)"] }, { duration:1.1, delay:.3, easing:[.16,1,.3,1] });
 }
 
-/* one rAF loop drives the scroll work, so phones stay smooth */
-var lastY = 0, ticking = false, hdr = $("#hdr"), bar = $("#bar"), steps = [];
-function readSteps(){ steps = $$("[data-step]"); }
+import("https://cdn.jsdelivr.net/npm/motion@11.15.0/+esm").then(function(mod){
+  M = mod;
+  document.documentElement.classList.add("motion");
+  playPage();
+  if(matchMedia("(min-width:1000px)").matches && $("#hero")){
+    mod.scroll(
+      mod.animate("#fan .f1", { transform:["translateY(-50%) rotate(-7deg)","translateY(-64%) rotate(-11deg)"] }, { easing:"linear" }),
+      { target: $("#hero"), offset:["start start","end start"] });
+    mod.scroll(
+      mod.animate("#fan .f3", { transform:["translateY(-50%) rotate(7deg)","translateY(-36%) rotate(11deg)"] }, { easing:"linear" }),
+      { target: $("#hero"), offset:["start start","end start"] });
+  }
+}).catch(function(){});
+
+/* ---------- header and steps ---------- */
+var lastY = 0, ticking = false, hdr = $("#hdr");
 function frame(){
-  var y = window.pageYOffset, h = document.documentElement.scrollHeight - innerHeight;
-  bar.style.transform = "scaleX(" + (h > 0 ? y / h : 0) + ")";
+  var y = window.pageYOffset;
   hdr.classList.toggle("hide", y > lastY && y > 300);
   lastY = y;
-  for(var i = 0; i < steps.length; i++){
-    var r = steps[i].getBoundingClientRect();
-    steps[i].classList.toggle("act", r.top < innerHeight * .68 && r.bottom > innerHeight * .18);
-  }
+  $$("[data-step]").forEach(function(s){
+    var r = s.getBoundingClientRect();
+    s.classList.toggle("act", r.top < innerHeight * .68 && r.bottom > innerHeight * .18);
+  });
   ticking = false;
 }
-addEventListener("scroll", function(){
-  if(ticking) return;
-  ticking = true;
-  requestAnimationFrame(frame);
-}, {passive:true});
+addEventListener("scroll", function(){ if(!ticking){ ticking = true; requestAnimationFrame(frame); } }, {passive:true});
 
-/* shelf: sideways only */
+/* ---------- shelf, sideways only ---------- */
 (function(){
   var shelf = $("#shelf"), sbar = $("#shelfbar"), prev = $("#prev"), next = $("#next");
-  if(!shelf) return;
-  function stepW(){ var c = shelf.querySelector(".bookcard"); return c ? c.offsetWidth + 22 : 280; }
+  function stepW(){ var c = shelf.querySelector(".bookcard"); return c ? c.offsetWidth + 20 : 260; }
   function update(){
     var max = shelf.scrollWidth - shelf.clientWidth;
     var p = max > 0 ? shelf.scrollLeft / max : 0;
@@ -941,7 +895,7 @@ addEventListener("scroll", function(){
   shelf.addEventListener("click", function(e){ if(moved > 8) e.preventDefault(); }, true);
 })();
 
-/* buttons glow near the pointer, desktop only */
+/* ---------- buttons glow ---------- */
 var fine = matchMedia("(pointer:fine)").matches;
 function glowInit(){
   if(!fine) return;
@@ -972,7 +926,7 @@ if(fine){
   }, {passive:true});
 }
 
-/* mobile menu */
+/* ---------- mobile menu ---------- */
 var burger = $("#burger"), mobile = $("#mobile");
 function closeMobile(){ mobile.classList.remove("open"); burger.classList.remove("x"); document.body.style.overflow = ""; }
 burger.addEventListener("click", function(){
@@ -984,11 +938,10 @@ mobile.addEventListener("click", function(e){ if(e.target.tagName === "A") close
 
 function sent(f){ f.reset(); alert("Thank you. It is on its way."); return false; }
 
-readSteps();
-route(true);
-runMasks();
 glowInit();
+route(true);
 </script>
+
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Person","name":"Dr. Ralph Tyga Uzokwe",
  "jobTitle":"Author, entrepreneur and speaker","url":"https://drralphuzokwe.com/",

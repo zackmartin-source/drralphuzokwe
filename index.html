@@ -200,6 +200,28 @@ header.hide{transform:translateY(-135%)}
 .fancap{margin-top:16px;text-align:center;font-size:.62rem;font-weight:700;letter-spacing:.18em;
   text-transform:uppercase;color:var(--paper-3)}
 
+/* ---------- the sign up card ---------- */
+/* Shown once. A dismissal is remembered, so the same reader is never asked twice. */
+.pop{position:fixed;inset:0;z-index:300;display:none;align-items:center;justify-content:center;padding:20px}
+.pop.on{display:flex}
+.pop__veil{position:absolute;inset:0;background:rgba(10,12,18,.72);backdrop-filter:blur(6px)}
+.pop__card{position:relative;width:min(100%,520px);background:var(--ground-2);border:1px solid var(--line);
+  border-radius:14px;padding:clamp(26px,4vw,46px);overflow:hidden;
+  box-shadow:0 50px 90px -40px rgba(0,0,0,.9)}
+.pop__card::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--acc-5)}
+.pop__card h2{margin-bottom:12px}
+.pop__x{position:absolute;top:10px;right:12px;width:40px;height:40px;font-size:1.4rem;line-height:1;
+  color:var(--paper-3);transition:color .3s var(--smooth)}
+.pop__x:hover{color:var(--paper)}
+.pop .field{margin-top:20px}
+.pop__no{display:inline-block;margin-top:16px;font-size:.82rem;color:var(--paper-3);
+  border-bottom:1px solid var(--line);padding-bottom:2px;transition:color .3s var(--smooth)}
+.pop__no:hover{color:var(--paper)}
+@media (prefers-reduced-motion:no-preference){
+  .pop.on .pop__card{animation:popin .44s var(--spring) both}
+  @keyframes popin{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+}
+
 /* ---------- stats ---------- */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border-block:1px solid var(--line)}
 .stat{background:var(--ground);padding:26px 18px 22px;min-width:0}
@@ -695,6 +717,25 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
 </section>
 
 </main>
+
+<div class="pop" id="pop" role="dialog" aria-modal="true" aria-labelledby="poph" hidden>
+  <div class="pop__veil" data-close></div>
+  <div class="pop__card">
+    <button class="pop__x" type="button" data-close aria-label="Close">&times;</button>
+    <span class="tag">Before you go anywhere</span>
+    <h2 class="lg" id="poph">Read the first chapter free.</h2>
+    <p class="lede" style="margin-top:12px">
+      Leave your email and the opening chapter of Change, Adapt, or Die arrives immediately,
+      with a note when the next book lands.
+    </p>
+    <form class="field" onsubmit="return popsend(this)">
+      <input type="email" required placeholder="your@email.com" aria-label="Email">
+      <button class="btn acc glow" type="submit">Send it</button>
+    </form>
+    <button class="pop__no" type="button" data-close>No thanks, let me read the site</button>
+  </div>
+</div>
+
 
 <footer>
   <div class="wrap">
@@ -1297,6 +1338,30 @@ burger.addEventListener("click", function(){
 });
 mobile.addEventListener("click", function(e){ if(e.target.tagName === "A") closeMobile(); });
 
+function popsend(f){ f.reset(); if(window.popclose) window.popclose(); alert("Thank you. It is on its way."); return false; }
+(function(){
+  var pop = document.getElementById("pop");
+  if(!pop) return;
+  var opener = null, seen = false;
+  try { seen = localStorage.getItem("rtu.signup") === "done"; } catch(e){}
+  function close(){
+    pop.classList.remove("on"); pop.hidden = true;
+    try { localStorage.setItem("rtu.signup","done"); } catch(e){}
+    document.documentElement.style.overflow = "";
+    if(opener && opener.focus) opener.focus();
+  }
+  window.popclose = close;
+  pop.addEventListener("click", function(ev){ if(ev.target.closest("[data-close]")) close(); });
+  document.addEventListener("keydown", function(ev){ if(ev.key === "Escape" && pop.classList.contains("on")) close(); });
+  if(!seen){
+    setTimeout(function(){
+      opener = document.activeElement;
+      pop.hidden = false; pop.classList.add("on");
+      document.documentElement.style.overflow = "hidden";
+      var i = pop.querySelector("input"); if(i) i.focus({preventScroll:true});
+    }, 1400);
+  }
+})();
 function sent(f){ f.reset(); alert("Thank you. It is on its way."); return false; }
 
 $$("main .wrap, footer .wrap").forEach(function(el){ el.setAttribute("data-adapt", ""); });

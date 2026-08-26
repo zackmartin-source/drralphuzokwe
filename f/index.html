@@ -800,7 +800,9 @@ function byId(id){ var f = null; BOOKS.forEach(function(b){ if(b.id === id) f = 
     set(-1);
     cards.forEach(function(c, i){
       c.addEventListener("pointerenter", function(){ set(i); });
+      c.addEventListener("mouseenter", function(){ set(i); });
       c.addEventListener("pointerleave", function(){ set(-1); });
+      c.addEventListener("mouseleave", function(){ set(-1); });
       c.addEventListener("focus", function(){ set(i); });
       c.addEventListener("blur", function(){ set(-1); });
     });

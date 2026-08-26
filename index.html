@@ -187,6 +187,9 @@ header.hide{transform:translateY(-135%)}
 .fan .f3.lift{transform:rotate(1deg) translateY(-22px) scale(1.05)}
 .fan a.lift{box-shadow:0 46px 74px -32px rgba(0,0,0,.95);z-index:4}
 .fan a.dim{opacity:.72}
+.fan .f1:hover{transform:rotate(-1deg) translateY(-22px) scale(1.05)}
+.fan .f2:hover{transform:translateY(-36px) scale(1.05)}
+.fan .f3:hover{transform:rotate(1deg) translateY(-22px) scale(1.05)}
 .fancap{margin-top:16px;text-align:center;font-size:.62rem;font-weight:700;letter-spacing:.18em;
   text-transform:uppercase;color:var(--paper-3)}
 
@@ -770,7 +773,6 @@ function byId(id){ var f = null; BOOKS.forEach(function(b){ if(b.id === id) f = 
 /* ---------- hero fan: three whole covers ---------- */
 (function(){
   var order = ["caod","supernatural","woman"], cls = ["f1","f2","f3"];   /* printed books only */
-  var LIFT = matchMedia("(hover:hover) and (pointer:fine)").matches;
   $("#fan").innerHTML = order.map(function(id, i){
     var b = byId(id);
     return '<a class="'+cls[i]+'" href="#/book/'+b.id+'" data-link aria-label="'+b.title+'">'
@@ -779,7 +781,7 @@ function byId(id){ var f = null; BOOKS.forEach(function(b){ if(b.id === id) f = 
   }).join("");
 
   /* every card lifts, and the other two step back while it does */
-  if(LIFT){
+  (function(){
     var cards = $$("#fan a");
     var clear = function(){ cards.forEach(function(o){ o.classList.remove("lift"); o.classList.remove("dim"); }); };
     cards.forEach(function(c){
@@ -793,7 +795,7 @@ function byId(id){ var f = null; BOOKS.forEach(function(b){ if(b.id === id) f = 
       c.addEventListener("focus", function(){ c.classList.add("lift"); });
       c.addEventListener("blur", clear);
     });
-  }
+  })();
 })();
 
 /* ---------- a drawn cover for a title that has no artwork yet ---------- */

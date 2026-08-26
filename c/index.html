@@ -171,17 +171,15 @@ header.hide{transform:translateY(-135%)}
   box-shadow:0 30px 56px -34px rgba(0,0,0,.92);border:1px solid rgba(255,255,255,.08);
   transition:transform .6s var(--spring),box-shadow .6s var(--spring)}
 .fan a img{width:100%;height:100%;object-fit:contain;background:#0c0d11}
-.fan a{--rot:0deg;--rise:0px;transform:rotate(var(--rot)) translateY(var(--rise))}
-.fan .f1{--rot:-2.5deg}
-.fan .f2{--rise:-14px}
-.fan .f3{--rot:2.5deg}
-/* one rule lifts whichever card the pointer is on, and the other two settle back */
-.fan a:hover,.fan a:focus-visible{
-  transform:rotate(calc(var(--rot) * .4)) translateY(calc(var(--rise) - 20px)) scale(1.045);
-  box-shadow:0 46px 74px -32px rgba(0,0,0,.95);
-  z-index:4;
-}
-.fan:hover a:not(:hover){opacity:.72;transform:rotate(var(--rot)) translateY(var(--rise)) scale(.97)}
+.fan .f1{transform:rotate(-2.5deg)}
+.fan .f2{transform:translateY(-14px)}
+.fan .f3{transform:rotate(2.5deg)}
+/* each card lifts on its own, in plain values so nothing can fail to compute */
+.fan .f1:hover,.fan .f1:focus-visible{transform:rotate(-1deg) translateY(-20px) scale(1.045);z-index:4}
+.fan .f2:hover,.fan .f2:focus-visible{transform:translateY(-34px) scale(1.045);z-index:4}
+.fan .f3:hover,.fan .f3:focus-visible{transform:rotate(1deg) translateY(-20px) scale(1.045);z-index:4}
+.fan a:hover,.fan a:focus-visible{box-shadow:0 46px 74px -32px rgba(0,0,0,.95)}
+.fan:hover .f1:not(:hover),.fan:hover .f2:not(:hover),.fan:hover .f3:not(:hover){opacity:.74}
 .fancap{margin-top:16px;text-align:center;font-size:.62rem;font-weight:700;letter-spacing:.18em;
   text-transform:uppercase;color:var(--paper-3)}
 

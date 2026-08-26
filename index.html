@@ -64,7 +64,7 @@ p{margin:0 0 1.05em}
    whole page and not just behind the headline. Each one drifts and changes
    colour on its own clock. */
 #field{position:fixed;inset:-18%;z-index:0;pointer-events:none;contain:strict}
-#field i{position:absolute;display:block;border-radius:50%;filter:blur(76px);opacity:.68;
+#field i{position:absolute;display:block;border-radius:50%;filter:blur(76px);opacity:.74;
   will-change:transform;transition:background-color 5s linear}
 #field .a{background:var(--tone-1);width:52vw;height:52vw;left:-14vw;top:-14vw;animation:d1 38s var(--smooth) infinite alternate}
 #field .b{background:var(--tone-2);width:46vw;height:46vw;right:-14vw;top:6vh;animation:d2 46s var(--smooth) infinite alternate}
@@ -75,7 +75,7 @@ p{margin:0 0 1.05em}
 @keyframes d1{to{transform:translate3d(9vw,7vh,0) scale(1.12)}}
 @keyframes d2{to{transform:translate3d(-8vw,-6vh,0) scale(1.16)}}
 @keyframes d3{to{transform:translate3d(7vw,-8vh,0) scale(1.1)}}
-#veil{position:fixed;inset:0;z-index:1;pointer-events:none;background:var(--veil);opacity:.5}
+#veil{position:fixed;inset:0;z-index:1;pointer-events:none;background:var(--veil);opacity:.3}
 main,header,footer,#curtain,#mobile{position:relative;z-index:3}
 
 /* Where a pale wash drifts under a block, that block turns its type dark. The
@@ -356,13 +356,15 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
   .quote{font-size:clamp(1.4rem,6.2vw,1.85rem)}
 }
 @media (max-width:900px),(pointer:coarse){
-  #field,#veil{display:none}
-  body{background:
-    radial-gradient(85% 45% at 4% 2%, var(--tone-3) 0%, transparent 60%),
-    radial-gradient(80% 40% at 98% 22%, var(--tone-2) 0%, transparent 58%),
-    radial-gradient(85% 42% at 2% 58%, var(--tone-2) 0%, transparent 58%),
-    radial-gradient(90% 46% at 100% 82%, var(--tone-3) 0%, transparent 60%),
-    var(--ground)}
+  /* the washes stay, the movement goes. Colour still changes, nothing drifts,
+     so the phone paints three soft circles and then rests. */
+  #field{filter:blur(52px);opacity:.66}
+  #field i{animation:none !important;will-change:auto}
+  #field .a{width:96vw;height:96vw;left:-24vw;top:-30vw}
+  #field .b{width:88vw;height:88vw;right:-30vw;top:34vh}
+  #field .c{width:86vw;height:86vw;left:-26vw;top:66vh}
+  #field .d,#field .e,#field .f{display:none}
+  #veil{opacity:.34}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation:none !important;transition-duration:.01ms !important}
@@ -758,46 +760,75 @@ function fitTitle(t){
 
 function drawnCover(b){
   var f = fitTitle(b.title), size = f.size, lines = f.lines, id = b.id;
-  var block = lines.length * size * 1.02;
-  var startY = 620 - block / 2 + size * 0.78;
+  var block = lines.length * size * 1.06;
+  var startY = 690 - block / 2 + size * 0.76;
   var type = lines.map(function(l, i){
     var wide = l.length * size * 0.63 > 700;
-    return '<text x="450" y="' + (startY + i * size * 1.02) + '" font-size="' + size + '" letter-spacing="-2"'
+    return '<text x="450" y="' + (startY + i * size * 1.06) + '" font-size="' + size + '" letter-spacing="-3"'
       + (wide ? ' textLength="700" lengthAdjust="spacingAndGlyphs"' : '') + '>' + l + '</text>';
   }).join("");
+
+  /* a ring of ticks around the aura, like a dial */
+  var ticks = "";
+  for(var t = 0; t < 60; t++){
+    var ang = (t / 60) * Math.PI * 2;
+    var r1 = 392, r2 = t % 5 === 0 ? 372 : 382;
+    ticks += '<line x1="' + (450 + Math.cos(ang) * r1).toFixed(1) + '" y1="' + (690 + Math.sin(ang) * r1).toFixed(1)
+          + '" x2="' + (450 + Math.cos(ang) * r2).toFixed(1) + '" y2="' + (690 + Math.sin(ang) * r2).toFixed(1) + '"/>';
+  }
 
   return '<svg viewBox="0 0 900 1350" role="img" aria-label="Cover of ' + b.title + '" '
     + 'preserveAspectRatio="xMidYMid meet" style="width:100%;height:auto;display:block">'
     + '<defs>'
-    +   '<linearGradient id="bs' + id + '" x1="0" y1="0" x2="0.3" y2="1">'
-    +     '<stop offset="0%" stop-color="#252B3C"/><stop offset="55%" stop-color="#151A26"/>'
-    +     '<stop offset="100%" stop-color="#0C0F17"/></linearGradient>'
-    +   '<radialGradient id="au' + id + '" cx="50%" cy="46%" r="52%">'
-    +     '<stop offset="0%" stop-color="' + b.tone + '" stop-opacity="0.85"/>'
-    +     '<stop offset="45%" stop-color="' + b.tone + '" stop-opacity="0.28"/>'
+    +   '<linearGradient id="bs' + id + '" x1="0.1" y1="0" x2="0.9" y2="1">'
+    +     '<stop offset="0%" stop-color="#20263A"/><stop offset="46%" stop-color="#12162184"/>'
+    +     '<stop offset="100%" stop-color="#08090F"/></linearGradient>'
+    +   '<radialGradient id="au' + id + '" cx="50%" cy="51%" r="46%">'
+    +     '<stop offset="0%" stop-color="' + b.tone + '" stop-opacity="0.95"/>'
+    +     '<stop offset="38%" stop-color="' + b.tone + '" stop-opacity="0.34"/>'
     +     '<stop offset="100%" stop-color="' + b.tone + '" stop-opacity="0"/></radialGradient>'
-    +   '<radialGradient id="gl' + id + '" cx="50%" cy="50%" r="50%">'
-    +     '<stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.5"/>'
-    +     '<stop offset="60%" stop-color="' + b.tone + '" stop-opacity="0.16"/>'
-    +     '<stop offset="100%" stop-color="' + b.tone + '" stop-opacity="0"/></radialGradient>'
-    +   '<filter id="sf' + id + '" x="-30%" y="-30%" width="160%" height="160%">'
-    +     '<feGaussianBlur stdDeviation="26"/></filter>'
+    +   '<linearGradient id="beam' + id + '" x1="0" y1="0" x2="0" y2="1">'
+    +     '<stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.20"/>'
+    +     '<stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient>'
+    +   '<linearGradient id="ty' + id + '" x1="0" y1="0" x2="0" y2="1">'
+    +     '<stop offset="0%" stop-color="#FFFFFF"/><stop offset="70%" stop-color="#E9EDF6"/>'
+    +     '<stop offset="100%" stop-color="' + b.tone + '"/></linearGradient>'
+    +   '<filter id="sf' + id + '" x="-40%" y="-40%" width="180%" height="180%">'
+    +     '<feGaussianBlur stdDeviation="30"/></filter>'
+    +   '<filter id="gr' + id + '" x="0" y="0" width="100%" height="100%">'
+    +     '<feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" result="n"/>'
+    +     '<feColorMatrix type="saturate" values="0"/>'
+    +     '<feComponentTransfer><feFuncA type="linear" slope="0.05"/></feComponentTransfer></filter>'
     + '</defs>'
+
     + '<rect width="900" height="1350" fill="url(#bs' + id + ')"/>'
-    + '<ellipse cx="450" cy="620" rx="470" ry="430" fill="url(#au' + id + ')" filter="url(#sf' + id + ')"/>'
-    + '<circle cx="450" cy="600" r="250" fill="url(#gl' + id + ')"/>'
-    + '<g stroke="' + b.tone + '" fill="none" opacity="0.5">'
-    +   '<circle cx="450" cy="600" r="300" stroke-width="1.5" stroke-dasharray="4 14"/>'
-    +   '<circle cx="450" cy="600" r="372" stroke-width="1" stroke-dasharray="2 20" opacity="0.6"/></g>'
-    + '<rect x="46" y="46" width="808" height="1258" fill="none" stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="2"/>'
+    + '<ellipse cx="450" cy="690" rx="430" ry="410" fill="url(#au' + id + ')" filter="url(#sf' + id + ')"/>'
+    + '<path d="M330 0 L570 0 L700 1350 L200 1350 Z" fill="url(#beam' + id + ')" opacity="0.5"/>'
+
+    + '<g stroke="' + b.tone + '" stroke-width="1.2" opacity="0.55" fill="none">' + ticks + '</g>'
+    + '<circle cx="450" cy="690" r="330" stroke="#FFFFFF" stroke-opacity="0.10" stroke-width="1" fill="none"/>'
+    + '<circle cx="450" cy="690" r="262" stroke="' + b.tone + '" stroke-opacity="0.5" stroke-width="1.5" '
+    +   'stroke-dasharray="2 16" fill="none"/>'
+
+    + '<rect width="900" height="1350" filter="url(#gr' + id + ')" opacity="0.5"/>'
+    + '<rect x="40" y="40" width="820" height="1270" fill="none" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="1.5"/>'
+
+    /* kicker with a rule on each side */
+    + '<g stroke="' + b.tone + '" stroke-width="1.5" opacity="0.85">'
+    +   '<line x1="120" y1="168" x2="300" y2="168"/><line x1="600" y1="168" x2="780" y2="168"/></g>'
     + '<text x="450" y="176" text-anchor="middle" fill="' + b.tone + '" font-family="Sora,sans-serif" '
-    +   'font-size="26" font-weight="700" letter-spacing="7">' + b.genre.toUpperCase() + '</text>'
-    + '<g font-family="Sora,sans-serif" font-weight="800" text-anchor="middle" fill="#FFFFFF">' + type + '</g>'
-    + '<rect x="380" y="' + (startY + block - size * 0.5) + '" width="140" height="5" fill="' + b.tone + '"/>'
-    + '<text x="450" y="1236" text-anchor="middle" fill="#FFFFFF" font-family="Sora,sans-serif" '
-    +   'font-size="34" font-weight="700" letter-spacing="4">DR. RALPH TYGA UZOKWE</text>'
-    + '<text x="450" y="1284" text-anchor="middle" fill="' + b.tone + '" font-family="Manrope,sans-serif" '
-    +   'font-size="22" font-weight="700" letter-spacing="6">COMING SOON</text>'
+    +   'font-size="25" font-weight="700" letter-spacing="8">' + b.genre.toUpperCase() + '</text>'
+
+    + '<g font-family="Sora,sans-serif" font-weight="800" text-anchor="middle" fill="url(#ty' + id + ')">' + type + '</g>'
+    + '<rect x="410" y="' + (startY + block - size * 0.42) + '" width="80" height="4" fill="' + b.tone + '"/>'
+
+    /* the foot: a pill, his name, a hairline */
+    + '<rect x="330" y="1128" width="240" height="52" rx="26" fill="none" stroke="' + b.tone + '" stroke-width="1.5"/>'
+    + '<text x="450" y="1162" text-anchor="middle" fill="' + b.tone + '" font-family="Manrope,sans-serif" '
+    +   'font-size="21" font-weight="700" letter-spacing="6">COMING SOON</text>'
+    + '<line x1="120" y1="1226" x2="780" y2="1226" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="1"/>'
+    + '<text x="450" y="1272" text-anchor="middle" fill="#FFFFFF" font-family="Sora,sans-serif" '
+    +   'font-size="33" font-weight="700" letter-spacing="4">DR. RALPH TYGA UZOKWE</text>'
     + '</svg>';
 }
 

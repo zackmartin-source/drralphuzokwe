@@ -173,11 +173,17 @@ header.hide{transform:translateY(-135%)}
   letter-spacing:.16em;text-transform:uppercase;color:var(--paper-3)}
 
 /* three whole covers, fanned, nothing ever cut off */
-.fan{display:flex;gap:clamp(12px,1.6vw,22px);align-items:flex-end;justify-content:center;width:100%}
-.fan a{flex:1 1 0;max-width:31%;aspect-ratio:2/3;border-radius:8px;overflow:hidden;
-  box-shadow:0 30px 56px -34px rgba(0,0,0,.92);border:1px solid rgba(255,255,255,.08);
+.fanwrap{position:relative}
+/* the surname sits behind the covers at a size the headline never reaches, so
+   the two planes read as depth rather than as one flat row. */
+.fanghost{position:absolute;left:50%;top:-2%;transform:translateX(-50%);z-index:0;pointer-events:none;
+  user-select:none;font-family:var(--disp);font-weight:800;text-transform:uppercase;letter-spacing:-.055em;
+  font-size:min(12vw,10rem);line-height:.8;color:var(--paper);opacity:.13;white-space:nowrap}
+.fan{position:relative;z-index:1;display:flex;gap:clamp(12px,1.6vw,22px);align-items:flex-end;justify-content:center;width:100%}
+.fan a{flex:1 1 0;max-width:31%;border-radius:4px;overflow:hidden;
+  box-shadow:20px 20px 34px -14px rgba(0,0,0,.62);border:1px solid rgba(255,255,255,.08);
   transition:transform .6s var(--spring),box-shadow .6s var(--spring)}
-.fan a img{width:100%;height:100%;object-fit:contain;background:#0c0d11}
+.fan a img{width:100%;height:auto;display:block}
 .fan .f1{transform:rotate(-2.5deg)}
 .fan .f2{transform:translateY(-14px)}
 .fan .f3{transform:rotate(2.5deg)}
@@ -185,7 +191,7 @@ header.hide{transform:translateY(-135%)}
 .fan .f1.lift{transform:rotate(-1deg) translateY(-22px) scale(1.05)}
 .fan .f2.lift{transform:translateY(-36px) scale(1.05)}
 .fan .f3.lift{transform:rotate(1deg) translateY(-22px) scale(1.05)}
-.fan a.lift{box-shadow:0 46px 74px -32px rgba(0,0,0,.95);z-index:4}
+.fan a.lift{box-shadow:28px 28px 46px -14px rgba(0,0,0,.7);z-index:4}
 .fan a.dim{opacity:.72}
 #fan a{transition:transform .6s var(--spring),box-shadow .6s var(--spring),opacity .45s linear}
 .fan .f1:hover{transform:rotate(-1deg) translateY(-22px) scale(1.05)}
@@ -240,7 +246,7 @@ header.hide{transform:translateY(-135%)}
 .fq button.on{background:var(--acc);border-color:var(--acc);color:var(--acc-ink)}
 .fout{display:grid;grid-template-columns:96px minmax(0,1fr);gap:20px;align-items:center;margin-top:24px;padding-top:22px;
   border-top:1px solid var(--line)}
-.fout img{border-radius:6px;box-shadow:0 18px 36px -22px rgba(0,0,0,.85);width:96px;height:auto}
+.fout img{border-radius:3px;box-shadow:14px 14px 24px -10px rgba(0,0,0,.6);width:96px;height:auto}
 .fout h3{font-size:clamp(1.05rem,1.7vw,1.35rem);letter-spacing:-.02em;margin:0 0 6px}
 .fout p{margin:0 0 12px;font-size:.88rem;color:var(--paper-2);line-height:1.5}
 
@@ -258,10 +264,12 @@ header.hide{transform:translateY(-135%)}
 .shelfbar{height:2px;background:var(--line);position:relative}
 .shelfbar i{position:absolute;inset:0 auto 0 0;background:var(--acc-3);width:20%;will-change:transform}
 .bookcard{flex:0 0 clamp(180px,19vw,250px);scroll-snap-align:start;min-width:0;display:flex;flex-direction:column;align-items:flex-start}
-.bookcard .art{position:relative;border-radius:8px;overflow:hidden;background:#0c0d11;aspect-ratio:2/3;
-  box-shadow:0 24px 44px -32px rgba(0,0,0,.85);transition:transform .55s var(--spring)}
-.bookcard .art img{width:100%;height:100%;object-fit:contain}
-.bookcard:hover .art{transform:translateY(-7px)}
+.bookcard .art{position:relative;border-radius:4px;overflow:hidden;background:#0c0d11;
+  box-shadow:18px 18px 30px -12px rgba(0,0,0,.58);transition:transform .55s var(--spring)}
+.bookcard .art::after{content:"";position:absolute;inset:0 auto 0 0;width:8px;
+  background:linear-gradient(90deg,rgba(0,0,0,.42),rgba(0,0,0,0));pointer-events:none}
+.bookcard .art img{width:100%;height:auto;display:block}
+.bookcard:hover .art{transform:translate(-4px,-7px)}
 .bookcard h3{margin-top:15px;font-size:1rem;line-height:1.25;letter-spacing:-.015em;
   display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .bookcard p{margin:7px 0 0;font-size:.83rem;color:var(--paper-3);line-height:1.5;
@@ -273,8 +281,8 @@ header.hide{transform:translateY(-135%)}
 
 /* ---------- dossier ---------- */
 .dossier{display:grid;grid-template-columns:280px minmax(0,1fr);gap:clamp(26px,4vw,64px);align-items:start}
-.dframe{position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--line);
-  box-shadow:0 34px 60px -40px rgba(0,0,0,.9);max-width:280px}
+.dframe{position:relative;border-radius:4px;overflow:hidden;border:1px solid var(--line);
+  box-shadow:22px 22px 38px -16px rgba(0,0,0,.62);max-width:280px}
 .dframe img{width:100%;height:auto;display:block}
 .dcap{margin:12px 0 0;font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--paper-3)}
 .drows{margin-top:24px;border-top:1px solid var(--line)}
@@ -308,7 +316,7 @@ header.hide{transform:translateY(-135%)}
 .detail{padding:118px 0 0}
 .dgrid{display:grid;grid-template-columns:300px minmax(0,1fr);gap:clamp(26px,4vw,66px);align-items:start}
 .dstick{position:sticky;top:100px;max-width:300px}
-.dstick .art{border-radius:8px;overflow:hidden;background:#0c0d11;box-shadow:0 40px 70px -44px rgba(0,0,0,.9)}
+.dstick .art{border-radius:4px;overflow:hidden;background:#0c0d11;box-shadow:24px 24px 40px -16px rgba(0,0,0,.66)}
 .dstick .art img{width:100%;height:auto;display:block}
 .solves{margin:24px 0;border-block:1px solid var(--line);padding:20px 0}
 .solves h4{margin:0 0 14px;font-size:.58rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--acc-2);font-family:var(--ui)}
@@ -367,6 +375,7 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
   .btn{padding:16px 18px;font-size:.62rem;flex:1 1 auto;min-height:50px}
   .pill a,.fq button,.cardamz,.amzlink,.tlink{min-height:44px;display:inline-flex;align-items:center}
   .vplay{width:46px;height:46px}
+  .fanghost{display:none}
   .fan{gap:9px;padding-inline:2px}
   .fan .f1,.fan .f2,.fan .f3{transform:none}
   .fan a{max-width:32%;border-radius:6px}
@@ -378,8 +387,17 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
   .vplay{width:40px;height:40px}
   .vtime{grid-column:2;margin-top:2px}
   .arrows{display:none}
-  .shelf{gap:12px;scroll-snap-type:x mandatory;padding-right:18px}
-  .bookcard{flex:0 0 46vw}
+  /* vertical on the phone: cover on the left, the words beside it */
+  .shelf{display:grid;grid-template-columns:1fr;gap:26px;overflow:visible;cursor:default;
+    scroll-snap-type:none;padding:4px 0 8px;margin:0}
+  .shelfbar{display:none}
+  .bookcard{flex:none;display:block}
+  .bookcard>a{display:grid;grid-template-columns:112px minmax(0,1fr);column-gap:18px;align-items:center}
+  .bookcard .art{grid-column:1;grid-row:1 / span 3;align-self:center}
+  .bookcard h3{grid-column:2;grid-row:1;margin-top:0;align-self:end;-webkit-line-clamp:2}
+  .bookcard p{grid-column:2;grid-row:2;-webkit-line-clamp:2}
+  .bookcard .go{grid-column:2;grid-row:3;align-self:start}
+  .bookcard .cardamz{margin-left:130px}
   .row{grid-template-columns:34px minmax(0,1fr);gap:12px}
   .row .sub{display:none}
   .row:hover{padding-left:6px}
@@ -471,7 +489,10 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
       </div>
 
       <div class="anim">
-        <div class="fan" id="fan"></div>
+        <div class="fanwrap">
+          <span class="fanghost" aria-hidden="true">Uzokwe</span>
+          <div class="fan" id="fan"></div>
+        </div>
         <p class="fancap">Seven books. Start with the one that names your problem.</p>
       </div>
     </div>

@@ -187,6 +187,7 @@ header.hide{transform:translateY(-135%)}
 .fan .f3.lift{transform:rotate(1deg) translateY(-22px) scale(1.05)}
 .fan a.lift{box-shadow:0 46px 74px -32px rgba(0,0,0,.95);z-index:4}
 .fan a.dim{opacity:.72}
+#fan a{transition:transform .6s var(--spring),box-shadow .6s var(--spring),opacity .45s linear}
 .fan .f1:hover{transform:rotate(-1deg) translateY(-22px) scale(1.05)}
 .fan .f2:hover{transform:translateY(-36px) scale(1.05)}
 .fan .f3:hover{transform:rotate(1deg) translateY(-22px) scale(1.05)}
@@ -780,20 +781,28 @@ function byId(id){ var f = null; BOOKS.forEach(function(b){ if(b.id === id) f = 
          + (i ? ' loading="lazy"' : ' fetchpriority="high"') + ' decoding="async"></a>';
   }).join("");
 
-  /* every card lifts, and the other two step back while it does */
+  /* every card lifts, and the other two step back while it does.
+     The transform goes on inline, so no later rule can outrank it. */
   (function(){
     var cards = $$("#fan a");
-    var clear = function(){ cards.forEach(function(o){ o.classList.remove("lift"); o.classList.remove("dim"); }); };
-    cards.forEach(function(c){
-      c.addEventListener("pointerenter", function(){
-        cards.forEach(function(o){
-          o.classList.toggle("lift", o === c);
-          o.classList.toggle("dim", o !== c);
-        });
+    var rest = ["rotate(-2.5deg)", "translateY(-14px)", "rotate(2.5deg)"];
+    var high = ["rotate(-1deg) translateY(-24px) scale(1.05)",
+                "translateY(-38px) scale(1.05)",
+                "rotate(1deg) translateY(-24px) scale(1.05)"];
+    function set(active){
+      cards.forEach(function(o, i){
+        o.style.transform = (i === active) ? high[i] : rest[i];
+        o.style.opacity   = (active === -1 || i === active) ? "1" : "0.72";
+        o.style.zIndex    = (i === active) ? "4" : "";
+        o.style.boxShadow = (i === active) ? "0 46px 74px -32px rgba(0,0,0,.95)" : "";
       });
-      c.addEventListener("pointerleave", clear);
-      c.addEventListener("focus", function(){ c.classList.add("lift"); });
-      c.addEventListener("blur", clear);
+    }
+    set(-1);
+    cards.forEach(function(c, i){
+      c.addEventListener("pointerenter", function(){ set(i); });
+      c.addEventListener("pointerleave", function(){ set(-1); });
+      c.addEventListener("focus", function(){ set(i); });
+      c.addEventListener("blur", function(){ set(-1); });
     });
   })();
 })();

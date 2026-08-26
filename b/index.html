@@ -98,7 +98,9 @@ h1.glass,h2.glass,.fname.glass{
 }
 
 [data-adapt]{transition:color 1.3s linear}
-[data-adapt] *{transition:color 1.3s linear,border-color 1.3s linear,background-color 1.3s linear}
+[data-adapt] h1,[data-adapt] h2,[data-adapt] h3,[data-adapt] p,[data-adapt] b,
+[data-adapt] span,[data-adapt] a,[data-adapt] li,[data-adapt] dt,[data-adapt] dd{
+  transition:color 1.3s linear,border-color 1.3s linear}
 [data-adapt].on-light h1.glass,[data-adapt].on-light h2.glass{-webkit-text-fill-color:transparent}
 [data-adapt].on-light{
   --paper:#14151C;
@@ -169,13 +171,17 @@ header.hide{transform:translateY(-135%)}
   box-shadow:0 30px 56px -34px rgba(0,0,0,.92);border:1px solid rgba(255,255,255,.08);
   transition:transform .6s var(--spring),box-shadow .6s var(--spring)}
 .fan a img{width:100%;height:100%;object-fit:contain;background:#0c0d11}
-.fan .f1{transform:rotate(-2.5deg)}
-.fan .f2{transform:translateY(-14px)}
-.fan .f3{transform:rotate(2.5deg)}
-.fan a:hover{box-shadow:0 44px 70px -34px rgba(0,0,0,.95)}
-.fan .f1:hover{transform:rotate(-1deg) translateY(-12px) scale(1.03)}
-.fan .f2:hover{transform:translateY(-26px) scale(1.03)}
-.fan .f3:hover{transform:rotate(1deg) translateY(-12px) scale(1.03)}
+.fan a{--rot:0deg;--rise:0px;transform:rotate(var(--rot)) translateY(var(--rise))}
+.fan .f1{--rot:-2.5deg}
+.fan .f2{--rise:-14px}
+.fan .f3{--rot:2.5deg}
+/* one rule lifts whichever card the pointer is on, and the other two settle back */
+.fan a:hover,.fan a:focus-visible{
+  transform:rotate(calc(var(--rot) * .4)) translateY(calc(var(--rise) - 20px)) scale(1.045);
+  box-shadow:0 46px 74px -32px rgba(0,0,0,.95);
+  z-index:4;
+}
+.fan:hover a:not(:hover){opacity:.72;transform:rotate(var(--rot)) translateY(var(--rise)) scale(.97)}
 .fancap{margin-top:16px;text-align:center;font-size:.62rem;font-weight:700;letter-spacing:.18em;
   text-transform:uppercase;color:var(--paper-3)}
 
@@ -349,9 +355,13 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
   .hero{min-height:auto;padding:84px 0 30px}
   .xl{font-size:clamp(2rem,9.4vw,3rem)}
   .lg{font-size:clamp(1.5rem,6.6vw,2.1rem)}
-  .btn{padding:14px 18px;font-size:.61rem;flex:1 1 auto}
-  .fan{gap:8px}
-  .fan a{transform:none !important;max-width:32%}
+  .btn{padding:16px 18px;font-size:.62rem;flex:1 1 auto;min-height:50px}
+  .pill a,.fq button,.cardamz,.amzlink,.tlink{min-height:44px;display:inline-flex;align-items:center}
+  .vplay{width:46px;height:46px}
+  .fan{gap:9px;padding-inline:2px}
+  .fan a{transform:none !important;max-width:32%;border-radius:6px}
+  .fan a:hover{transform:none !important;box-shadow:0 30px 56px -34px rgba(0,0,0,.92)}
+  .fancap{margin-top:12px;font-size:.58rem}
   .section{padding:44px 0}
   .stat{padding:18px 12px 16px}
   .voice,.finder,.ctaband{padding:20px 16px}
@@ -373,15 +383,27 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
   .quote{font-size:clamp(1.4rem,6.2vw,1.85rem)}
 }
 @media (max-width:900px),(pointer:coarse){
-  /* the washes stay, the movement goes. Colour still changes, nothing drifts,
-     so the phone paints three soft circles and then rests. */
-  #field{filter:blur(52px);opacity:.66}
-  #field i{animation:none !important;will-change:auto}
-  #field .a{width:96vw;height:96vw;left:-24vw;top:-30vw}
-  #field .b{width:88vw;height:88vw;right:-30vw;top:34vh}
-  #field .c{width:86vw;height:86vw;left:-26vw;top:66vh}
-  #field .d,#field .e,#field .f{display:none}
-  #veil{opacity:.34}
+  /* no blur layers, no fixed backgrounds, no per element transitions */
+  #field{display:none}
+  #veil{opacity:.28}
+  body{
+    background-color:var(--ground);
+    background-image:
+      radial-gradient(78% 40% at 6% 2%,  var(--m1) 0%, transparent 62%),
+      radial-gradient(74% 36% at 96% 20%, var(--m2) 0%, transparent 60%),
+      radial-gradient(78% 38% at 4% 52%,  var(--m3) 0%, transparent 62%),
+      radial-gradient(80% 40% at 98% 78%, var(--m4) 0%, transparent 60%);
+    background-attachment:scroll;
+  }
+  h1.glass,h2.glass,.fname.glass{
+    background-image:none;
+    -webkit-text-fill-color:var(--paper);
+    color:var(--paper);
+  }
+  [data-adapt] *{transition:none}
+  [data-adapt]{transition:color .6s linear}
+  .voice,.finder,.ctaband,.pill{backdrop-filter:none}
+  .row,.bookcard,.spine,.btn{transition-duration:.25s}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation:none !important;transition-duration:.01ms !important}
@@ -776,76 +798,80 @@ function fitTitle(t){
 }
 
 function drawnCover(b){
+  var TOP = 300, BOT = 980, MID = (TOP + BOT) / 2;
   var f = fitTitle(b.title), size = f.size, lines = f.lines, id = b.id;
+
+  /* the title never grows past its band */
+  while(lines.length * size * 1.06 > (BOT - TOP) - 60 && size > 46){
+    size -= 4;
+    f = fitTitle(b.title);
+    lines = f.lines;
+  }
   var block = lines.length * size * 1.06;
-  var startY = 690 - block / 2 + size * 0.76;
+  var startY = MID - block / 2 + size * 0.76;
+
   var type = lines.map(function(l, i){
-    var wide = l.length * size * 0.63 > 700;
-    return '<text x="450" y="' + (startY + i * size * 1.06) + '" font-size="' + size + '" letter-spacing="-3"'
-      + (wide ? ' textLength="700" lengthAdjust="spacingAndGlyphs"' : '') + '>' + l + '</text>';
+    var wide = l.length * size * 0.63 > 660;
+    return '<text x="450" y="' + (startY + i * size * 1.06).toFixed(0) + '" font-size="' + size + '" letter-spacing="-3"'
+      + (wide ? ' textLength="660" lengthAdjust="spacingAndGlyphs"' : '') + '>' + l + '</text>';
   }).join("");
 
-  /* a ring of ticks around the aura, like a dial */
+  /* the dial sits outside the type, never through it */
   var ticks = "";
-  for(var t = 0; t < 60; t++){
-    var ang = (t / 60) * Math.PI * 2;
-    var r1 = 392, r2 = t % 5 === 0 ? 372 : 382;
-    ticks += '<line x1="' + (450 + Math.cos(ang) * r1).toFixed(1) + '" y1="' + (690 + Math.sin(ang) * r1).toFixed(1)
-          + '" x2="' + (450 + Math.cos(ang) * r2).toFixed(1) + '" y2="' + (690 + Math.sin(ang) * r2).toFixed(1) + '"/>';
+  for(var t = 0; t < 72; t++){
+    var ang = (t / 72) * Math.PI * 2;
+    var r1 = 356, r2 = t % 6 === 0 ? 336 : 346;
+    ticks += '<line x1="' + (450 + Math.cos(ang) * r1).toFixed(1) + '" y1="' + (MID + Math.sin(ang) * r1).toFixed(1)
+          + '" x2="' + (450 + Math.cos(ang) * r2).toFixed(1) + '" y2="' + (MID + Math.sin(ang) * r2).toFixed(1) + '"/>';
   }
 
   return '<svg viewBox="0 0 900 1350" role="img" aria-label="Cover of ' + b.title + '" '
     + 'preserveAspectRatio="xMidYMid meet" style="width:100%;height:auto;display:block">'
     + '<defs>'
-    +   '<linearGradient id="bs' + id + '" x1="0.1" y1="0" x2="0.9" y2="1">'
-    +     '<stop offset="0%" stop-color="#20263A"/><stop offset="46%" stop-color="#12162184"/>'
-    +     '<stop offset="100%" stop-color="#08090F"/></linearGradient>'
-    +   '<radialGradient id="au' + id + '" cx="50%" cy="51%" r="46%">'
-    +     '<stop offset="0%" stop-color="' + b.tone + '" stop-opacity="0.95"/>'
-    +     '<stop offset="38%" stop-color="' + b.tone + '" stop-opacity="0.34"/>'
+    +   '<linearGradient id="bs' + id + '" x1="0.15" y1="0" x2="0.85" y2="1">'
+    +     '<stop offset="0%" stop-color="#141926"/><stop offset="52%" stop-color="#0B0E16"/>'
+    +     '<stop offset="100%" stop-color="#050609"/></linearGradient>'
+    +   '<radialGradient id="au' + id + '" cx="50%" cy="' + ((MID / 1350) * 100).toFixed(1) + '%" r="40%">'
+    +     '<stop offset="0%" stop-color="' + b.tone + '" stop-opacity="0.62"/>'
+    +     '<stop offset="42%" stop-color="' + b.tone + '" stop-opacity="0.20"/>'
     +     '<stop offset="100%" stop-color="' + b.tone + '" stop-opacity="0"/></radialGradient>'
-    +   '<linearGradient id="beam' + id + '" x1="0" y1="0" x2="0" y2="1">'
-    +     '<stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.20"/>'
-    +     '<stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient>'
     +   '<linearGradient id="ty' + id + '" x1="0" y1="0" x2="0" y2="1">'
-    +     '<stop offset="0%" stop-color="#FFFFFF"/><stop offset="70%" stop-color="#E9EDF6"/>'
+    +     '<stop offset="0%" stop-color="#FFFFFF"/><stop offset="72%" stop-color="#DCE3F0"/>'
     +     '<stop offset="100%" stop-color="' + b.tone + '"/></linearGradient>'
     +   '<filter id="sf' + id + '" x="-40%" y="-40%" width="180%" height="180%">'
-    +     '<feGaussianBlur stdDeviation="30"/></filter>'
+    +     '<feGaussianBlur stdDeviation="34"/></filter>'
     +   '<filter id="gr' + id + '" x="0" y="0" width="100%" height="100%">'
-    +     '<feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" result="n"/>'
+    +     '<feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3"/>'
     +     '<feColorMatrix type="saturate" values="0"/>'
-    +     '<feComponentTransfer><feFuncA type="linear" slope="0.05"/></feComponentTransfer></filter>'
+    +     '<feComponentTransfer><feFuncA type="linear" slope="0.07"/></feComponentTransfer></filter>'
     + '</defs>'
 
     + '<rect width="900" height="1350" fill="url(#bs' + id + ')"/>'
-    + '<ellipse cx="450" cy="690" rx="430" ry="410" fill="url(#au' + id + ')" filter="url(#sf' + id + ')"/>'
-    + '<path d="M330 0 L570 0 L700 1350 L200 1350 Z" fill="url(#beam' + id + ')" opacity="0.5"/>'
+    + '<ellipse cx="450" cy="' + MID + '" rx="360" ry="330" fill="url(#au' + id + ')" filter="url(#sf' + id + ')"/>'
+    + '<g stroke="' + b.tone + '" stroke-width="1.1" opacity="0.4" fill="none">' + ticks + '</g>'
+    + '<circle cx="450" cy="' + MID + '" r="300" stroke="#FFFFFF" stroke-opacity="0.07" stroke-width="1" fill="none"/>'
+    + '<rect width="900" height="1350" filter="url(#gr' + id + ')" opacity="0.55"/>'
+    + '<rect x="40" y="40" width="820" height="1270" fill="none" stroke="#FFFFFF" stroke-opacity="0.14" stroke-width="1.5"/>'
 
-    + '<g stroke="' + b.tone + '" stroke-width="1.2" opacity="0.55" fill="none">' + ticks + '</g>'
-    + '<circle cx="450" cy="690" r="330" stroke="#FFFFFF" stroke-opacity="0.10" stroke-width="1" fill="none"/>'
-    + '<circle cx="450" cy="690" r="262" stroke="' + b.tone + '" stroke-opacity="0.5" stroke-width="1.5" '
-    +   'stroke-dasharray="2 16" fill="none"/>'
+    /* band one: the kicker */
+    + '<g stroke="' + b.tone + '" stroke-width="1.4" opacity="0.8">'
+    +   '<line x1="130" y1="171" x2="296" y2="171"/><line x1="604" y1="171" x2="770" y2="171"/></g>'
+    + '<text x="450" y="179" text-anchor="middle" fill="' + b.tone + '" font-family="Sora,sans-serif" '
+    +   'font-size="24" font-weight="700" letter-spacing="8">' + b.genre.toUpperCase() + '</text>'
 
-    + '<rect width="900" height="1350" filter="url(#gr' + id + ')" opacity="0.5"/>'
-    + '<rect x="40" y="40" width="820" height="1270" fill="none" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="1.5"/>'
-
-    /* kicker with a rule on each side */
-    + '<g stroke="' + b.tone + '" stroke-width="1.5" opacity="0.85">'
-    +   '<line x1="120" y1="168" x2="300" y2="168"/><line x1="600" y1="168" x2="780" y2="168"/></g>'
-    + '<text x="450" y="176" text-anchor="middle" fill="' + b.tone + '" font-family="Sora,sans-serif" '
-    +   'font-size="25" font-weight="700" letter-spacing="8">' + b.genre.toUpperCase() + '</text>'
-
+    /* band two: the title, alone */
     + '<g font-family="Sora,sans-serif" font-weight="800" text-anchor="middle" fill="url(#ty' + id + ')">' + type + '</g>'
-    + '<rect x="410" y="' + (startY + block - size * 0.42) + '" width="80" height="4" fill="' + b.tone + '"/>'
 
-    /* the foot: a pill, his name, a hairline */
-    + '<rect x="330" y="1128" width="240" height="52" rx="26" fill="none" stroke="' + b.tone + '" stroke-width="1.5"/>'
-    + '<text x="450" y="1162" text-anchor="middle" fill="' + b.tone + '" font-family="Manrope,sans-serif" '
-    +   'font-size="21" font-weight="700" letter-spacing="6">COMING SOON</text>'
-    + '<line x1="120" y1="1226" x2="780" y2="1226" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="1"/>'
-    + '<text x="450" y="1272" text-anchor="middle" fill="#FFFFFF" font-family="Sora,sans-serif" '
-    +   'font-size="33" font-weight="700" letter-spacing="4">DR. RALPH TYGA UZOKWE</text>'
+    /* band three: rule and pill */
+    + '<line x1="410" y1="1038" x2="490" y2="1038" stroke="' + b.tone + '" stroke-width="4"/>'
+    + '<rect x="330" y="1076" width="240" height="50" rx="25" fill="none" stroke="' + b.tone + '" stroke-width="1.4" opacity="0.9"/>'
+    + '<text x="450" y="1108" text-anchor="middle" fill="' + b.tone + '" font-family="Manrope,sans-serif" '
+    +   'font-size="20" font-weight="700" letter-spacing="6">COMING SOON</text>'
+
+    /* band four: the author */
+    + '<line x1="130" y1="1196" x2="770" y2="1196" stroke="#FFFFFF" stroke-opacity="0.14" stroke-width="1"/>'
+    + '<text x="450" y="1252" text-anchor="middle" fill="#FFFFFF" fill-opacity="0.92" font-family="Sora,sans-serif" '
+    +   'font-size="31" font-weight="700" letter-spacing="4">DR. RALPH TYGA UZOKWE</text>'
     + '</svg>';
 }
 
@@ -1058,8 +1084,9 @@ function adaptType(){
     sec.classList.toggle("on-light", best > 0.42);
   });
 }
-setInterval(adaptType, 900);
-addEventListener("scroll", function(){ requestAnimationFrame(adaptType); }, {passive:true});
+var TOUCH = matchMedia("(max-width:900px),(pointer:coarse)").matches;
+setInterval(adaptType, TOUCH ? 2500 : 900);
+if(!TOUCH) addEventListener("scroll", function(){ requestAnimationFrame(adaptType); }, {passive:true});
 
 /* ---------- the colour field ----------
    Six washes on the page and a matching gradient inside the headings, both
@@ -1070,6 +1097,7 @@ addEventListener("scroll", function(){ requestAnimationFrame(adaptType); }, {pas
   var washes = $$("#field i");
   if(!washes.length) return;
   var stride = [1,3,7,9,4,6], step = 1, root = document.documentElement;
+  var SMALL = matchMedia("(max-width:900px),(pointer:coarse)").matches;
 
   /* inside the type the tone is lifted toward white, so a heading stays legible
      no matter which shade is passing through it */
@@ -1090,9 +1118,23 @@ addEventListener("scroll", function(){ requestAnimationFrame(adaptType); }, {pas
   paint();
   setInterval(paint, 5000);
 
+  /* on a phone the same colours land as four stops on the body, painted with
+     the timer only, so scrolling costs nothing */
+  if(SMALL){
+    var mob = function(){
+      root.style.setProperty("--m1", pick(0));
+      root.style.setProperty("--m2", pick(3));
+      root.style.setProperty("--m3", pick(1));
+      root.style.setProperty("--m4", pick(4));
+    };
+    mob();
+    setInterval(mob, 5000);
+  }
+
   /* scrolling drives it: every screenful of movement pulls the next colour in,
      and the gradient itself slides while you go */
   var lastPaint = 0, ticking = false;
+  if(SMALL) return;                       /* phones keep their hands off the scroll path */
   addEventListener("scroll", function(){
     if(ticking) return;
     ticking = true;

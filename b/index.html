@@ -64,7 +64,7 @@ p{margin:0 0 1.05em}
    whole page and not just behind the headline. Each one drifts and changes
    colour on its own clock. */
 #field{position:fixed;inset:-18%;z-index:0;pointer-events:none;contain:strict}
-#field i{position:absolute;display:block;border-radius:50%;filter:blur(70px);opacity:.42;
+#field i{position:absolute;display:block;border-radius:50%;filter:blur(76px);opacity:.68;
   will-change:transform;transition:background-color 5s linear}
 #field .a{background:var(--tone-1);width:52vw;height:52vw;left:-14vw;top:-14vw;animation:d1 38s var(--smooth) infinite alternate}
 #field .b{background:var(--tone-2);width:46vw;height:46vw;right:-14vw;top:6vh;animation:d2 46s var(--smooth) infinite alternate}
@@ -75,8 +75,25 @@ p{margin:0 0 1.05em}
 @keyframes d1{to{transform:translate3d(9vw,7vh,0) scale(1.12)}}
 @keyframes d2{to{transform:translate3d(-8vw,-6vh,0) scale(1.16)}}
 @keyframes d3{to{transform:translate3d(7vw,-8vh,0) scale(1.1)}}
-#veil{position:fixed;inset:0;z-index:1;pointer-events:none;background:var(--veil)}
+#veil{position:fixed;inset:0;z-index:1;pointer-events:none;background:var(--veil);opacity:.5}
 main,header,footer,#curtain,#mobile{position:relative;z-index:3}
+
+/* Where a pale wash drifts under a block, that block turns its type dark. The
+   swap runs over a second and a bit, so it reads as the light changing rather
+   than a switch being thrown. */
+[data-adapt]{transition:color 1.3s linear}
+[data-adapt] *{transition:color 1.3s linear,border-color 1.3s linear,background-color 1.3s linear}
+[data-adapt].on-light{
+  --paper:#14151C;
+  --paper-2:rgba(20,21,28,.78);
+  --paper-3:rgba(20,21,28,.56);
+  --line:rgba(20,21,28,.2);
+  color:var(--paper);
+}
+[data-adapt].on-light .btn.line{color:#14151C;border-color:rgba(20,21,28,.28)}
+[data-adapt].on-light .vrow,[data-adapt].on-light .voice,
+[data-adapt].on-light .finder,[data-adapt].on-light .ctaband{background:rgba(255,255,255,.5)}
+[data-adapt].on-light .fq button{color:rgba(20,21,28,.8)}
 
 #curtain{position:fixed;inset:0;z-index:300;background:var(--acc);transform:translateY(100%);pointer-events:none;will-change:transform}
 #curtain.in{animation:wipe .8s var(--spring) forwards}
@@ -398,7 +415,7 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
         </h1>
         <div class="hrule anim" id="hrule"></div>
         <p class="lede anim">
-          Five books written from thirty years of building businesses on two continents. Each one answers
+          Seven books written from thirty years of building businesses on two continents. Each one answers
           a single question: what problem does this solve for you?
         </p>
         <div class="hbtns anim">
@@ -406,13 +423,13 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
           <a class="btn line glow" href="#/voice" data-link>Hear it in his voice</a>
         </div>
         <div class="hmeta anim">
-          <span>Atlanta</span><span>30+ ventures</span><span>5 books</span><span>PhD, business strategy</span>
+          <span>Atlanta</span><span>30+ ventures</span><span>7 books</span><span>PhD, business strategy</span>
         </div>
       </div>
 
       <div class="anim">
         <div class="fan" id="fan"></div>
-        <p class="fancap">Five books. Start with the one that names your problem.</p>
+        <p class="fancap">Seven books. Start with the one that names your problem.</p>
       </div>
     </div>
   </div>
@@ -421,7 +438,7 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
     <div class="stats">
       <div class="stat anim"><b>30+</b><span>Businesses built</span></div>
       <div class="stat anim"><b>4</b><span>Countries of operation</span></div>
-      <div class="stat anim"><b>5</b><span>Books published</span></div>
+      <div class="stat anim"><b>7</b><span>Books, five out now</span></div>
       <div class="stat anim"><b>231</b><span>Pages in the new book</span></div>
     </div>
   </div>
@@ -454,7 +471,7 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
     <div class="shelfhead">
       <div>
         <span class="tag anim">The library</span>
-        <h2 class="lg anim">Five books, five problems.</h2>
+        <h2 class="lg anim">Seven books, seven problems.</h2>
       </div>
       <div class="arrows">
         <button id="prev" aria-label="Previous books"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 5l-7 7 7 7"/></svg></button>
@@ -539,7 +556,7 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
   <div class="wrap" style="padding:118px 0 0">
     <span class="tag anim">The library</span>
     <h1 class="lg anim">Every book solves one real problem.</h1>
-    <p class="lede anim" style="margin-top:16px">Five titles across change, the mind, love, leadership and destiny.</p>
+    <p class="lede anim" style="margin-top:16px">Seven titles across change, the mind, love, leadership and destiny. Five are out now, two are announced.</p>
     <div id="grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:clamp(18px,2.4vw,36px);margin-top:40px"></div>
   </div>
 </section>
@@ -679,6 +696,22 @@ var BOOKS = [
     solves:["You lead on paper and cannot feel the team behind you.",
             "You are promoted into a room where nobody explains the unwritten rules.",
             "You want to be remembered for what you built in people, not only in revenue."] },
+  { id:"manifestation", cover:null, upcoming:true, tone:"#BFEC55",
+    title:"21x Your Goals to Manifestation",
+    sub:"Announced. Releasing soon.",
+    genre:"Goals and manifestation", year:"Coming soon", pages:"In production", audio:"2:00",
+    price:"", ebook:"", amazon:STORE,
+    short:"Announced and close to release. The full description arrives with the book.",
+    summary:["The full description arrives when the book does."],
+    solves:["To be confirmed."] },
+  { id:"love-a-man", cover:null, upcoming:true, tone:"#FD55AC",
+    title:"How to Truly Love a Man",
+    sub:"Announced. Releasing soon.",
+    genre:"Relationships", year:"Coming soon", pages:"In production", audio:"2:00",
+    price:"", ebook:"", amazon:STORE,
+    short:"Announced and close to release. The full description arrives with the book.",
+    summary:["The full description arrives when the book does."],
+    solves:["To be confirmed."] },
   { id:"unstoppable", cover:A+"unstoppable.437f8090.webp", title:"Become Unstoppable and Irresistible",
     sub:"Powerful hidden strategies to achieve your goals and manifest your personal destiny",
     genre:"Success and destiny", year:"2026", pages:"Hardcover and paperback", audio:"2:25",
@@ -697,7 +730,7 @@ function byId(id){ var f = null; BOOKS.forEach(function(b){ if(b.id === id) f = 
 
 /* ---------- hero fan: three whole covers ---------- */
 (function(){
-  var order = ["caod","supernatural","woman"], cls = ["f1","f2","f3"];
+  var order = ["caod","supernatural","woman"], cls = ["f1","f2","f3"];   /* printed books only */
   $("#fan").innerHTML = order.map(function(id, i){
     var b = byId(id);
     return '<a class="'+cls[i]+'" href="#/book/'+b.id+'" data-link aria-label="'+b.title+'">'
@@ -706,15 +739,87 @@ function byId(id){ var f = null; BOOKS.forEach(function(b){ if(b.id === id) f = 
   }).join("");
 })();
 
+/* ---------- a drawn cover for a title that has no artwork yet ---------- */
+function fitTitle(t){
+  var COL = 700, CHAR = 0.63;
+  for(var size = 128; size >= 54; size -= 4){
+    var per = Math.floor(COL / (size * CHAR));
+    var words = t.toUpperCase().split(/\s+/), lines = [], line = "";
+    for(var i = 0; i < words.length; i++){
+      var next = line ? line + " " + words[i] : words[i];
+      if(next.length > per && line){ lines.push(line); line = words[i]; } else { line = next; }
+    }
+    if(line) lines.push(line);
+    var widest = Math.max.apply(null, lines.map(function(l){ return l.length; })) * size * CHAR;
+    if(lines.length <= 4 && widest <= COL) return { lines: lines, size: size };
+  }
+  return { lines: [t.toUpperCase()], size: 54 };
+}
+
+function drawnCover(b){
+  var f = fitTitle(b.title), size = f.size, lines = f.lines, id = b.id;
+  var block = lines.length * size * 1.02;
+  var startY = 620 - block / 2 + size * 0.78;
+  var type = lines.map(function(l, i){
+    var wide = l.length * size * 0.63 > 700;
+    return '<text x="450" y="' + (startY + i * size * 1.02) + '" font-size="' + size + '" letter-spacing="-2"'
+      + (wide ? ' textLength="700" lengthAdjust="spacingAndGlyphs"' : '') + '>' + l + '</text>';
+  }).join("");
+
+  return '<svg viewBox="0 0 900 1350" role="img" aria-label="Cover of ' + b.title + '" '
+    + 'preserveAspectRatio="xMidYMid meet" style="width:100%;height:auto;display:block">'
+    + '<defs>'
+    +   '<linearGradient id="bs' + id + '" x1="0" y1="0" x2="0.3" y2="1">'
+    +     '<stop offset="0%" stop-color="#252B3C"/><stop offset="55%" stop-color="#151A26"/>'
+    +     '<stop offset="100%" stop-color="#0C0F17"/></linearGradient>'
+    +   '<radialGradient id="au' + id + '" cx="50%" cy="46%" r="52%">'
+    +     '<stop offset="0%" stop-color="' + b.tone + '" stop-opacity="0.85"/>'
+    +     '<stop offset="45%" stop-color="' + b.tone + '" stop-opacity="0.28"/>'
+    +     '<stop offset="100%" stop-color="' + b.tone + '" stop-opacity="0"/></radialGradient>'
+    +   '<radialGradient id="gl' + id + '" cx="50%" cy="50%" r="50%">'
+    +     '<stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.5"/>'
+    +     '<stop offset="60%" stop-color="' + b.tone + '" stop-opacity="0.16"/>'
+    +     '<stop offset="100%" stop-color="' + b.tone + '" stop-opacity="0"/></radialGradient>'
+    +   '<filter id="sf' + id + '" x="-30%" y="-30%" width="160%" height="160%">'
+    +     '<feGaussianBlur stdDeviation="26"/></filter>'
+    + '</defs>'
+    + '<rect width="900" height="1350" fill="url(#bs' + id + ')"/>'
+    + '<ellipse cx="450" cy="620" rx="470" ry="430" fill="url(#au' + id + ')" filter="url(#sf' + id + ')"/>'
+    + '<circle cx="450" cy="600" r="250" fill="url(#gl' + id + ')"/>'
+    + '<g stroke="' + b.tone + '" fill="none" opacity="0.5">'
+    +   '<circle cx="450" cy="600" r="300" stroke-width="1.5" stroke-dasharray="4 14"/>'
+    +   '<circle cx="450" cy="600" r="372" stroke-width="1" stroke-dasharray="2 20" opacity="0.6"/></g>'
+    + '<rect x="46" y="46" width="808" height="1258" fill="none" stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="2"/>'
+    + '<text x="450" y="176" text-anchor="middle" fill="' + b.tone + '" font-family="Sora,sans-serif" '
+    +   'font-size="26" font-weight="700" letter-spacing="7">' + b.genre.toUpperCase() + '</text>'
+    + '<g font-family="Sora,sans-serif" font-weight="800" text-anchor="middle" fill="#FFFFFF">' + type + '</g>'
+    + '<rect x="380" y="' + (startY + block - size * 0.5) + '" width="140" height="5" fill="' + b.tone + '"/>'
+    + '<text x="450" y="1236" text-anchor="middle" fill="#FFFFFF" font-family="Sora,sans-serif" '
+    +   'font-size="34" font-weight="700" letter-spacing="4">DR. RALPH TYGA UZOKWE</text>'
+    + '<text x="450" y="1284" text-anchor="middle" fill="' + b.tone + '" font-family="Manrope,sans-serif" '
+    +   'font-size="22" font-weight="700" letter-spacing="6">COMING SOON</text>'
+    + '</svg>';
+}
+
+/** photographed cover when there is one, drawn cover while the title waits */
+function coverArt(b, attrs){
+  if(!b.cover) return drawnCover(b);
+  return '<img src="' + b.cover + '" alt="Cover of ' + b.title + '" width="900" height="1350" ' + (attrs || "") + '>';
+}
+
 function card(b){
   return '<div class="bookcard">'
     + '<a href="#/book/'+b.id+'" data-link>'
-    +   '<div class="art"><img src="'+b.cover+'" alt="Cover of '+b.title+'" width="900" height="1350" loading="lazy" decoding="async"></div>'
+    +   '<div class="art">' + coverArt(b, 'loading="lazy" decoding="async"') + '</div>'
     +   '<h3>'+b.title+'</h3><p>'+b.short+'</p><span class="go">What it solves</span>'
     + '</a>'
-    + '<a class="cardamz" href="'+b.amazon+'" target="_blank" rel="noopener">Or read it on Amazon</a></div>';
+    + (b.upcoming
+        ? '<span class="cardamz" style="border:0;color:var(--paper-3)">Announced. Date to follow.</span>'
+        : '<a class="cardamz" href="'+b.amazon+'" target="_blank" rel="noopener">Or read it on Amazon</a>')
+    + '</div>';
 }
 $("#shelf").innerHTML = BOOKS.map(card).join("");
+var OUT_NOW = BOOKS.filter(function(b){ return !b.upcoming; });
 $("#grid").innerHTML  = BOOKS.map(card).join("");
 
 function bars(n){
@@ -757,7 +862,7 @@ var PROBLEMS = [
     b.classList.add("on");
     var p = PROBLEMS[+b.getAttribute("data-p")], book = byId(p.id);
     out.hidden = false;
-    out.innerHTML = '<img src="'+book.cover+'" alt="'+book.title+'" width="96" height="144" loading="lazy">'
+    out.innerHTML = '<div style="width:96px">' + coverArt(book, 'loading="lazy"') + '</div>'
       + '<div><span class="tag">Start here</span><h3>'+book.title+'</h3><p>'+p.why+'</p>'
       + '<a class="btn acc glow" href="#/book/'+book.id+'" data-link style="padding:12px 18px">Open this book</a></div>';
     glowInit();
@@ -771,7 +876,7 @@ function detail(id){
   $("#detail").innerHTML =
     '<a class="num" href="#/books" data-link style="display:inline-block;margin-bottom:22px">Back to all books</a>'
   + '<div class="dgrid"><div class="dstick"><div class="art">'
-  +   '<img src="'+b.cover+'" alt="Cover of '+b.title+'" width="900" height="1350" fetchpriority="high" decoding="async"></div>'
+  +   coverArt(b, 'fetchpriority="high" decoding="async"') + '</div>'
   +   '<div class="facts">'
   +     '<div><span>Genre</span><b>'+b.genre+'</b></div><div><span>Published</span><b>'+b.year+'</b></div>'
   +     '<div><span>Length</span><b>'+b.pages+'</b></div><div><span>Formats</span><b>Print and e-book</b></div>'
@@ -783,9 +888,11 @@ function detail(id){
   +     b.solves.map(function(s){ return '<li><span>'+s+'</span></li>'; }).join("") + '</ol></div>'
   +   '<div class="voice" style="padding:18px"><span class="tag">In his own voice</span>'
   +     '<div class="vlist" style="margin-top:12px">'+voiceRow(b)+'</div></div>'
-  +   '<div class="buy"><a class="btn acc glow" href="#">Buy the hard copy '+b.price+'</a>'
-  +     '<a class="btn line glow" href="#">E-book '+b.ebook+'</a>'
-  +     '<a class="amzlink" href="'+b.amazon+'" target="_blank" rel="noopener">Read it on Kindle, over on Amazon</a></div>'
+  +   (b.upcoming
+        ? '<p class="lede" style="margin-top:22px">This one is announced and in production. Join the letter and you will hear the release date before anyone else.</p>'
+        : '<div class="buy"><a class="btn acc glow" href="#">Buy the hard copy '+b.price+'</a>'
+          + '<a class="btn line glow" href="#">E-book '+b.ebook+'</a>'
+          + '<a class="amzlink" href="'+b.amazon+'" target="_blank" rel="noopener">Read it on Kindle, over on Amazon</a></div>')
   + '</div></div>';
   glowInit();
 }
@@ -874,6 +981,37 @@ import("https://cdn.jsdelivr.net/npm/motion@11.15.0/+esm").then(function(mod){
     }
   }catch(err){}
 }).catch(function(){});
+
+/* ---------- type follows the light ----------
+   Every second we ask, for each block on screen, which wash is nearest and how
+   pale it is. Pale colour under a block, dark type on it. */
+function lum(c){
+  var m = c.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+  if(!m) return 0;
+  return (0.299 * +m[1] + 0.587 * +m[2] + 0.114 * +m[3]) / 255;
+}
+function adaptType(){
+  var washes = $$("#field i").map(function(w){
+    var r = w.getBoundingClientRect();
+    return { x: r.left + r.width / 2, y: r.top + r.height / 2, r: r.width / 2, l: lum(getComputedStyle(w).backgroundColor) };
+  });
+  if(!washes.length) return;
+  $$("[data-adapt]").forEach(function(sec){
+    var r = sec.getBoundingClientRect();
+    if(r.bottom < -100 || r.top > innerHeight + 100) return;
+    var cx = r.left + r.width / 2;
+    var cy = Math.min(Math.max(r.top + r.height / 2, 40), innerHeight - 40);
+    var best = 0;
+    washes.forEach(function(w){
+      var d = Math.hypot(cx - w.x, cy - w.y);
+      var reach = Math.max(0, 1 - d / (w.r * 1.05));     /* how much of this wash lands here */
+      if(reach > 0.28) best = Math.max(best, w.l * reach + 0.18 * reach);
+    });
+    sec.classList.toggle("on-light", best > 0.42);
+  });
+}
+setInterval(adaptType, 900);
+addEventListener("scroll", function(){ requestAnimationFrame(adaptType); }, {passive:true});
 
 /* ---------- the washes drift through his ten shades, on every side ---------- */
 (function(){
@@ -983,8 +1121,10 @@ mobile.addEventListener("click", function(e){ if(e.target.tagName === "A") close
 
 function sent(f){ f.reset(); alert("Thank you. It is on its way."); return false; }
 
+$$("main .wrap, footer .wrap").forEach(function(el){ el.setAttribute("data-adapt", ""); });
 glowInit();
 route(true);
+adaptType();
 </script>
 
 <script type="application/ld+json">

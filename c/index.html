@@ -81,8 +81,25 @@ main,header,footer,#curtain,#mobile{position:relative;z-index:3}
 /* Where a pale wash drifts under a block, that block turns its type dark. The
    swap runs over a second and a bit, so it reads as the light changing rather
    than a switch being thrown. */
+h1.glass,h2.glass,.fname.glass{
+  background-image:var(--flow);
+  background-attachment:fixed;
+  background-size:180% 180%;
+  background-position:var(--flowpos,50% 50%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  -webkit-text-fill-color:transparent;
+  transition:background-position 1.6s linear;
+}
+/* if a browser cannot clip a background to text, the heading stays plain */
+@supports not ((-webkit-background-clip:text) or (background-clip:text)){
+  h1.glass,h2.glass,.fname.glass{color:var(--paper);-webkit-text-fill-color:var(--paper)}
+}
+
 [data-adapt]{transition:color 1.3s linear}
 [data-adapt] *{transition:color 1.3s linear,border-color 1.3s linear,background-color 1.3s linear}
+[data-adapt].on-light h1.glass,[data-adapt].on-light h2.glass{-webkit-text-fill-color:transparent}
 [data-adapt].on-light{
   --paper:#14151C;
   --paper-2:rgba(20,21,28,.78);
@@ -1044,18 +1061,48 @@ function adaptType(){
 setInterval(adaptType, 900);
 addEventListener("scroll", function(){ requestAnimationFrame(adaptType); }, {passive:true});
 
-/* ---------- the washes drift through his ten shades, on every side ---------- */
+/* ---------- the colour field ----------
+   Six washes on the page and a matching gradient inside the headings, both
+   driven by the same step. The step moves on a timer, and moves faster while
+   the reader scrolls, so colour visibly travels with them.                  */
 (function(){
   var TONES = ["#3566B2","#3EBA96","#C4E7E9","#FD55AC","#F07ED3","#CE128A","#BD6E9E","#EC3D88","#FEFE0A","#BFEC55"];
   var washes = $$("#field i");
   if(!washes.length) return;
-  var stride = [1,3,7,9,4,6], step = 1;
-  setInterval(function(){
-    washes.forEach(function(w,i){
-      w.style.backgroundColor = TONES[(step * stride[i % stride.length] + i * 2) % TONES.length];
-    });
+  var stride = [1,3,7,9,4,6], step = 1, root = document.documentElement;
+
+  /* inside the type the tone is lifted toward white, so a heading stays legible
+     no matter which shade is passing through it */
+  function bright(hex){ return "color-mix(in srgb, " + hex + " 62%, #FFFFFF)"; }
+
+  function pick(i){ return TONES[(step * stride[i % stride.length] + i * 2 + TONES.length * 9) % TONES.length]; }
+
+  function paint(){
+    washes.forEach(function(w, i){ w.style.backgroundColor = pick(i); });
+    root.style.setProperty("--flow",
+      "radial-gradient(46% 52% at 12% 18%, " + bright(pick(0)) + ", transparent 62%)," +
+      "radial-gradient(44% 50% at 88% 24%, " + bright(pick(1)) + ", transparent 60%)," +
+      "radial-gradient(48% 54% at 22% 78%, " + bright(pick(2)) + ", transparent 62%)," +
+      "radial-gradient(46% 52% at 82% 82%, " + bright(pick(3)) + ", transparent 60%)," +
+      "linear-gradient(#FFFFFF, #FFFFFF)");
     step++;
-  }, 5000);
+  }
+  paint();
+  setInterval(paint, 5000);
+
+  /* scrolling drives it: every screenful of movement pulls the next colour in,
+     and the gradient itself slides while you go */
+  var lastPaint = 0, ticking = false;
+  addEventListener("scroll", function(){
+    if(ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){
+      var y = window.pageYOffset;
+      root.style.setProperty("--flowpos", (50 + (y * 0.06) % 60) + "% " + (50 + (y * 0.04) % 50) + "%");
+      if(Math.abs(y - lastPaint) > 300){ lastPaint = y; paint(); }
+      ticking = false;
+    });
+  }, {passive:true});
 })();
 
 /* ---------- header and steps ---------- */
@@ -1153,6 +1200,7 @@ mobile.addEventListener("click", function(e){ if(e.target.tagName === "A") close
 function sent(f){ f.reset(); alert("Thank you. It is on its way."); return false; }
 
 $$("main .wrap, footer .wrap").forEach(function(el){ el.setAttribute("data-adapt", ""); });
+$$("main h1, main h2, .fname").forEach(function(el){ el.classList.add("glass"); });
 glowInit();
 route(true);
 adaptType();

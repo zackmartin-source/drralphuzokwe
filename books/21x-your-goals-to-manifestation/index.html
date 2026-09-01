@@ -224,14 +224,14 @@ header.hide{transform:translateY(-135%)}
 .vrow.on .vplay{background:var(--acc);color:var(--acc-ink)}
 .vname{font-family:var(--disp);font-weight:600;font-size:.98rem;letter-spacing:-.02em;margin:0;line-height:1.3}
 .vsub{font-size:.74rem;color:var(--paper-3);margin:4px 0 0;line-height:1.45}
-.wave{display:flex;align-items:center;gap:3px;height:24px;margin-top:9px}
-.wave{position:relative;cursor:pointer;touch-action:none;padding:9px 0;isolation:isolate}
+.wave{position:relative;cursor:pointer;touch-action:none;height:44px;margin-top:9px;isolation:isolate}
 .wave:focus-visible{outline:2px solid var(--acc-2);outline-offset:4px;border-radius:3px}
-.wave i{display:flex;align-items:flex-end;justify-content:space-between;gap:3px;height:26px}
+/* both layers sit in exactly the same box, so their bars cannot drift apart */
+.wave i{position:absolute;top:9px;left:0;right:0;height:26px;
+  display:flex;align-items:center;justify-content:space-between;gap:3px}
 
 .wave .wbase{opacity:.9}
-.wave .wfill{position:absolute;top:9px;left:0;right:0;width:auto;pointer-events:none;
-  clip-path:inset(0 100% 0 0);transition:clip-path .12s linear}
+.wave .wfill{pointer-events:none;clip-path:inset(0 100% 0 0);transition:clip-path .12s linear}
 .wave.scrub .wfill{transition:none}
 .wave b{display:block;width:3px;flex:0 0 3px;border-radius:3px;background:rgba(246,244,247,.24);align-self:center}
 .wave .wfill b{background:var(--acc-4)}
@@ -250,8 +250,8 @@ header.hide{transform:translateY(-135%)}
   font-family:var(--ui);font-size:.6rem;font-weight:700;letter-spacing:.08em;color:var(--paper-3)}
 .vspeed:hover{color:var(--paper);border-color:var(--acc-2)}
 @media (max-width:640px){
-  .wave{padding:12px 0}
-  .wave i,.wave .whead{height:30px}
+  .wave{height:52px}
+  .wave i,.wave .whead{top:11px;height:30px}
 }
 @keyframes bob{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
 .vtime{font-size:.63rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--paper-3);white-space:nowrap}
@@ -271,9 +271,10 @@ header.hide{transform:translateY(-135%)}
 .fout h3{font-size:clamp(1.05rem,1.7vw,1.35rem);letter-spacing:-.02em;margin:0 0 6px}
 .fout p{margin:0 0 12px;font-size:.88rem;color:var(--paper-2);line-height:1.5}
 
-.talks{display:grid;gap:2px;background:var(--line);border-block:1px solid var(--line)}
-.talk{background:var(--ground);padding:26px clamp(4px,2vw,20px);display:grid;
-  grid-template-columns:56px minmax(0,1fr);gap:6px 14px;align-items:start}
+.talks{display:grid;gap:0;border-top:1px solid var(--line)}
+.talk{background:transparent;border-bottom:1px solid var(--line);
+  padding:clamp(22px,2.6vw,30px) 0;display:grid;
+  grid-template-columns:minmax(56px,max-content) minmax(0,1fr);gap:6px 18px;align-items:start}
 .talk .num{grid-row:1 / span 3;padding-top:6px}
 .talk h3{font-size:clamp(1.15rem,2.4vw,1.6rem)}
 .talk p{margin:10px 0 0;color:var(--paper-2);line-height:1.62;max-width:62ch}
@@ -281,8 +282,9 @@ header.hide{transform:translateY(-135%)}
 .talk .tmeta span{font-family:var(--ui);font-size:.6rem;font-weight:700;letter-spacing:.16em;
   text-transform:uppercase;color:var(--paper-3)}
 @media (max-width:640px){
-  .talk{grid-template-columns:1fr;gap:4px;padding:22px 0}
+  .talk{grid-template-columns:1fr;gap:6px;padding:22px 0}
   .talk .num{grid-row:auto;padding-top:0}
+  .talk h3,.talk p{padding-left:0}
 }
 
 /* ---------- shelf ---------- */
@@ -488,7 +490,7 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
 </style>
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Dr. Ralph Tyga Uzokwe","url":"https://drralphuzokwe.com/","publisher":{"@type":"Person","name":"Dr. Ralph Tyga Uzokwe"}}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Dr. Ralph Tyga Uzokwe","alternateName":["Ralph Uzokwe","Ralph Tyga Uzokwe","Dr. Ralph Uzokwe"],"honorificPrefix":"Dr.","jobTitle":"Author, Entrepreneur and Speaker","description":"Author of seven books on change, leadership, the mind, love and destiny. Doctorate in business strategy and positioning.","url":"https://drralphuzokwe.com/","email":"ralph@drralphuzokwe.com","image":"https://drralphuzokwe.com/assets/ralph.5cf0a6fc.webp","sameAs":["https://www.amazon.com/s?k=Dr.+Ralph+Uzokwe+PhD&i=stripbooks"],"knowsAbout":["Business strategy","Leadership","Personal development","Relationships","Entrepreneurship"],"alumniOf":{"@type":"EducationalOrganization","name":"Doctorate in Business Strategy and Positioning"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Dr. Ralph Tyga Uzokwe","alternateName":["Ralph Uzokwe","Ralph Tyga Uzokwe","Dr. Ralph Uzokwe"],"honorificPrefix":"Dr.","jobTitle":"Author, Entrepreneur and Speaker","description":"Author of seven books on change, leadership, the mind, love and destiny. Doctorate in business strategy and positioning.","url":"https://drralphuzokwe.com/","email":"ralph@drralphuzokwe.com","image":"https://drralphuzokwe.com/assets/ralph.5cf0a6fc.webp","sameAs":["https://www.amazon.com/stores/Dr.-Ralph-Tyga-Uzokwe-PhD/author/B0H6NR44K5"],"knowsAbout":["Business strategy","Leadership","Personal development","Relationships","Entrepreneurship"],"alumniOf":{"@type":"EducationalOrganization","name":"Doctorate in Business Strategy and Positioning"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://drralphuzokwe.com/"},{"@type":"ListItem","position":2,"name":"Books","item":"https://drralphuzokwe.com/books/"},{"@type":"ListItem","position":3,"name":"21x Your Goals to Manifestation","item":"https://drralphuzokwe.com/books/21x-your-goals-to-manifestation/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Book","name":"21x Your Goals to Manifestation","url":"https://drralphuzokwe.com/books/21x-your-goals-to-manifestation/","author":{"@type":"Person","name":"Dr. Ralph Tyga Uzokwe","url":"https://drralphuzokwe.com/"},"inLanguage":"en","bookFormat":"https://schema.org/Paperback","description":"Imagine starting the car and driving with no destination. Hours of movement, hundreds of miles, and no arrival. Many people live exactly like that: busy, but not moving towards anything they have defined.","genre":"Goals and manifestation","abstract":"Your blueprint to advanced strategic quantum manifestation"}</script>
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
@@ -514,7 +516,7 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
       <a href="/about/" data-link>About</a>
       <a href="/speaking/" data-link>Speaking</a>
     </nav>
-    <a class="btn acc glow" href="/books/" data-link style="padding:12px 18px">Get the book</a>
+    <a class="btn acc glow" href="/books/" data-link style="padding:12px 18px">Get the books</a>
     <button class="burger" id="burger" aria-label="Menu"><i></i><i></i><i></i></button>
   </div>
 </header>
@@ -756,7 +758,6 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
         <p>Sixty years of business history, told through the giants who saw the change coming and stood still.
           Kodak invented the digital camera. Blockbuster laughed a young Netflix out of the room. The room leaves
           with the six habits that show up in every survivor, and one uncomfortable question about its own industry.</p>
-        <p class="tmeta"><span>Keynote, 45 to 60 minutes</span><span>Leadership teams, associations, conferences</span></p>
       </article>
       <article class="talk">
         <span class="num">02</span>
@@ -764,7 +765,6 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
         <p>The talk for a workforce that hears the word change and hears the word loss. Where the fear comes from,
           why studying what is emerging beats mourning what is disappearing, and how a team decides which of its
           habits are principles and which are only habits.</p>
-        <p class="tmeta"><span>Keynote, 45 minutes</span><span>Companies mid restructure or mid merger</span></p>
       </article>
       <article class="talk">
         <span class="num">03</span>
@@ -772,7 +772,6 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
         <p>Can you hold your attitude when the quarter is bad, stay disciplined when nobody is watching, and take
           responsibility in public for a decision that cost you. Influence is not control, it is connection, and
           this session takes a room through the difference in their own working relationships.</p>
-        <p class="tmeta"><span>Keynote or half day workshop</span><span>Managers, boards, church and civic leadership</span></p>
       </article>
       <article class="talk">
         <span class="num">04</span>
@@ -780,7 +779,6 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
         <p>Most people are not short of potential, they are short of a system. Belief, focus, the body that has to
           carry the vision, and the quiet that lets a person hear their own direction again. Practical, daily, and
           measurable by the end of the week.</p>
-        <p class="tmeta"><span>Keynote or half day workshop</span><span>Universities, congregations, sales teams</span></p>
       </article>
       <article class="talk">
         <span class="num">05</span>
@@ -788,7 +786,6 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
         <p>Why most fortunes do not reach a third generation, what separates an owner from a consumer, and the
           trap that catches people the year after their income doubles. Built on real cases, including families
           who lost everything inside three generations.</p>
-        <p class="tmeta"><span>Keynote, 45 to 60 minutes</span><span>Entrepreneurs, professional associations, family businesses</span></p>
       </article>
       <article class="talk">
         <span class="num">06</span>
@@ -796,12 +793,7 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
         <p>Seventy years from Turing to the machine on your desk, without the hysteria. What has genuinely changed
           in medicine, in offices and in classrooms, which work is moving, and the sentence that matters most:
           it will not replace you, but someone using it might.</p>
-        <p class="tmeta"><span>Keynote, 60 minutes</span><span>Conferences, universities, professional bodies</span></p>
       </article>
-    </div>
-
-    <div class="hmeta anim" style="margin-top:38px">
-      <span>English</span><span>In person or remote</span><span>Travels from Atlanta</span><span>Books available for the room</span>
     </div>
 
     <div class="ctaband anim" style="margin:44px 0 72px">
@@ -848,7 +840,7 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
       <a href="/listen/" data-link>Listen</a>
       <a href="/about/" data-link>About</a>
       <a href="/speaking/" data-link>Speaking</a>
-      <a href="https://www.amazon.com/s?k=Dr.+Ralph+Uzokwe+PhD&amp;i=stripbooks" target="_blank" rel="noopener">Amazon</a>
+      <a href="https://www.amazon.com/stores/Dr.-Ralph-Tyga-Uzokwe-PhD/author/B0H6NR44K5" target="_blank" rel="noopener">Amazon</a>
       <a href="mailto:ralph@drralphuzokwe.com">ralph@drralphuzokwe.com</a>
     </div>
     <div class="fbot">
@@ -865,7 +857,7 @@ var ROOT = "/", SITE = "https://drralphuzokwe.com";
 var SEO = {"home":{"title":"Dr. Ralph Tyga Uzokwe : Author, Entrepreneur and Speaker","desc":"The official home of Dr. Ralph Tyga Uzokwe. Seven books on change, leadership, the mind, love and destiny, each written to solve one real problem."},"books":{"title":"The Books : Dr. Ralph Tyga Uzokwe","desc":"Seven books by Dr. Ralph Tyga Uzokwe. Read what each one solves before you buy it, in print, e-book and on Kindle."},"voice":{"title":"Listen : Dr. Ralph Tyga Uzokwe on Every Book","desc":"Dr. Ralph Tyga Uzokwe introduces each of his seven books in his own voice. A full talk on what is inside, who it is for and the problem it solves."},"about":{"title":"About Dr. Ralph Tyga Uzokwe","desc":"Author, entrepreneur, speaker and mentor. A doctorate in business strategy, more than thirty businesses built, and seven books written for readers who want to move."},"speaking":{"title":"Speaking and Seminars : Dr. Ralph Tyga Uzokwe","desc":"Book Dr. Ralph Tyga Uzokwe to speak on change, leadership, wealth that lasts and turning potential into results."}};
 /* Replace this one line with his Author Central address when it is to hand.
    Everything on the site that says Amazon reads from here. */
-var STORE = "https://www.amazon.com/s?k=Dr.+Ralph+Uzokwe+PhD&i=stripbooks";
+var STORE = "https://www.amazon.com/stores/Dr.-Ralph-Tyga-Uzokwe-PhD/author/B0H6NR44K5";
 
 var BOOKS = [
   { id:"caod", quote:"Change destroys, but change also creates. When change arrives you have two choices: you can fear what is disappearing, or you can start studying what is emerging.", cover:A+"caod.b87ab2e0.webp", title:"Change, Adapt, or Die",
@@ -1003,6 +995,14 @@ function fitTitle(t){
 }
 
 var COVER_N = 0;
+/* the line above the title, unless it would only repeat the title */
+function kicker(b){
+  var title = b.title.toLowerCase();
+  var words = b.genre.toLowerCase().split(/[^a-z]+/).filter(function(w){ return w.length > 3; });
+  var repeats = words.length && words.every(function(w){ return title.indexOf(w) !== -1; });
+  return (repeats ? "A new book" : b.genre).toUpperCase();
+}
+
 function drawnCover(b){
   var TOP = 300, BOT = 980, MID = (TOP + BOT) / 2;
   var f = fitTitle(b.title), size = f.size, lines = f.lines, id = b.id + "-" + (++COVER_N);
@@ -1063,7 +1063,7 @@ function drawnCover(b){
     + '<g stroke="' + b.tone + '" stroke-width="1.4" opacity="0.8">'
     +   '<line x1="130" y1="171" x2="296" y2="171"/><line x1="604" y1="171" x2="770" y2="171"/></g>'
     + '<text x="450" y="179" text-anchor="middle" fill="' + b.tone + '" font-family="Sora,sans-serif" '
-    +   'font-size="24" font-weight="700" letter-spacing="8">' + b.genre.toUpperCase() + '</text>'
+    +   'font-size="24" font-weight="700" letter-spacing="8">' + kicker(b) + '</text>'
 
     /* band two: the title, alone */
     + '<g font-family="Sora,sans-serif" font-weight="800" text-anchor="middle" fill="url(#ty' + id + ')">' + type + '</g>'
@@ -1359,16 +1359,17 @@ function detail(id){
   +   '<p class="lede" style="margin-top:12px">'+b.sub+'</p>'
   +   b.summary.map(function(p){ return '<p style="color:var(--paper-2);margin-top:16px">'+p+'</p>'; }).join("")
   +   (b.quote ? '<blockquote class="said">' + b.quote
-        + '<cite>Dr. Ralph Tyga Uzokwe, on the recording above</cite></blockquote>' : '')
+        + '<cite>Dr. Ralph Tyga Uzokwe, on this book</cite></blockquote>' : '')
   +   '<div class="solves"><h4>What this book will solve for you</h4><ol>'
   +     b.solves.map(function(s){ return '<li><span>'+s+'</span></li>'; }).join("") + '</ol></div>'
   +   '<div class="voice" style="padding:18px"><span class="tag">In his own voice</span>'
   +     '<div class="vlist" style="margin-top:12px">'+voiceRow(b)+'</div></div>'
   +   (b.upcoming
         ? '<p class="lede" style="margin-top:22px">This one is announced and in production. Join the letter and you will hear the release date before anyone else.</p>'
-        : '<div class="buy"><a class="btn acc glow" href="#">Buy the hard copy '+b.price+'</a>'
-          + '<a class="btn line glow" href="#">E-book '+b.ebook+'</a>'
-          + '<a class="amzlink" href="'+b.amazon+'" target="_blank" rel="noopener">Read it on Kindle, over on Amazon</a></div>')
+        : '<div class="buy">'
+          + '<a class="btn acc glow" href="'+(b.amazon||STORE)+'" target="_blank" rel="noopener">Buy it on Amazon</a>'
+          + '<a class="btn line glow" href="'+STORE+'" target="_blank" rel="noopener">All of his books</a>'
+          + '<a class="amzlink" href="'+(b.amazon||STORE)+'" target="_blank" rel="noopener">Print and Kindle, both on the same page</a></div>')
   + '</div></div>';
   glowInit();
 }

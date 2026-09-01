@@ -316,6 +316,10 @@ header.hide{transform:translateY(-135%)}
 .dstick{position:sticky;top:100px;max-width:300px}
 .dstick .art{border-radius:8px;overflow:hidden;background:#0c0d11;box-shadow:0 40px 70px -44px rgba(0,0,0,.9)}
 .dstick .art img{width:100%;height:auto;display:block}
+.said{margin:26px 0 6px;padding:2px 0 2px 22px;border-left:2px solid var(--acc-2);
+  font-family:var(--display);font-size:clamp(1.12rem,2.3vw,1.5rem);line-height:1.4;color:var(--paper)}
+.said cite{display:block;margin-top:12px;font-family:var(--ui);font-style:normal;font-size:.58rem;
+  font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--acc-2)}
 .solves{margin:24px 0;border-block:1px solid var(--line);padding:20px 0}
 .solves h4{margin:0 0 14px;font-size:.58rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--acc-2);font-family:var(--ui)}
 .solves ol{margin:0;padding:0;list-style:none;counter-reset:s}
@@ -704,7 +708,7 @@ var A = "../assets/";
 var STORE = "https://www.amazon.com/stores/author/B0GNKY84XS";
 
 var BOOKS = [
-  { id:"caod", cover:A+"caod.b87ab2e0.webp", title:"Change, Adapt, or Die",
+  { id:"caod", quote:"Change destroys, but change also creates. When change arrives you have two choices: you can fear what is disappearing, or you can start studying what is emerging.", cover:A+"caod.b87ab2e0.webp", title:"Change, Adapt, or Die",
     sub:"How to Survive, Thrive, and Prosper in an Age of Relentless Change",
     genre:"Business and change", year:"2026", pages:"231 pages", audio:"13:48", track:"audio/caod.mp3",
     price:"$24.99", ebook:"$9.99", amazon:"https://www.amazon.com/dp/B0FDB89LG2",
@@ -714,7 +718,7 @@ var BOOKS = [
     solves:["You can feel your industry shifting and do not know which move to make first.",
             "You keep doing what used to work and the results keep shrinking.",
             "You are afraid to start over, and that fear costs more than the change would."] },
-  { id:"supernatural", cover:A+"supernatural.6bfd84cb.webp", title:"Become Supernatural",
+  { id:"supernatural", quote:"When I use the word supernatural I am not talking about magic. I am talking about the extraordinary abilities already inside you.", cover:A+"supernatural.6bfd84cb.webp", title:"Become Supernatural",
     sub:"Activate Your Greatness and Unlock the Full Power of Your Mind",
     genre:"Mind and motivation", year:"2026", pages:"Available now", audio:"11:33", track:"audio/supernatural.mp3",
     price:"$21.99", ebook:"$9.99",
@@ -725,7 +729,7 @@ var BOOKS = [
     solves:["You know you are capable of more and cannot convert it into results.",
             "Motivation arrives, lasts three days and disappears again.",
             "You want a daily practice you can keep, not a weekend of inspiration."] },
-  { id:"woman", cover:A+"woman.756a9572.webp", title:"Understanding How a Woman Thinks and Truly Loves",
+  { id:"woman", quote:"Many relationships do not struggle because love is absent. They struggle because understanding is absent.", cover:A+"woman.756a9572.webp", title:"Understanding How a Woman Thinks and Truly Loves",
     sub:"A practical guide for the man who wants to get it right",
     genre:"Relationships", year:"2026", pages:"13 chapters", audio:"14:13", track:"audio/woman.mp3",
     price:"$19.99", ebook:"$8.99", amazon:STORE,
@@ -735,7 +739,7 @@ var BOOKS = [
     solves:["You keep having the same argument and it never resolves.",
             "She says you do not listen and you believe that you do.",
             "You want to repair a relationship that has gone quiet, before it goes cold."] },
-  { id:"leadership", cover:A+"leadership.71b31e70.webp", title:"Leadership and Influence",
+  { id:"leadership", quote:"The question is not whether you have influence. The question is what you are doing with it.", cover:A+"leadership.71b31e70.webp", title:"Leadership and Influence",
     sub:"How to develop your leadership skills, influence the world, and leave a lasting legacy",
     genre:"Leadership", year:"2026", pages:"Available now", audio:"12:13", track:"audio/leadership.mp3",
     price:"$22.99", ebook:"$9.99", amazon:"https://www.amazon.com/dp/B0GX2SSKC7",
@@ -745,23 +749,29 @@ var BOOKS = [
     solves:["You lead on paper and cannot feel the team behind you.",
             "You are promoted into a room where nobody explains the unwritten rules.",
             "You want to be remembered for what you built in people, not only in revenue."] },
-  { id:"manifestation", cover:null, upcoming:true, tone:"#BFEC55",
+  { id:"manifestation", quote:"Movement does not guarantee arrival. Without a destination you can drive for hours and get nowhere.", cover:null, upcoming:true, tone:"#BFEC55",
     title:"21x Your Goals to Manifestation",
-    sub:"Announced. Releasing soon.",
+    sub:"Your blueprint to advanced strategic quantum manifestation",
     genre:"Goals and manifestation", year:"Coming soon", pages:"In production", audio:"14:04", track:"audio/manifestation.mp3",
     price:"", ebook:"", amazon:STORE,
-    short:"Announced and close to release. The full description arrives with the book.",
-    summary:["The full description arrives when the book does."],
-    solves:["To be confirmed."] },
-  { id:"love-a-man", cover:null, upcoming:true, tone:"#FD55AC",
+    short:"For the person who has been wishing for years and wants a method instead.",
+    summary:["Imagine starting the car and driving with no destination. Hours of movement, hundreds of miles, and no arrival. Many people live exactly like that: busy, but not moving towards anything they have defined.",
+             "This book puts clarity first, then brings the rest into line behind it: vision, belief, focus, affirmation, repetition, strategy, action, persistence and faith. Visualise all you like, but without action visualisation is only entertainment."],
+    solves:["You want things but have never written down precisely what they are.",
+            "You visualise the future and nothing in your week actually changes.",
+            "You are busy every day and still no closer to the life you describe."] },
+  { id:"love-a-man", quote:"Silence does not mean the absence of feeling. A man can carry enormous pressure behind a quiet face.", cover:null, upcoming:true, tone:"#FD55AC",
     title:"How to Truly Love a Man",
-    sub:"Announced. Releasing soon.",
+    sub:"Understanding the man behind the exterior",
     genre:"Relationships", year:"Coming soon", pages:"In production", audio:"15:07", track:"audio/love-a-man.mp3",
     price:"", ebook:"", amazon:STORE,
-    short:"Announced and close to release. The full description arrives with the book.",
-    summary:["The full description arrives when the book does."],
-    solves:["To be confirmed."] },
-  { id:"unstoppable", cover:A+"unstoppable.437f8090.webp", title:"Become Unstoppable and Irresistible",
+    short:"For the woman who loves him and keeps meeting a closed door where his feelings should be.",
+    summary:["Most men are taught early to provide, protect, solve, compete and keep going. Do not complain. Do not show weakness. So the man you love may carry his career, his money, his family and his fears behind a very quiet face.",
+             "This book is not about keeping a man or losing yourself to please him. It is about understanding him well enough that the relationship becomes a source of strength for both of you: respect, appreciation, emotional safety, and the difference between correcting a behaviour and destroying a person's dignity."],
+    solves:["He has gone quiet and you cannot tell what is behind it.",
+            "You want to raise a problem without it turning into a fight.",
+            "You give love the way you would want to receive it, and it keeps missing him."] },
+  { id:"unstoppable", quote:"Failure can become information. Rejection can become redirection. A setback can become preparation for your comeback.", cover:A+"unstoppable.437f8090.webp", title:"Become Unstoppable and Irresistible",
     sub:"Powerful hidden strategies to achieve your goals and manifest your personal destiny",
     genre:"Success and destiny", year:"2026", pages:"Hardcover and paperback", audio:"14:29", track:"audio/unstoppable.mp3",
     price:"$24.99", ebook:"$9.99", amazon:"https://www.amazon.com/dp/B0FDB89LG2",
@@ -832,9 +842,10 @@ function fitTitle(t){
   return { lines: [t.toUpperCase()], size: 54 };
 }
 
+var COVER_N = 0;
 function drawnCover(b){
   var TOP = 300, BOT = 980, MID = (TOP + BOT) / 2;
-  var f = fitTitle(b.title), size = f.size, lines = f.lines, id = b.id;
+  var f = fitTitle(b.title), size = f.size, lines = f.lines, id = b.id + "-" + (++COVER_N);
 
   /* the title never grows past its band */
   while(lines.length * size * 1.06 > (BOT - TOP) - 60 && size > 46){
@@ -1039,6 +1050,8 @@ function detail(id){
   + '<div><span class="tag">'+b.genre+'</span><h1 class="lg">'+b.title+'</h1>'
   +   '<p class="lede" style="margin-top:12px">'+b.sub+'</p>'
   +   b.summary.map(function(p){ return '<p style="color:var(--paper-2);margin-top:16px">'+p+'</p>'; }).join("")
+  +   (b.quote ? '<blockquote class="said">' + b.quote
+        + '<cite>Dr. Ralph Tyga Uzokwe, on the recording above</cite></blockquote>' : '')
   +   '<div class="solves"><h4>What this book will solve for you</h4><ol>'
   +     b.solves.map(function(s){ return '<li><span>'+s+'</span></li>'; }).join("") + '</ol></div>'
   +   '<div class="voice" style="padding:18px"><span class="tag">In his own voice</span>'

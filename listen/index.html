@@ -244,8 +244,8 @@ header.hide{transform:translateY(-135%)}
 .vrow.on .ic-play{display:none}
 .vrow.on .ic-pause{display:block}
 .vmid{min-width:0}
-.vright{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
-.vtime{font-variant-numeric:tabular-nums}
+.vright{display:flex;flex-direction:column;align-items:flex-end;gap:8px;min-width:104px}
+.vtime{font-variant-numeric:tabular-nums;white-space:nowrap}
 .vspeed{background:none;border:1px solid var(--line);border-radius:999px;padding:3px 9px;cursor:pointer;
   font-family:var(--ui);font-size:.6rem;font-weight:700;letter-spacing:.08em;color:var(--paper-3)}
 .vspeed:hover{color:var(--paper);border-color:var(--acc-2)}
@@ -452,7 +452,7 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
   /* the time and the speed sit under the bar on a phone, side by side, so the
      row keeps two columns and nothing lands under the play button */
   .vright{grid-column:2;flex-direction:row;align-items:center;justify-content:space-between;
-    width:100%;margin-top:2px}
+    width:100%;min-width:0;margin-top:2px}
   .arrows{display:none}
   .shelf{gap:12px;scroll-snap-type:x mandatory;padding-right:18px}
   .bookcard{flex:0 0 46vw}

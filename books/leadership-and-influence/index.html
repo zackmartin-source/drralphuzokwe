@@ -227,12 +227,13 @@ header.hide{transform:translateY(-135%)}
 .wave{display:flex;align-items:center;gap:3px;height:24px;margin-top:9px}
 .wave{position:relative;cursor:pointer;touch-action:none;padding:9px 0;isolation:isolate}
 .wave:focus-visible{outline:2px solid var(--acc-2);outline-offset:4px;border-radius:3px}
-.wave i{display:flex;align-items:center;gap:3px;height:26px}
+.wave i{display:flex;align-items:flex-end;justify-content:space-between;gap:3px;height:26px}
+
 .wave .wbase{opacity:.9}
-.wave .wfill{position:absolute;top:9px;left:0;width:0;overflow:hidden;pointer-events:none;
-  transition:width .12s linear}
+.wave .wfill{position:absolute;top:9px;left:0;right:0;width:auto;pointer-events:none;
+  clip-path:inset(0 100% 0 0);transition:clip-path .12s linear}
 .wave.scrub .wfill{transition:none}
-.wave b{display:block;width:3px;flex:0 0 3px;border-radius:3px;background:rgba(246,244,247,.24)}
+.wave b{display:block;width:3px;flex:0 0 3px;border-radius:3px;background:rgba(246,244,247,.24);align-self:center}
 .wave .wfill b{background:var(--acc-4)}
 .wave .whead{position:absolute;top:9px;left:0;width:2px;height:26px;margin-left:-1px;
   background:var(--acc-2);opacity:0;transition:opacity .2s linear,left .12s linear;pointer-events:none}
@@ -1106,6 +1107,28 @@ function bars(n){
   for(var i = 0; i < n; i++) out += '<b style="height:'+(24 + Math.round(Math.abs(Math.sin(i*1.7))*74))+'%;animation-delay:'+(i*.05)+'s"></b>';
   return out;
 }
+
+/* one bar every six pixels, so the waveform spans the whole track at any width */
+function fitBars(row){
+  var wave = row.querySelector(".wave");
+  if(!wave) return;
+  var width = wave.clientWidth;
+  if(!width) return;
+  var n = Math.max(18, Math.min(160, Math.floor(width / 6)));
+  if(row.dataset.bars === String(n)) return;
+  row.dataset.bars = n;
+  var marks = bars(n);
+  var base = row.querySelector(".wbase"), fill = row.querySelector(".wfill");
+  if(base) base.innerHTML = marks;
+  if(fill) fill.innerHTML = marks;
+  /* the clip carries the position, so rebuilding the bars keeps it */
+}
+function fitAllBars(){ $$(".vrow").forEach(fitBars); }
+var fitTimer = null;
+addEventListener("resize", function(){
+  clearTimeout(fitTimer);
+  fitTimer = setTimeout(fitAllBars, 180);
+}, { passive:true });
 /* one recording plays at a time, and the bars fill as it runs */
 var NOW = null;
 function stopAll(except){
@@ -1126,7 +1149,7 @@ var SPEEDS = [1, 1.25, 1.5];
 function paintRow(row, audio){
   var pct = (audio && audio.duration) ? audio.currentTime / audio.duration : 0;
   var fill = row.querySelector(".wfill"), head = row.querySelector(".whead");
-  if(fill) fill.style.width = (pct * 100).toFixed(2) + "%";
+  if(fill) fill.style.clipPath = "inset(0 " + (100 - pct * 100).toFixed(2) + "% 0 0)";
   if(head) head.style.left = (pct * 100).toFixed(2) + "%";
   var wave = row.querySelector(".wave");
   if(wave) wave.setAttribute("aria-valuenow", Math.round(pct * 100));
@@ -1152,7 +1175,7 @@ function trackFor(row){
     var t = row.querySelector(".vtime");
     if(t) t.textContent = "unavailable";
     var fill = row.querySelector(".wfill");
-    if(fill) fill.style.width = "0%";
+    if(fill) fill.style.clipPath = "inset(0 100% 0 0)";
   });
   audio.addEventListener("ended", function(){
     row.classList.remove("on");
@@ -1217,7 +1240,7 @@ function seekTo(row, clientX){
   }
   /* show the move straight away even before the file answers */
   var fill = row.querySelector(".wfill"), head = row.querySelector(".whead");
-  if(fill) fill.style.width = (pct * 100).toFixed(2) + "%";
+  if(fill) fill.style.clipPath = "inset(0 " + (100 - pct * 100).toFixed(2) + "% 0 0)";
   if(head) head.style.left = (pct * 100).toFixed(2) + "%";
 }
 
@@ -1283,6 +1306,7 @@ function voiceRow(b){
 $("#vlist").innerHTML  = ["caod","supernatural","woman","unstoppable"]
   .map(byId).filter(Boolean).map(voiceRow).join("");
 $("#vlist2").innerHTML = BOOKS.map(voiceRow).join("");
+setTimeout(fitAllBars, 0);
 
 
 /* ---------- problem finder ---------- */
@@ -1359,6 +1383,7 @@ function show(page, sub){
     a.classList.toggle("on", t === page || (page === "book" && t === "books"));
   });
   if(page === "book") detail(sub);
+  setTimeout(fitAllBars, 0);
   window.scrollTo(0,0);
   playPage();
 }

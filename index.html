@@ -986,20 +986,17 @@ document.addEventListener("click", function(e){
 });
 
 function voiceRow(b){
-  return '<div class="vrow">'
-    + '<button class="vplay" aria-label="Play the summary of '+b.title+'"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M4 2.5v11l9-5.5z"/></svg></button>'
+  return '<div class="vrow" data-track="'+(b.track||"")+'" data-len="'+b.audio+'">'
+    + '<button class="vplay" aria-label="Play Dr. Uzokwe on '+b.title+'">'
+    +   '<svg class="ic-play" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M4 2.5v11l9-5.5z"/></svg>'
+    +   '<svg class="ic-pause" width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M4 3h3v10H4zM9 3h3v10H9z"/></svg>'
+    + '</button>'
     + '<div><p class="vname">'+b.title+'</p><p class="vsub">The author on what this book solves</p>'
     + '<div class="wave">'+bars(24)+'</div></div><div class="vtime">'+b.audio+'</div></div>';
 }
 $("#vlist").innerHTML  = BOOKS.slice(0,3).map(voiceRow).join("");
 $("#vlist2").innerHTML = BOOKS.map(voiceRow).join("");
-document.addEventListener("click", function(e){
-  var row = e.target.closest ? e.target.closest(".vrow") : null;
-  if(!row) return;
-  var playing = row.classList.contains("on");
-  $$(".vrow.on").forEach(function(r){ r.classList.remove("on"); });
-  if(!playing) row.classList.add("on");
-});
+
 
 /* ---------- problem finder ---------- */
 var PROBLEMS = [

@@ -58,7 +58,7 @@ p{margin:0 0 1.05em}
 .lede{font-size:clamp(1rem,1.24vw,1.14rem);color:var(--paper-2);max-width:52ch}
 .tag{font-family:var(--ui);font-size:.63rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--acc-2);
   display:block;margin:0 0 8px}
-.num{font-family:var(--ui);font-size:.63rem;font-weight:700;letter-spacing:.2em;color:var(--paper-3)}
+.num{font-family:var(--ui);font-size:.63rem;font-weight:700;letter-spacing:.2em;color:var(--paper-3);white-space:nowrap}
 
 /* ---------- ground ---------- */
 /* six washes, one in every corner and one on each flank, so colour lives on the
@@ -225,14 +225,33 @@ header.hide{transform:translateY(-135%)}
 .vname{font-family:var(--disp);font-weight:600;font-size:.98rem;letter-spacing:-.02em;margin:0;line-height:1.3}
 .vsub{font-size:.74rem;color:var(--paper-3);margin:4px 0 0;line-height:1.45}
 .wave{display:flex;align-items:center;gap:3px;height:24px;margin-top:9px}
-.wave b{display:block;width:3px;border-radius:3px;background:rgba(246,244,247,.24);
-  transition:background-color .25s linear,transform .25s var(--smooth)}
-.wave b.done{background:var(--acc-4)}
-.vrow.on .wave b.done{animation:bob .9s infinite var(--smooth)}
+.wave{position:relative;cursor:pointer;touch-action:none;padding:9px 0;isolation:isolate}
+.wave:focus-visible{outline:2px solid var(--acc-2);outline-offset:4px;border-radius:3px}
+.wave i{display:flex;align-items:center;gap:3px;height:26px}
+.wave .wbase{opacity:.9}
+.wave .wfill{position:absolute;top:9px;left:0;width:0;overflow:hidden;pointer-events:none;
+  transition:width .12s linear}
+.wave.scrub .wfill{transition:none}
+.wave b{display:block;width:3px;flex:0 0 3px;border-radius:3px;background:rgba(246,244,247,.24)}
+.wave .wfill b{background:var(--acc-4)}
+.wave .whead{position:absolute;top:9px;left:0;width:2px;height:26px;margin-left:-1px;
+  background:var(--acc-2);opacity:0;transition:opacity .2s linear,left .12s linear;pointer-events:none}
+.vrow.on .whead,.wave:hover .whead,.wave.scrub .whead{opacity:.9}
+.wave.scrub .whead{transition:opacity .2s linear}
+.vrow.on .wfill b{animation:bob .9s infinite var(--smooth)}
 .vrow .ic-pause{display:none}
 .vrow.on .ic-play{display:none}
 .vrow.on .ic-pause{display:block}
+.vmid{min-width:0}
+.vright{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
 .vtime{font-variant-numeric:tabular-nums}
+.vspeed{background:none;border:1px solid var(--line);border-radius:999px;padding:3px 9px;cursor:pointer;
+  font-family:var(--ui);font-size:.6rem;font-weight:700;letter-spacing:.08em;color:var(--paper-3)}
+.vspeed:hover{color:var(--paper);border-color:var(--acc-2)}
+@media (max-width:640px){
+  .wave{padding:12px 0}
+  .wave i,.wave .whead{height:30px}
+}
 @keyframes bob{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
 .vtime{font-size:.63rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--paper-3);white-space:nowrap}
 .vnote{margin:18px 0 0;font-size:.84rem;color:var(--paper-3)}
@@ -250,6 +269,20 @@ header.hide{transform:translateY(-135%)}
 .fout img{border-radius:6px;box-shadow:0 18px 36px -22px rgba(0,0,0,.85);width:96px;height:auto}
 .fout h3{font-size:clamp(1.05rem,1.7vw,1.35rem);letter-spacing:-.02em;margin:0 0 6px}
 .fout p{margin:0 0 12px;font-size:.88rem;color:var(--paper-2);line-height:1.5}
+
+.talks{display:grid;gap:2px;background:var(--line);border-block:1px solid var(--line)}
+.talk{background:var(--ground);padding:26px clamp(4px,2vw,20px);display:grid;
+  grid-template-columns:56px minmax(0,1fr);gap:6px 14px;align-items:start}
+.talk .num{grid-row:1 / span 3;padding-top:6px}
+.talk h3{font-size:clamp(1.15rem,2.4vw,1.6rem)}
+.talk p{margin:10px 0 0;color:var(--paper-2);line-height:1.62;max-width:62ch}
+.talk .tmeta{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:14px}
+.talk .tmeta span{font-family:var(--ui);font-size:.6rem;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--paper-3)}
+@media (max-width:640px){
+  .talk{grid-template-columns:1fr;gap:4px;padding:22px 0}
+  .talk .num{grid-row:auto;padding-top:0}
+}
 
 /* ---------- shelf ---------- */
 .shelfhead{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;flex-wrap:wrap;margin-bottom:22px}
@@ -291,7 +324,7 @@ header.hide{transform:translateY(-135%)}
 
 /* ---------- rows, steps ---------- */
 .rows{border-top:1px solid var(--line)}
-.row{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:18px;align-items:center;padding:clamp(16px,1.9vw,26px) 0;
+.row{display:grid;grid-template-columns:minmax(56px,max-content) minmax(0,1fr) auto;gap:18px;align-items:center;padding:clamp(16px,1.9vw,26px) 0;
   border-bottom:1px solid var(--line);position:relative;transition:padding-left .5s var(--spring)}
 .row:hover{padding-left:16px}
 .row::before{content:"";position:absolute;inset:0;background:rgba(246,244,247,.05);transform:scaleX(0);transform-origin:left;
@@ -338,6 +371,8 @@ header.hide{transform:translateY(-135%)}
 .ctaband{border-radius:14px;padding:clamp(24px,4vw,60px);border:1px solid var(--line);background:var(--ground-2);position:relative;overflow:hidden}
 .ctaband::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--acc-5)}
 .trap{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
+.lede a,.fsub a{color:var(--acc-2);text-decoration:none;border-bottom:1px solid rgba(246,244,247,.25)}
+.lede a:hover,.fsub a:hover{border-bottom-color:currentColor}
 .formsay{margin:12px 0 0;font-family:var(--ui);font-size:.82rem;color:var(--paper-2);min-height:1.2em}
 .formsay.bad{color:#FFB4C6}
 .formsay.good{color:var(--acc-2)}
@@ -413,11 +448,14 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
   .voice,.finder,.ctaband{padding:20px 16px}
   .vrow{grid-template-columns:42px minmax(0,1fr);gap:12px;padding:12px}
   .vplay{width:40px;height:40px}
-  .vtime{grid-column:2;margin-top:2px}
+  /* the time and the speed sit under the bar on a phone, side by side, so the
+     row keeps two columns and nothing lands under the play button */
+  .vright{grid-column:2;flex-direction:row;align-items:center;justify-content:space-between;
+    width:100%;margin-top:2px}
   .arrows{display:none}
   .shelf{gap:12px;scroll-snap-type:x mandatory;padding-right:18px}
   .bookcard{flex:0 0 46vw}
-  .row{grid-template-columns:34px minmax(0,1fr);gap:12px}
+  .row{grid-template-columns:minmax(34px,max-content) minmax(0,1fr);gap:12px}
   .row .sub{display:none}
   .row:hover{padding-left:6px}
   .detail{padding:92px 0 0}
@@ -538,7 +576,8 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
         <p class="num">Press play</p>
       </div>
       <div class="vlist" id="vlist"></div>
-      <p class="vnote">Recorded by Dr. Uzokwe himself. Press play and listen while you read.</p>
+      <p class="vnote">Four of the seven. <a href="/f/listen/" data-link>Hear him on all of them</a>,
+        recorded by Dr. Uzokwe himself.</p>
     </div>
   </div>
 
@@ -627,6 +666,7 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
       <h2 class="lg">Read the first chapter<br>before you buy.</h2>
       <p class="lede" style="margin-top:14px">
         Leave your email and the opening chapter arrives immediately, with a note when the next book lands.
+        You can also write to me directly at <a href="mailto:ralph@drralphuzokwe.com">ralph@drralphuzokwe.com</a>.
       </p>
       <form class="field" data-intent="letter" novalidate>
         <input type="email" name="email" required placeholder="your@email.com" aria-label="Your email address" autocomplete="email">
@@ -686,7 +726,7 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
           <div class="row"><span class="num">Arrival</span><h3>America</h3><span class="sub">Study at night, work by day, the first business</span></div>
           <div class="row"><span class="num">2008</span><h3>The pivot</h3><span class="sub">Out of housing, into commercial property, mid crash</span></div>
           <div class="row"><span class="num">Doctorate</span><h3>Business strategy and positioning</h3><span class="sub">Language for what the work already taught</span></div>
-          <div class="row"><span class="num">Today</span><h3>Author, speaker, investor</h3><span class="sub">Five books published and a full speaking calendar</span></div>
+          <div class="row"><span class="num">Today</span><h3>Author, speaker, investor</h3><span class="sub">Seven books written, five out now, and a full speaking calendar</span></div>
         </div>
       </div>
     </div>
@@ -698,17 +738,72 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
   <div class="wrap" style="padding:118px 0 0">
     <span class="tag anim">Speaking</span>
     <h1 class="xl anim">Bring me to your room.</h1>
-    <p class="lede anim" style="margin-top:18px">Boardrooms, congregations, associations, universities. Never theory alone.</p>
-    <div class="rows anim" style="margin-top:36px">
-      <div class="row"><span class="num">01</span><h3>Change, Adapt, or Die</h3><span class="sub">60 minutes, keynote</span></div>
-      <div class="row"><span class="num">02</span><h3>Wealth That Survives You</h3><span class="sub">45 minutes, keynote</span></div>
-      <div class="row"><span class="num">03</span><h3>Activate Your Greatness</h3><span class="sub">Half day workshop</span></div>
-      <div class="row"><span class="num">04</span><h3>Leadership and Influence</h3><span class="sub">60 minutes, keynote</span></div>
-      <div class="row"><span class="num">05</span><h3>The Immigrant Advantage</h3><span class="sub">60 minutes, keynote</span></div>
-      <div class="row"><span class="num">06</span><h3>Living with Artificial Intelligence</h3><span class="sub">60 minutes, keynote</span></div>
+    <p class="lede anim" style="margin-top:18px">
+      Boardrooms, congregations, associations, universities and conferences. I speak from thirty years of building
+      businesses across four countries, a doctorate in business strategy, and seven books written on the same
+      question: what does a person actually do on Monday morning.
+    </p>
+
+    <div class="talks anim" style="margin-top:40px">
+      <article class="talk">
+        <span class="num">01</span>
+        <h3>Change, Adapt, or Die</h3>
+        <p>Sixty years of business history, told through the giants who saw the change coming and stood still.
+          Kodak invented the digital camera. Blockbuster laughed a young Netflix out of the room. The room leaves
+          with the six habits that show up in every survivor, and one uncomfortable question about its own industry.</p>
+        <p class="tmeta"><span>Keynote, 45 to 60 minutes</span><span>Leadership teams, associations, conferences</span></p>
+      </article>
+      <article class="talk">
+        <span class="num">02</span>
+        <h3>Adaptation Is Not Surrender</h3>
+        <p>The talk for a workforce that hears the word change and hears the word loss. Where the fear comes from,
+          why studying what is emerging beats mourning what is disappearing, and how a team decides which of its
+          habits are principles and which are only habits.</p>
+        <p class="tmeta"><span>Keynote, 45 minutes</span><span>Companies mid restructure or mid merger</span></p>
+      </article>
+      <article class="talk">
+        <span class="num">03</span>
+        <h3>Leadership Begins Before You Lead Anyone</h3>
+        <p>Can you hold your attitude when the quarter is bad, stay disciplined when nobody is watching, and take
+          responsibility in public for a decision that cost you. Influence is not control, it is connection, and
+          this session takes a room through the difference in their own working relationships.</p>
+        <p class="tmeta"><span>Keynote or half day workshop</span><span>Managers, boards, church and civic leadership</span></p>
+      </article>
+      <article class="talk">
+        <span class="num">04</span>
+        <h3>Activate Your Greatness</h3>
+        <p>Most people are not short of potential, they are short of a system. Belief, focus, the body that has to
+          carry the vision, and the quiet that lets a person hear their own direction again. Practical, daily, and
+          measurable by the end of the week.</p>
+        <p class="tmeta"><span>Keynote or half day workshop</span><span>Universities, congregations, sales teams</span></p>
+      </article>
+      <article class="talk">
+        <span class="num">05</span>
+        <h3>Wealth That Survives You</h3>
+        <p>Why most fortunes do not reach a third generation, what separates an owner from a consumer, and the
+          trap that catches people the year after their income doubles. Built on real cases, including families
+          who lost everything inside three generations.</p>
+        <p class="tmeta"><span>Keynote, 45 to 60 minutes</span><span>Entrepreneurs, professional associations, family businesses</span></p>
+      </article>
+      <article class="talk">
+        <span class="num">06</span>
+        <h3>Living with Artificial Intelligence</h3>
+        <p>Seventy years from Turing to the machine on your desk, without the hysteria. What has genuinely changed
+          in medicine, in offices and in classrooms, which work is moving, and the sentence that matters most:
+          it will not replace you, but someone using it might.</p>
+        <p class="tmeta"><span>Keynote, 60 minutes</span><span>Conferences, universities, professional bodies</span></p>
+      </article>
     </div>
+
+    <div class="hmeta anim" style="margin-top:38px">
+      <span>English</span><span>In person or remote</span><span>Travels from Atlanta</span><span>Books available for the room</span>
+    </div>
+
     <div class="ctaband anim" style="margin:44px 0 72px">
       <h2 class="lg">Tell me about your event.</h2>
+      <p class="lede" style="margin-top:12px">Leave your address and I will come back to you myself. If you would
+        rather write in full, with your date, your audience and the outcome you want, I am at
+        <a href="mailto:ralph@drralphuzokwe.com">ralph@drralphuzokwe.com</a>.</p>
       <form class="field" data-intent="speaking" novalidate>
         <input type="email" name="email" required placeholder="your@email.com" aria-label="Your email address" autocomplete="email">
         <button class="btn acc glow" type="submit">Send enquiry</button>
@@ -748,7 +843,8 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
       <a href="/f/listen/" data-link>Listen</a>
       <a href="/f/about/" data-link>About</a>
       <a href="/f/speaking/" data-link>Speaking</a>
-      <a href="https://www.amazon.com/stores/author/B0GNKY84XS" target="_blank" rel="noopener">Amazon</a>
+      <a href="https://www.amazon.com/s?k=Dr.+Ralph+Uzokwe+PhD&amp;i=stripbooks" target="_blank" rel="noopener">Amazon</a>
+      <a href="mailto:ralph@drralphuzokwe.com">ralph@drralphuzokwe.com</a>
     </div>
     <div class="fbot">
       <span>Dr. Ralph Tyga Uzokwe</span>
@@ -762,7 +858,9 @@ var A = "/assets/";
 var BOOT = ["books","21x-your-goals-to-manifestation"];
 var ROOT = "/f/", SITE = "https://drralphuzokwe.com";
 var SEO = {"home":{"title":"Dr. Ralph Tyga Uzokwe : Author, Entrepreneur and Speaker","desc":"The official home of Dr. Ralph Tyga Uzokwe. Seven books on change, leadership, the mind, love and destiny, each written to solve one real problem."},"books":{"title":"The Books : Dr. Ralph Tyga Uzokwe","desc":"Seven books by Dr. Ralph Tyga Uzokwe. Read what each one solves before you buy it, in print, e-book and on Kindle."},"voice":{"title":"Listen : Dr. Ralph Tyga Uzokwe on Every Book","desc":"Dr. Ralph Tyga Uzokwe introduces each of his seven books in his own voice. A full talk on what is inside, who it is for and the problem it solves."},"about":{"title":"About Dr. Ralph Tyga Uzokwe","desc":"Author, entrepreneur, speaker and mentor. A doctorate in business strategy, more than thirty businesses built, and seven books written for readers who want to move."},"speaking":{"title":"Speaking and Seminars : Dr. Ralph Tyga Uzokwe","desc":"Book Dr. Ralph Tyga Uzokwe to speak on change, leadership, wealth that lasts and turning potential into results."}};
-var STORE = "https://www.amazon.com/stores/author/B0GNKY84XS";
+/* Replace this one line with his Author Central address when it is to hand.
+   Everything on the site that says Amazon reads from here. */
+var STORE = "https://www.amazon.com/s?k=Dr.+Ralph+Uzokwe+PhD&i=stripbooks";
 
 var BOOKS = [
   { id:"caod", quote:"Change destroys, but change also creates. When change arrives you have two choices: you can fear what is disappearing, or you can start studying what is emerging.", cover:A+"caod.b87ab2e0.webp", title:"Change, Adapt, or Die",
@@ -846,7 +944,7 @@ function byId(id){ var f = null; BOOKS.forEach(function(b){ if(b.id === id) f = 
 
 /* ---------- hero fan: three whole covers ---------- */
 (function(){
-  var order = ["caod","supernatural","woman"], cls = ["f1","f2","f3"];   /* printed books only */
+  var order = ["caod","leadership","woman"], cls = ["f1","f2","f3"];   /* one from each side of his work */
   $("#fan").innerHTML = order.map(function(id, i){
     var b = byId(id);
     return '<a class="'+cls[i]+'" href="'+ROOT+'books/'+slugOf(b)+'/" data-link aria-label="'+b.title+'">'
@@ -1019,61 +1117,186 @@ function mmss(t){
   var m = Math.floor(t / 60), sec = Math.floor(t % 60);
   return m + ":" + (sec < 10 ? "0" : "") + sec;
 }
-document.addEventListener("click", function(e){
-  var row = e.target.closest ? e.target.closest(".vrow") : null;
-  if(!row || !row.dataset.track) return;
+var SPEEDS = [1, 1.25, 1.5];
+
+function paintRow(row, audio){
+  var pct = (audio && audio.duration) ? audio.currentTime / audio.duration : 0;
+  var fill = row.querySelector(".wfill"), head = row.querySelector(".whead");
+  if(fill) fill.style.width = (pct * 100).toFixed(2) + "%";
+  if(head) head.style.left = (pct * 100).toFixed(2) + "%";
+  var wave = row.querySelector(".wave");
+  if(wave) wave.setAttribute("aria-valuenow", Math.round(pct * 100));
+  var t = row.querySelector(".vtime");
+  if(t && audio) t.textContent = mmss(audio.currentTime) + " / " + (row.dataset.len || mmss(audio.duration));
+}
+
+function trackFor(row){
   var audio = row.querySelector("audio");
-  if(!audio){
-    audio = document.createElement("audio");
-    audio.src = row.dataset.track;
-    audio.preload = "none";
-    row.appendChild(audio);
-    audio.addEventListener("timeupdate", function(){
-      var pct = audio.duration ? audio.currentTime / audio.duration : 0;
-      var bars = $$(".wave b", row);
-      var lit = Math.round(pct * bars.length);
-      bars.forEach(function(bar, i){ bar.classList.toggle("done", i < lit); });
-      var t = row.querySelector(".vtime");
-      if(t) t.textContent = mmss(audio.currentTime) + " / " + (row.dataset.len || mmss(audio.duration));
-    });
-    audio.addEventListener("ended", function(){
-      row.classList.remove("on");
-      var t = row.querySelector(".vtime");
-      if(t) t.textContent = row.dataset.len || "";
-      $$(".wave b", row).forEach(function(bar){ bar.classList.remove("done"); });
-    });
-  }
+  if(audio) return audio;
+  audio = document.createElement("audio");
+  audio.src = row.dataset.track;
+  audio.preload = "none";
+  audio.playbackRate = parseFloat(row.dataset.rate || "1");
+  row.appendChild(audio);
+  audio.addEventListener("timeupdate", function(){
+    if(row.dataset.dead || row.dataset.scrubbing) return;
+    paintRow(row, audio);
+  });
+  audio.addEventListener("error", function(){
+    row.dataset.dead = "1";
+    row.classList.remove("on");
+    var t = row.querySelector(".vtime");
+    if(t) t.textContent = "unavailable";
+    var fill = row.querySelector(".wfill");
+    if(fill) fill.style.width = "0%";
+  });
+  audio.addEventListener("ended", function(){
+    row.classList.remove("on");
+    audio.currentTime = 0;
+    paintRow(row, audio);
+    var t = row.querySelector(".vtime");
+    if(t) t.textContent = row.dataset.len || "";
+  });
+  return audio;
+}
+
+function toggleRow(row){
+  var audio = trackFor(row);
   if(audio.paused){
     stopAll(row);
     row.classList.add("on");
-    audio.play().catch(function(){ row.classList.remove("on"); });
+    audio.play().catch(function(){
+      row.classList.remove("on");
+      var t = row.querySelector(".vtime");
+      if(t) t.textContent = row.dataset.len || "";
+    });
   }else{
     audio.pause();
     row.classList.remove("on");
   }
+}
+
+/* clicking the row plays it, except on the parts that do their own job */
+document.addEventListener("click", function(e){
+  var row = e.target.closest ? e.target.closest(".vrow") : null;
+  if(!row || !row.dataset.track) return;
+  if(e.target.closest(".wave")) return;
+  if(e.target.closest(".vspeed")){
+    var now = parseFloat(row.dataset.rate || "1");
+    var next = SPEEDS[(SPEEDS.indexOf(now) + 1) % SPEEDS.length];
+    row.dataset.rate = next;
+    var audio = row.querySelector("audio");
+    if(audio) audio.playbackRate = next;
+    e.target.closest(".vspeed").innerHTML = (next === 1 ? "1" : String(next)) + "&times;";
+    return;
+  }
+  toggleRow(row);
+});
+
+/* dragging the bar moves through the talk, on a mouse and under a finger */
+function seekTo(row, clientX){
+  var wave = row.querySelector(".wave");
+  var box = wave.getBoundingClientRect();
+  var pct = Math.min(1, Math.max(0, (clientX - box.left) / box.width));
+  var audio = trackFor(row);
+  var apply = function(){
+    if(!isFinite(audio.duration)) return;
+    audio.currentTime = pct * audio.duration;
+    paintRow(row, audio);
+  };
+  if(isFinite(audio.duration)) apply();
+  else{
+    /* nothing is loaded until the first play, so fetch just enough to seek */
+    audio.preload = "metadata";
+    audio.addEventListener("loadedmetadata", apply, { once:true });
+    audio.load();
+  }
+  /* show the move straight away even before the file answers */
+  var fill = row.querySelector(".wfill"), head = row.querySelector(".whead");
+  if(fill) fill.style.width = (pct * 100).toFixed(2) + "%";
+  if(head) head.style.left = (pct * 100).toFixed(2) + "%";
+}
+
+document.addEventListener("pointerdown", function(e){
+  var wave = e.target.closest ? e.target.closest(".wave") : null;
+  if(!wave) return;
+  var row = wave.closest(".vrow");
+  if(!row || !row.dataset.track) return;
+  e.preventDefault();
+  row.dataset.scrubbing = "1";
+  wave.classList.add("scrub");
+  seekTo(row, e.clientX);
+
+  var move = function(ev){ seekTo(row, ev.clientX); };
+  var up = function(){
+    delete row.dataset.scrubbing;
+    wave.classList.remove("scrub");
+    removeEventListener("pointermove", move);
+    removeEventListener("pointerup", up);
+    removeEventListener("pointercancel", up);
+    var audio = row.querySelector("audio");
+    if(audio && audio.paused && !row.dataset.dead) toggleRow(row);
+  };
+  addEventListener("pointermove", move);
+  addEventListener("pointerup", up);
+  addEventListener("pointercancel", up);
+});
+
+/* the same movement from the keyboard */
+document.addEventListener("keydown", function(e){
+  var wave = e.target.closest ? e.target.closest(".wave") : null;
+  if(!wave) return;
+  var row = wave.closest(".vrow");
+  var audio = row && row.dataset.track ? trackFor(row) : null;
+  if(!audio) return;
+  var step = e.key === "ArrowRight" ? 15 : e.key === "ArrowLeft" ? -15 : 0;
+  if(step){
+    e.preventDefault();
+    if(isFinite(audio.duration)) audio.currentTime = Math.min(audio.duration, Math.max(0, audio.currentTime + step));
+    paintRow(row, audio);
+  }
+  if(e.key === " " || e.key === "Enter"){ e.preventDefault(); toggleRow(row); }
 });
 
 function voiceRow(b){
   return '<div class="vrow" data-track="'+(b.track||"")+'" data-len="'+b.audio+'">'
-    + '<button class="vplay" aria-label="Play Dr. Uzokwe on '+b.title+'">'
+    + '<button class="vplay" type="button" aria-label="Play Dr. Uzokwe on '+b.title+'">'
     +   '<svg class="ic-play" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M4 2.5v11l9-5.5z"/></svg>'
     +   '<svg class="ic-pause" width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M4 3h3v10H4zM9 3h3v10H9z"/></svg>'
     + '</button>'
-    + '<div><p class="vname">'+b.title+'</p><p class="vsub">The author on what this book solves</p>'
-    + '<div class="wave">'+bars(24)+'</div></div><div class="vtime">'+b.audio+'</div></div>';
+    + '<div class="vmid"><p class="vname">'+b.title+'</p><p class="vsub">The author on what this book solves</p>'
+    +   '<div class="wave" role="slider" tabindex="0" aria-label="Position in the recording"'
+    +        ' aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">'
+    +     '<i class="wbase">'+bars(24)+'</i>'
+    +     '<i class="wfill">'+bars(24)+'</i>'
+    +     '<i class="whead"></i>'
+    +   '</div></div>'
+    + '<div class="vright"><div class="vtime">'+b.audio+'</div>'
+    +   '<button class="vspeed" type="button" aria-label="Playback speed">1&times;</button></div>'
+    + '</div>';
 }
-$("#vlist").innerHTML  = BOOKS.slice(0,3).map(voiceRow).join("");
+
+$("#vlist").innerHTML  = ["caod","supernatural","woman","unstoppable"]
+  .map(byId).filter(Boolean).map(voiceRow).join("");
 $("#vlist2").innerHTML = BOOKS.map(voiceRow).join("");
 
 
 /* ---------- problem finder ---------- */
 var PROBLEMS = [
-  { q:"My industry is shifting under me",        id:"caod",         why:"It shows you where four giants stopped moving, and exactly what it cost each of them." },
-  { q:"I am capable of more and cannot show it", id:"supernatural", why:"A daily system that turns potential into something you can measure by Friday." },
-  { q:"My marriage has gone quiet",              id:"woman",        why:"The difference between hearing her and understanding her, in ordinary daily terms." },
-  { q:"I have the title but not the room",       id:"leadership",   why:"Authority is given. This is about earning the part nobody hands you." },
-  { q:"I keep stalling in the same place",       id:"unstoppable",  why:"Desire, discipline and the company you keep, rebuilt into something repeatable." },
-  { q:"I am starting over after a loss",         id:"caod",         why:"Written by someone who moved his whole business mid crash and lived to describe it." }
+  { q:"The ground under my industry is moving",   id:"caod",
+    why:"Sixty years of giants who saw it coming and stood still anyway. Change destroys, but change also creates." },
+  { q:"I know there is more in me than this",     id:"supernatural",
+    why:"Not magic. The abilities already inside you, and the daily practice that gets them out." },
+  { q:"I love her and keep getting it wrong",     id:"woman",
+    why:"Most relationships do not struggle because love is missing. They struggle because understanding is." },
+  { q:"I hold the title, not the room",           id:"leadership",
+    why:"You already influence someone. The question is what you are doing with it." },
+  { q:"I start well and stall in the same place", id:"unstoppable",
+    why:"Failure becomes information, rejection becomes redirection, a setback becomes preparation." },
+  { q:"I have been wishing for years",            id:"manifestation",
+    why:"Movement does not guarantee arrival. Clarity first, then the work that follows it." },
+  { q:"He has gone quiet and I cannot reach him", id:"love-a-man",
+    why:"Silence is not the absence of feeling. A man can carry a great deal behind a quiet face." }
 ];
 (function(){
   var box = $("#fq"), out = $("#fout");
@@ -1506,7 +1729,7 @@ function submitSignup(form){
       form.classList.remove("busy");
       /* no endpoint here, so send the reader somewhere that works rather than
          pretending the address was captured */
-      say(form, "The form is not reachable from this address. Write to hello@drralphuzokwe.com and you will be added by hand.", "bad");
+      say(form, "The form is not reachable from this address. Write to ralph@drralphuzokwe.com and you will be added by hand.", "bad");
     });
 }
 
@@ -1570,13 +1793,45 @@ if(hello){
   }
 }
 
-$$("main .wrap, footer .wrap").forEach(function(el){ el.setAttribute("data-adapt", ""); });
-$$("main h1, main h2, .fname").forEach(function(el){ el.classList.add("glass"); });
-glowInit();
-route(true);
-adaptType();
+/* One failing step must never take the page with it. Routing runs first,
+   because everything a reader came for is behind it. */
+function safely(what, fn){
+  try{ fn(); }
+  catch(err){ if(window.console && console.warn) console.warn("skipped " + what + ":", err); }
+}
+
+safely("routing", function(){ route(true); });
+safely("contrast", function(){
+  $$("main .wrap, footer .wrap").forEach(function(el){ el.setAttribute("data-adapt", ""); });
+  $$("main h1, main h2, .fname").forEach(function(el){ el.classList.add("glass"); });
+  adaptType();
+});
+safely("glow", glowInit);
+
+/* if anything at all throws later, make certain nothing is left hidden */
+addEventListener("error", function(){
+  $$(".anim,.hline span").forEach(function(el){ el.style.opacity = ""; el.style.transform = ""; });
+});
 </script>
 
 
+<noscript>
+  <div style="position:fixed;inset:0;z-index:90;overflow:auto;background:#1C2230;color:#F6F4F7;
+              font-family:Manrope,Helvetica,Arial,sans-serif;padding:40px 22px">
+    <div style="max-width:720px;margin:0 auto">
+      <h1 style="font-family:Sora,Helvetica,Arial,sans-serif;font-size:2rem;margin:0 0 14px">Dr. Ralph Tyga Uzokwe</h1>
+      <p style="line-height:1.6;color:rgba(246,244,247,.75)">Author, entrepreneur and speaker. Seven books on change,
+        leadership, the mind, love and destiny. This site uses scripting for its reading experience. The pages below
+        work without it.</p>
+      <ul style="line-height:2.1;margin-top:18px;padding-left:18px">
+        <li><a style="color:#C4E7E9" href="/f/books/">All seven books</a></li>
+        <li><a style="color:#C4E7E9" href="/f/listen/">The recordings</a></li>
+        <li><a style="color:#C4E7E9" href="/f/about/">About Dr. Uzokwe</a></li>
+        <li><a style="color:#C4E7E9" href="/f/speaking/">Speaking</a></li>
+        <li><a style="color:#C4E7E9" href="mailto:ralph@drralphuzokwe.com">ralph@drralphuzokwe.com</a></li>
+      </ul>
+    </div>
+  </div>
+</noscript>
 </body>
 </html>

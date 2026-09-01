@@ -12,8 +12,8 @@
    exist in Hostinger's email panel, otherwise the welcome note is rejected by
    the receiving server as a forgery.
    --------------------------------------------------------------------------- */
-$FROM_ADDRESS = 'hello@drralphuzokwe.com';        // a real mailbox on this domain
-$NOTIFY       = 'hello@drralphuzokwe.com';        // where Ralph wants to be told
+$FROM_ADDRESS = 'ralph@drralphuzokwe.com';        // his mailbox, already created on Hostinger
+$NOTIFY       = 'ralph@drralphuzokwe.com';        // where Ralph is told about a new reader
 $FROM_NAME    = 'Dr. Ralph Tyga Uzokwe';
 
 $LIST = __DIR__ . '/../subscribers.csv';          // above the web root, unreachable by URL

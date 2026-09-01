@@ -1,0 +1,76 @@
+# drralphuzokwe.com on Hostinger
+# Apache reads this file on every request, so keep it small and plain.
+
+Options -Indexes
+DirectoryIndex index.html index.php
+ErrorDocument 404 /404.html
+
+# ---------------------------------------------------------------- one address
+# Pick a single spelling of the site and send everything else to it, so search
+# engines never split the same page across www and non www, http and https.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^(.*)$ https://drralphuzokwe.com/$1 [R=301,L]
+
+  RewriteCond %{HTTP_HOST} ^www\.drralphuzokwe\.com$ [NC]
+  RewriteRule ^(.*)$ https://drralphuzokwe.com/$1 [R=301,L]
+
+  # /books/change-adapt-or-die  ->  /books/change-adapt-or-die/
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteCond %{REQUEST_URI} !/$
+  RewriteRule ^(.*)$ /$1/ [R=301,L]
+</IfModule>
+
+# ---------------------------------------------------------------- the reader list
+<Files "subscribers.csv">
+  Require all denied
+</Files>
+<FilesMatch "\.(bak|log|csv|md)$">
+  Require all denied
+</FilesMatch>
+
+# ---------------------------------------------------------------- caching
+# Assets carry a content hash in their name, so they can be kept for a year.
+# Pages must not be, or a change will never reach anyone.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp                "access plus 1 year"
+  ExpiresByType image/png                 "access plus 1 year"
+  ExpiresByType image/svg+xml             "access plus 1 year"
+  ExpiresByType audio/mpeg                "access plus 1 year"
+  ExpiresByType text/html                 "access plus 0 seconds"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.[0-9a-f]{8}\.(webp|png)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.mp3$">
+    Header set Cache-Control "public, max-age=2592000"
+    Header set Accept-Ranges "bytes"
+  </FilesMatch>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+
+  # sensible defaults, nothing that can break an ordinary page
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), interest-cohort=()"
+</IfModule>
+
+# ---------------------------------------------------------------- compression
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml application/manifest+json
+</IfModule>
+
+<IfModule mod_mime.c>
+  AddType image/webp .webp
+  AddType audio/mpeg .mp3
+  AddType application/manifest+json .webmanifest
+</IfModule>

@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# palette previews, kept out of the index
+Disallow: /b/
+Disallow: /c/
+Disallow: /d/
+Disallow: /e/
+Disallow: /f/
+
+Sitemap: https://drralphuzokwe.com/sitemap.xml

@@ -3,20 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Dr. Ralph Tyga Uzokwe</title>
-<meta name="description" content="Author, entrepreneur, speaker. Five books that solve the problems life hands you.">
+<title>Dr. Ralph Tyga Uzokwe : Author, Entrepreneur and Speaker</title>
+<meta name="description" content="The official home of Dr. Ralph Tyga Uzokwe. Seven books on change, leadership, the mind, love and destiny, each written to solve one real problem.">
 <meta name="theme-color" content="#221E24">
-<link rel="canonical" href="https://drralphuzokwe.com/">
+<link rel="canonical" href="https://drralphuzokwe.com/f/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Dr. Ralph Tyga Uzokwe">
-<meta property="og:title" content="Dr. Ralph Tyga Uzokwe">
-<meta property="og:description" content="Five books that solve the problems life hands you. Change, leadership, the mind, love and destiny.">
-<meta property="og:image" content="../assets/og.3f348258.webp">
+<meta property="og:title" content="Dr. Ralph Tyga Uzokwe : Author, Entrepreneur and Speaker">
+<meta property="og:description" content="The official home of Dr. Ralph Tyga Uzokwe. Seven books on change, leadership, the mind, love and destiny, each written to solve one real problem.">
+<meta property="og:image" content="https://drralphuzokwe.com/assets/og.3f348258.webp">
+<meta property="og:url" content="https://drralphuzokwe.com/f/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="../assets/og.3f348258.webp">
+<meta name="twitter:image" content="https://drralphuzokwe.com/assets/og.3f348258.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="image" href="../assets/caod.b87ab2e0.webp" fetchpriority="high">
+<link rel="preload" as="image" href="/assets/caod.b87ab2e0.webp" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ==========================================================================
@@ -336,6 +337,32 @@ header.hide{transform:translateY(-135%)}
 /* ---------- cta and footer ---------- */
 .ctaband{border-radius:14px;padding:clamp(24px,4vw,60px);border:1px solid var(--line);background:var(--ground-2);position:relative;overflow:hidden}
 .ctaband::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--acc-5)}
+.trap{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
+.formsay{margin:12px 0 0;font-family:var(--ui);font-size:.82rem;color:var(--paper-2);min-height:1.2em}
+.formsay.bad{color:#FFB4C6}
+.formsay.good{color:var(--acc-2)}
+.field.busy{opacity:.6;pointer-events:none}
+
+#hello{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:20px;
+  background:rgba(8,10,14,.62);opacity:0;transition:opacity .45s var(--smooth)}
+/* an id beats the browser's own [hidden] rule, so say it here or a closed
+   popup keeps an invisible sheet over the whole site and swallows every click */
+#hello[hidden]{display:none}
+#hello.in{opacity:1}
+#hello .hbox{position:relative;width:min(520px,100%);padding:clamp(26px,4vw,40px);border-radius:14px;
+  background:var(--ground-2);border:1px solid var(--line);box-shadow:0 40px 90px rgba(0,0,0,.5);
+  transform:translateY(14px) scale(.98);transition:transform .5s var(--spring)}
+#hello.in .hbox{transform:none}
+#hello h2{margin-top:14px;font-size:clamp(1.5rem,3.4vw,2.1rem)}
+#hello .lede{margin-top:12px}
+#hello .field{margin-top:20px}
+.hclose{position:absolute;top:10px;right:14px;background:none;border:0;color:var(--paper-3);
+  font-size:1.6rem;line-height:1;cursor:pointer;padding:6px}
+.hclose:hover{color:var(--paper)}
+.hlater{margin-top:14px;background:none;border:0;padding:4px 0;cursor:pointer;font-family:var(--ui);
+  font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--paper-3)}
+.hlater:hover{color:var(--paper-2)}
+@media (prefers-reduced-motion:reduce){#hello,#hello .hbox{transition:none}}
 .field{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;max-width:520px;margin-top:22px}
 .field input{border:0;border-bottom:1px solid var(--line);background:transparent;padding:13px 2px;font-family:var(--ui);font-size:1rem;color:var(--paper);min-width:0}
 .field input::placeholder{color:var(--paper-3)}
@@ -420,6 +447,11 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
   *{animation:none !important;transition-duration:.01ms !important}
 }
 </style>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 </head>
 <body>
 
@@ -431,25 +463,25 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
 
 <header id="hdr">
   <div class="wrap nav">
-    <a class="brand" href="#/" data-link>Ralph Tyga Uzokwe</a>
+    <a class="brand" href="/f/" data-link>Ralph Tyga Uzokwe</a>
     <nav class="pill" id="pill">
-      <a href="#/" data-link>Home</a>
-      <a href="#/books" data-link>Books</a>
-      <a href="#/voice" data-link>Listen</a>
-      <a href="#/about" data-link>About</a>
-      <a href="#/speaking" data-link>Speaking</a>
+      <a href="/f/" data-link>Home</a>
+      <a href="/f/books/" data-link>Books</a>
+      <a href="/f/listen/" data-link>Listen</a>
+      <a href="/f/about/" data-link>About</a>
+      <a href="/f/speaking/" data-link>Speaking</a>
     </nav>
-    <a class="btn acc glow" href="#/books" data-link style="padding:12px 18px">Get the book</a>
+    <a class="btn acc glow" href="/f/books/" data-link style="padding:12px 18px">Get the book</a>
     <button class="burger" id="burger" aria-label="Menu"><i></i><i></i><i></i></button>
   </div>
 </header>
 
 <div id="mobile">
-  <a href="#/" data-link>Home</a>
-  <a href="#/books" data-link>Books</a>
-  <a href="#/voice" data-link>Listen</a>
-  <a href="#/about" data-link>About</a>
-  <a href="#/speaking" data-link>Speaking</a>
+  <a href="/f/" data-link>Home</a>
+  <a href="/f/books/" data-link>Books</a>
+  <a href="/f/listen/" data-link>Listen</a>
+  <a href="/f/about/" data-link>About</a>
+  <a href="/f/speaking/" data-link>Speaking</a>
   <p class="mfoot">Books that solve the problems life hands you</p>
 </div>
 
@@ -472,8 +504,8 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
           a single question: what problem does this solve for you?
         </p>
         <div class="hbtns anim">
-          <a class="btn acc glow" href="#/books" data-link>Explore the books</a>
-          <a class="btn line glow" href="#/voice" data-link>Hear it in his voice</a>
+          <a class="btn acc glow" href="/f/books/" data-link>Explore the books</a>
+          <a class="btn line glow" href="/f/listen/" data-link>Hear it in his voice</a>
         </div>
         <div class="hmeta anim">
           <span>Atlanta</span><span>30+ ventures</span><span>7 books</span><span>PhD, business strategy</span>
@@ -538,7 +570,7 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
   <div class="wrap section" style="padding-top:0">
     <div class="dossier">
       <div class="anim">
-        <div class="dframe"><img src="../assets/ralph.5cf0a6fc.webp" alt="Dr. Ralph Tyga Uzokwe" width="640" height="782" loading="lazy" decoding="async"></div>
+        <div class="dframe"><img src="/assets/ralph.5cf0a6fc.webp" alt="Dr. Ralph Tyga Uzokwe" width="640" height="782" loading="lazy" decoding="async"></div>
         <p class="dcap">Atlanta, Georgia</p>
       </div>
       <div>
@@ -558,7 +590,7 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
           <div><span>Ventures</span><b>Clinics, property, retail, capital</b></div>
           <div><span>On stage</span><b>Boardrooms, universities, congregations</b></div>
         </div>
-        <a class="btn line glow anim" href="#/about" data-link style="margin-top:22px">The full story</a>
+        <a class="btn line glow anim" href="/f/about/" data-link style="margin-top:22px">The full story</a>
       </div>
     </div>
   </div>
@@ -583,10 +615,10 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
   <div class="wrap section" style="padding-top:0">
     <div class="sh anim"><h2 class="lg">On stage</h2><span class="num">Six talks</span></div>
     <div class="rows">
-      <a class="row anim" href="#/speaking" data-link><span class="num">01</span><h3>Change, Adapt, or Die</h3><span class="sub">Why market leaders fall and what outlives them</span></a>
-      <a class="row anim" href="#/speaking" data-link><span class="num">02</span><h3>Wealth That Survives You</h3><span class="sub">Why most fortunes never reach a third generation</span></a>
-      <a class="row anim" href="#/speaking" data-link><span class="num">03</span><h3>Activate Your Greatness</h3><span class="sub">Turning potential into measurable results</span></a>
-      <a class="row anim" href="#/speaking" data-link><span class="num">04</span><h3>The Immigrant Advantage</h3><span class="sub">Turning a hard start into an unfair advantage</span></a>
+      <a class="row anim" href="/f/speaking/" data-link><span class="num">01</span><h3>Change, Adapt, or Die</h3><span class="sub">Why market leaders fall and what outlives them</span></a>
+      <a class="row anim" href="/f/speaking/" data-link><span class="num">02</span><h3>Wealth That Survives You</h3><span class="sub">Why most fortunes never reach a third generation</span></a>
+      <a class="row anim" href="/f/speaking/" data-link><span class="num">03</span><h3>Activate Your Greatness</h3><span class="sub">Turning potential into measurable results</span></a>
+      <a class="row anim" href="/f/speaking/" data-link><span class="num">04</span><h3>The Immigrant Advantage</h3><span class="sub">Turning a hard start into an unfair advantage</span></a>
     </div>
   </div>
 
@@ -596,10 +628,12 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
       <p class="lede" style="margin-top:14px">
         Leave your email and the opening chapter arrives immediately, with a note when the next book lands.
       </p>
-      <form class="field" onsubmit="return sent(this)">
-        <input type="email" required placeholder="your@email.com" aria-label="Email">
+      <form class="field" data-intent="letter" novalidate>
+        <input type="email" name="email" required placeholder="your@email.com" aria-label="Your email address" autocomplete="email">
         <button class="btn acc glow" type="submit">Send it</button>
+        <input class="trap" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
       </form>
+      <p class="formsay" role="status" aria-live="polite"></p>
     </div>
   </div>
 </section>
@@ -633,7 +667,7 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
   <div class="wrap" style="padding:118px 0 0">
     <div class="dossier">
       <div class="anim">
-        <div class="dframe"><img src="../assets/ralph.5cf0a6fc.webp" alt="Dr. Ralph Tyga Uzokwe" width="640" height="782" loading="lazy" decoding="async"></div>
+        <div class="dframe"><img src="/assets/ralph.5cf0a6fc.webp" alt="Dr. Ralph Tyga Uzokwe" width="640" height="782" loading="lazy" decoding="async"></div>
         <p class="dcap">Atlanta, Georgia</p>
       </div>
       <div>
@@ -675,25 +709,45 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
     </div>
     <div class="ctaband anim" style="margin:44px 0 72px">
       <h2 class="lg">Tell me about your event.</h2>
-      <form class="field" onsubmit="return sent(this)">
-        <input type="email" required placeholder="your@email.com" aria-label="Email">
+      <form class="field" data-intent="speaking" novalidate>
+        <input type="email" name="email" required placeholder="your@email.com" aria-label="Your email address" autocomplete="email">
         <button class="btn acc glow" type="submit">Send enquiry</button>
+        <input class="trap" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
       </form>
+      <p class="formsay" role="status" aria-live="polite"></p>
     </div>
   </div>
 </section>
 
 </main>
 
+<!-- shown once, quietly, after the reader has actually read something -->
+<div id="hello" hidden>
+  <div class="hbox" role="dialog" aria-modal="true" aria-labelledby="hellotitle" aria-describedby="hellotext">
+    <button class="hclose" type="button" aria-label="Close">&times;</button>
+    <span class="tag">From Dr. Uzokwe</span>
+    <h2 id="hellotitle" class="lg">Read the first chapter,<br>before you buy a thing.</h2>
+    <p id="hellotext" class="lede">Leave your address and the opening chapter arrives straight away, with a
+      note when the next book lands. Nothing else, ever.</p>
+    <form class="field" data-intent="popup" novalidate>
+      <input type="email" name="email" required placeholder="your@email.com" aria-label="Your email address" autocomplete="email">
+      <button class="btn acc glow" type="submit">Send it to me</button>
+      <input class="trap" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+    </form>
+    <p class="formsay" role="status" aria-live="polite"></p>
+    <button class="hlater" type="button">No thank you</button>
+  </div>
+</div>
+
 <footer>
   <div class="wrap">
     <p class="fname">Dr. Ralph Tyga Uzokwe</p>
     <p class="fsub">Books that solve the problems life hands you. Written from a life spent building, losing, and building again.</p>
     <div class="flinks">
-      <a href="#/books" data-link>Books</a>
-      <a href="#/voice" data-link>Listen</a>
-      <a href="#/about" data-link>About</a>
-      <a href="#/speaking" data-link>Speaking</a>
+      <a href="/f/books/" data-link>Books</a>
+      <a href="/f/listen/" data-link>Listen</a>
+      <a href="/f/about/" data-link>About</a>
+      <a href="/f/speaking/" data-link>Speaking</a>
       <a href="https://www.amazon.com/stores/author/B0GNKY84XS" target="_blank" rel="noopener">Amazon</a>
     </div>
     <div class="fbot">
@@ -704,13 +758,16 @@ footer{padding:54px 0 30px;border-top:1px solid var(--line)}
 </footer>
 
 <script>
-var A = "../assets/";
+var A = "/assets/";
+var BOOT = [];
+var ROOT = "/f/", SITE = "https://drralphuzokwe.com";
+var SEO = {"home":{"title":"Dr. Ralph Tyga Uzokwe : Author, Entrepreneur and Speaker","desc":"The official home of Dr. Ralph Tyga Uzokwe. Seven books on change, leadership, the mind, love and destiny, each written to solve one real problem."},"books":{"title":"The Books : Dr. Ralph Tyga Uzokwe","desc":"Seven books by Dr. Ralph Tyga Uzokwe. Read what each one solves before you buy it, in print, e-book and on Kindle."},"voice":{"title":"Listen : Dr. Ralph Tyga Uzokwe on Every Book","desc":"Dr. Ralph Tyga Uzokwe introduces each of his seven books in his own voice. A full talk on what is inside, who it is for and the problem it solves."},"about":{"title":"About Dr. Ralph Tyga Uzokwe","desc":"Author, entrepreneur, speaker and mentor. A doctorate in business strategy, more than thirty businesses built, and seven books written for readers who want to move."},"speaking":{"title":"Speaking and Seminars : Dr. Ralph Tyga Uzokwe","desc":"Book Dr. Ralph Tyga Uzokwe to speak on change, leadership, wealth that lasts and turning potential into results."}};
 var STORE = "https://www.amazon.com/stores/author/B0GNKY84XS";
 
 var BOOKS = [
   { id:"caod", quote:"Change destroys, but change also creates. When change arrives you have two choices: you can fear what is disappearing, or you can start studying what is emerging.", cover:A+"caod.b87ab2e0.webp", title:"Change, Adapt, or Die",
     sub:"How to Survive, Thrive, and Prosper in an Age of Relentless Change",
-    genre:"Business and change", year:"2026", pages:"231 pages", audio:"13:48", track:"audio/caod.mp3",
+    genre:"Business and change", year:"2026", pages:"231 pages", audio:"13:48", track:"/audio/caod.mp3",
     price:"$24.99", ebook:"$9.99", amazon:"https://www.amazon.com/dp/B0FDB89LG2",
     short:"For the reader who can feel the ground shifting and does not know which move to make first.",
     summary:["Sixty years of business history, decade by decade, told through the people who lived it. Kodak invented the digital camera and locked it in a drawer. Blockbuster laughed a young Netflix out of the room. Nokia owned the world and lost it in five years.",
@@ -720,7 +777,7 @@ var BOOKS = [
             "You are afraid to start over, and that fear costs more than the change would."] },
   { id:"supernatural", quote:"When I use the word supernatural I am not talking about magic. I am talking about the extraordinary abilities already inside you.", cover:A+"supernatural.6bfd84cb.webp", title:"Become Supernatural",
     sub:"Activate Your Greatness and Unlock the Full Power of Your Mind",
-    genre:"Mind and motivation", year:"2026", pages:"Available now", audio:"11:33", track:"audio/supernatural.mp3",
+    genre:"Mind and motivation", year:"2026", pages:"Available now", audio:"11:33", track:"/audio/supernatural.mp3",
     price:"$21.99", ebook:"$9.99",
     amazon:"https://www.amazon.com/BECOME-SUPERNATURAL-ActivateYour-Greatness-Unlock/dp/B0GNYV8ZP2",
     short:"For the person who knows there is more inside them and cannot get it out into the world.",
@@ -731,7 +788,7 @@ var BOOKS = [
             "You want a daily practice you can keep, not a weekend of inspiration."] },
   { id:"woman", quote:"Many relationships do not struggle because love is absent. They struggle because understanding is absent.", cover:A+"woman.756a9572.webp", title:"Understanding How a Woman Thinks and Truly Loves",
     sub:"A practical guide for the man who wants to get it right",
-    genre:"Relationships", year:"2026", pages:"13 chapters", audio:"14:13", track:"audio/woman.mp3",
+    genre:"Relationships", year:"2026", pages:"13 chapters", audio:"14:13", track:"/audio/woman.mp3",
     price:"$19.99", ebook:"$8.99", amazon:STORE,
     short:"For the man who loves her and still cannot work out what she is actually asking for.",
     summary:["Most relationships do not end in a fight. They end in a long silence that neither person knows how to break.",
@@ -741,7 +798,7 @@ var BOOKS = [
             "You want to repair a relationship that has gone quiet, before it goes cold."] },
   { id:"leadership", quote:"The question is not whether you have influence. The question is what you are doing with it.", cover:A+"leadership.71b31e70.webp", title:"Leadership and Influence",
     sub:"How to develop your leadership skills, influence the world, and leave a lasting legacy",
-    genre:"Leadership", year:"2026", pages:"Available now", audio:"12:13", track:"audio/leadership.mp3",
+    genre:"Leadership", year:"2026", pages:"Available now", audio:"12:13", track:"/audio/leadership.mp3",
     price:"$22.99", ebook:"$9.99", amazon:"https://www.amazon.com/dp/B0GX2SSKC7",
     short:"For the person who holds the title but can feel that the room is not truly following.",
     summary:["Authority is given. Influence is earned, and it is earned in the small moments nobody records: how you handle the bad quarter, who gets the credit in the meeting, what you do when the right decision costs you personally.",
@@ -752,7 +809,7 @@ var BOOKS = [
   { id:"manifestation", quote:"Movement does not guarantee arrival. Without a destination you can drive for hours and get nowhere.", cover:null, upcoming:true, tone:"#BFEC55",
     title:"21x Your Goals to Manifestation",
     sub:"Your blueprint to advanced strategic quantum manifestation",
-    genre:"Goals and manifestation", year:"Coming soon", pages:"In production", audio:"14:04", track:"audio/manifestation.mp3",
+    genre:"Goals and manifestation", year:"Coming soon", pages:"In production", audio:"14:04", track:"/audio/manifestation.mp3",
     price:"", ebook:"", amazon:STORE,
     short:"For the person who has been wishing for years and wants a method instead.",
     summary:["Imagine starting the car and driving with no destination. Hours of movement, hundreds of miles, and no arrival. Many people live exactly like that: busy, but not moving towards anything they have defined.",
@@ -763,7 +820,7 @@ var BOOKS = [
   { id:"love-a-man", quote:"Silence does not mean the absence of feeling. A man can carry enormous pressure behind a quiet face.", cover:null, upcoming:true, tone:"#FD55AC",
     title:"How to Truly Love a Man",
     sub:"Understanding the man behind the exterior",
-    genre:"Relationships", year:"Coming soon", pages:"In production", audio:"15:07", track:"audio/love-a-man.mp3",
+    genre:"Relationships", year:"Coming soon", pages:"In production", audio:"15:07", track:"/audio/love-a-man.mp3",
     price:"", ebook:"", amazon:STORE,
     short:"For the woman who loves him and keeps meeting a closed door where his feelings should be.",
     summary:["Most men are taught early to provide, protect, solve, compete and keep going. Do not complain. Do not show weakness. So the man you love may carry his career, his money, his family and his fears behind a very quiet face.",
@@ -773,7 +830,7 @@ var BOOKS = [
             "You give love the way you would want to receive it, and it keeps missing him."] },
   { id:"unstoppable", quote:"Failure can become information. Rejection can become redirection. A setback can become preparation for your comeback.", cover:A+"unstoppable.437f8090.webp", title:"Become Unstoppable and Irresistible",
     sub:"Powerful hidden strategies to achieve your goals and manifest your personal destiny",
-    genre:"Success and destiny", year:"2026", pages:"Hardcover and paperback", audio:"14:29", track:"audio/unstoppable.mp3",
+    genre:"Success and destiny", year:"2026", pages:"Hardcover and paperback", audio:"14:29", track:"/audio/unstoppable.mp3",
     price:"$24.99", ebook:"$9.99", amazon:"https://www.amazon.com/dp/B0FDB89LG2",
     short:"For the person who keeps starting and keeps stalling in the same place.",
     summary:["Attraction is not luck and it is not charm. It is the compound result of what you decide, what you repeat, and who you become while nobody is watching.",
@@ -792,7 +849,7 @@ function byId(id){ var f = null; BOOKS.forEach(function(b){ if(b.id === id) f = 
   var order = ["caod","supernatural","woman"], cls = ["f1","f2","f3"];   /* printed books only */
   $("#fan").innerHTML = order.map(function(id, i){
     var b = byId(id);
-    return '<a class="'+cls[i]+'" href="#/book/'+b.id+'" data-link aria-label="'+b.title+'">'
+    return '<a class="'+cls[i]+'" href="'+ROOT+'books/'+slugOf(b)+'/" data-link aria-label="'+b.title+'">'
          + '<img src="'+b.cover+'" alt="'+b.title+'" width="900" height="1350"'
          + (i ? ' loading="lazy"' : ' fetchpriority="high"') + ' decoding="async"></a>';
   }).join("");
@@ -929,7 +986,7 @@ function coverArt(b, attrs){
 
 function card(b){
   return '<div class="bookcard">'
-    + '<a href="#/book/'+b.id+'" data-link>'
+    + '<a href="'+ROOT+'books/'+slugOf(b)+'/" data-link>'
     +   '<div class="art">' + coverArt(b, 'loading="lazy" decoding="async"') + '</div>'
     +   '<h3>'+b.title+'</h3><p>'+b.short+'</p><span class="go">What it solves</span>'
     + '</a>'
@@ -1030,7 +1087,7 @@ var PROBLEMS = [
     out.hidden = false;
     out.innerHTML = '<div style="width:96px">' + coverArt(book, 'loading="lazy"') + '</div>'
       + '<div><span class="tag">Start here</span><h3>'+book.title+'</h3><p>'+p.why+'</p>'
-      + '<a class="btn acc glow" href="#/book/'+book.id+'" data-link style="padding:12px 18px">Open this book</a></div>';
+      + '<a class="btn acc glow" href="'+ROOT+'books/'+slugOf(book)+'/" data-link style="padding:12px 18px">Open this book</a></div>';
     glowInit();
     if(M) M.animate(out, { opacity:[0,1], transform:["translateY(10px)","translateY(0px)"] }, { duration:.5, easing:[.16,1,.3,1] });
   });
@@ -1040,7 +1097,7 @@ var PROBLEMS = [
 function detail(id){
   var b = byId(id) || BOOKS[0];
   $("#detail").innerHTML =
-    '<a class="num" href="#/books" data-link style="display:inline-block;margin-bottom:22px">Back to all books</a>'
+    '<a class="num" href="/f/books/" data-link style="display:inline-block;margin-bottom:22px">Back to all books</a>'
   + '<div class="dgrid"><div class="dstick"><div class="art">'
   +   coverArt(b, 'fetchpriority="high" decoding="async"') + '</div>'
   +   '<div class="facts">'
@@ -1070,22 +1127,85 @@ var curtain = $("#curtain");
 function show(page, sub){
   $$(".page").forEach(function(p){ p.classList.toggle("on", p.dataset.page === page); });
   $$("#pill a").forEach(function(a){
-    var t = a.getAttribute("href").replace("#/","") || "home";
+    var seg = (a.getAttribute("href") || "").replace(ROOT, "").replace(/\/$/, "");
+    var t = PATHS.hasOwnProperty(seg) ? PATHS[seg] : "home";
     a.classList.toggle("on", t === page || (page === "book" && t === "books"));
   });
   if(page === "book") detail(sub);
   window.scrollTo(0,0);
   playPage();
 }
-function route(first){
-  var parts = (location.hash || "#/").replace("#/","").split("/").filter(Boolean);
-  var page = parts[0] || "home";
-  if(!$$(".page").some(function(p){ return p.dataset.page === page; })) page = "home";
-  closeMobile();
-  if(first){ show(page, parts[1]); return; }
-  curtain.classList.remove("in"); void curtain.offsetWidth; curtain.classList.add("in");
-  setTimeout(function(){ show(page, parts[1]); }, 380);
+/* Paths, not fragments. /books/change-adapt-or-die/ is a real file on the
+   server, so it can be shared, linked to and indexed on its own. */
+function slugOf(b){
+  return b.slug || b.title.toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
+function bySlug(slug){
+  for(var i = 0; i < BOOKS.length; i++) if(slugOf(BOOKS[i]) === slug) return BOOKS[i];
+  return null;
+}
+var PATHS = { "": "home", "books": "books", "listen": "voice", "about": "about", "speaking": "speaking" };
+
+function currentParts(){
+  /* links shared before this change still work */
+  if(location.hash && location.hash.indexOf("#/") === 0){
+    var h = location.hash.replace("#/", "").split("/").filter(Boolean);
+    if(h[0] === "book" && h[1]) return ["books", h[1]];
+    if(h[0] === "voice") return ["listen"];
+    return h;
+  }
+  var here = location.pathname;
+  if(ROOT !== "/" && here.indexOf(ROOT) === 0) here = here.slice(ROOT.length - 1);
+  return here.replace(/^\/|\/$/g, "").split("/").filter(Boolean);
+}
+
+function head(page, book){
+  var t = SEO[page] || SEO.home;
+  var title = book ? book.title + " : Dr. Ralph Tyga Uzokwe" : t.title;
+  var desc  = book ? (book.short || t.desc) : t.desc;
+  document.title = title;
+  var d = document.querySelector('meta[name="description"]');
+  if(d) d.setAttribute("content", desc);
+  var c = document.querySelector('link[rel="canonical"]');
+  if(c) c.setAttribute("href", SITE + location.pathname.replace(/\/?$/, "/"));
+}
+
+function route(first){
+  var parts = currentParts();
+  /* if a host serves this file from somewhere unexpected, the page still knows
+     which route it was built for */
+  if(first && !parts.length && typeof BOOT !== "undefined" && BOOT.length) parts = BOOT;
+  var head0 = parts[0] || "";
+  var book = null, page;
+  if(head0 === "books" && parts[1]){
+    book = bySlug(parts[1]) || byId(parts[1]);
+    page = book ? "book" : "books";
+  }else{
+    page = PATHS.hasOwnProperty(head0) ? PATHS[head0] : "home";
+  }
+  closeMobile();
+  head(page, book);
+  var run = function(){ show(page, book ? book.id : parts[1]); };
+  if(first){ run(); return; }
+  curtain.classList.remove("in"); void curtain.offsetWidth; curtain.classList.add("in");
+  setTimeout(run, 380);
+}
+
+/* in-site links move without a reload; everything else behaves normally */
+document.addEventListener("click", function(e){
+  var a = e.target.closest ? e.target.closest("a[data-link]") : null;
+  if(!a) return;
+  if(e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+  if(a.target === "_blank" || a.hasAttribute("download")) return;
+  var href = a.getAttribute("href") || "";
+  if(/^(https?:|mailto:|tel:)/.test(href)) return;
+  e.preventDefault();
+  if(location.pathname.replace(/\/?$/, "/") === href.replace(/\/?$/, "/")) { window.scrollTo(0, 0); return; }
+  history.pushState(null, "", href);
+  route(false);
+});
+addEventListener("popstate", function(){ route(false); });
 addEventListener("hashchange", function(){ route(false); });
 
 /* =========================================================================
@@ -1341,7 +1461,114 @@ burger.addEventListener("click", function(){
 });
 mobile.addEventListener("click", function(e){ if(e.target.tagName === "A") closeMobile(); });
 
-function sent(f){ f.reset(); alert("Thank you. It is on its way."); return false; }
+/* =========================================================================
+   SIGN UP. Posts to the server, waits for a real answer, and only says the
+   note is on its way when the server says it went.
+   ========================================================================= */
+var ENDPOINT = "/subscribe.php";
+
+function say(form, text, kind){
+  var p = form.parentNode.querySelector(".formsay");
+  if(!p) return;
+  p.textContent = text;
+  p.className = "formsay" + (kind ? " " + kind : "");
+}
+
+function submitSignup(form){
+  var input = form.querySelector('input[name="email"]');
+  var email = (input.value || "").trim();
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)){
+    say(form, "That address does not look complete.", "bad");
+    input.focus();
+    return;
+  }
+  say(form, "One moment.", "");
+  form.classList.add("busy");
+  var body = JSON.stringify({
+    email: email,
+    intent: form.getAttribute("data-intent") || "letter",
+    website: (form.querySelector('input[name="website"]') || {}).value || ""
+  });
+  fetch(ENDPOINT, { method:"POST", headers:{ "Content-Type":"application/json" }, body: body })
+    .then(function(r){ return r.json().then(function(j){ return { ok: r.ok, body: j }; }); })
+    .then(function(res){
+      form.classList.remove("busy");
+      if(res.ok && res.body && res.body.ok){
+        form.reset();
+        say(form, res.body.message || "Thank you. You are on the list.", "good");
+        try{ localStorage.setItem("ru_signed", "1"); }catch(e){}
+        closeHello();
+      }else{
+        say(form, (res.body && res.body.message) || "That did not go through. Please try again.", "bad");
+      }
+    })
+    .catch(function(){
+      form.classList.remove("busy");
+      /* no endpoint here, so send the reader somewhere that works rather than
+         pretending the address was captured */
+      say(form, "The form is not reachable from this address. Write to hello@drralphuzokwe.com and you will be added by hand.", "bad");
+    });
+}
+
+document.addEventListener("submit", function(e){
+  var f = e.target;
+  if(!f.classList || !f.classList.contains("field")) return;
+  e.preventDefault();
+  submitSignup(f);
+});
+
+/* ---------------------------------------------------------------- the popup */
+var hello = $("#hello"), helloShown = false, lastFocus = null;
+
+function signedAlready(){
+  try{ return localStorage.getItem("ru_signed") === "1" || localStorage.getItem("ru_hello") === "1"; }
+  catch(e){ return false; }
+}
+function closeHello(){
+  if(!hello || hello.hidden) return;
+  hello.classList.remove("in");
+  setTimeout(function(){ hello.hidden = true; }, 400);
+  try{ localStorage.setItem("ru_hello", "1"); }catch(e){}
+  if(lastFocus && lastFocus.focus) lastFocus.focus();
+}
+function openHello(){
+  if(!hello || helloShown || signedAlready()) return;
+  /* never interrupt someone already typing their address into the page */
+  var busy = document.activeElement;
+  if(busy && busy.tagName === "INPUT"){ setTimeout(openHello, 20000); return; }
+  if($(".field.busy")) { setTimeout(openHello, 6000); return; }
+  helloShown = true;
+  lastFocus = document.activeElement;
+  hello.hidden = false;
+  void hello.offsetWidth;
+  hello.classList.add("in");
+  var field = hello.querySelector("input[type=email]");
+  if(field) field.focus({ preventScroll:true });
+}
+
+if(hello){
+  hello.addEventListener("click", function(e){
+    if(e.target === hello || e.target.closest(".hclose") || e.target.closest(".hlater")) closeHello();
+  });
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape") closeHello();
+    if(e.key === "Tab" && !hello.hidden){
+      var f = $$("button, input", hello).filter(function(el){ return el.offsetParent !== null; });
+      if(!f.length) return;
+      var first = f[0], last = f[f.length - 1];
+      if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+      else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+    }
+  });
+  /* not the moment they arrive: once they have read a little, or are leaving */
+  if(!signedAlready()){
+    setTimeout(openHello, 32000);
+    addEventListener("scroll", function once(){
+      var seen = (window.pageYOffset + window.innerHeight) / document.body.scrollHeight;
+      if(seen > 0.45){ removeEventListener("scroll", once); openHello(); }
+    }, { passive:true });
+  }
+}
 
 $$("main .wrap, footer .wrap").forEach(function(el){ el.setAttribute("data-adapt", ""); });
 $$("main h1, main h2, .fname").forEach(function(el){ el.classList.add("glass"); });
@@ -1350,12 +1577,6 @@ route(true);
 adaptType();
 </script>
 
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Person","name":"Dr. Ralph Tyga Uzokwe",
- "jobTitle":"Author, entrepreneur and speaker","url":"https://drralphuzokwe.com/",
- "sameAs":["https://www.amazon.com/stores/author/B0GNKY84XS"],
- "description":"Author of five books on change, leadership, the mind, relationships and destiny.",
- "knowsAbout":["business strategy","leadership","change management","personal development"]}
-</script>
+
 </body>
 </html>

@@ -1,0 +1,12 @@
+{
+  "name": "Dr. Ralph Tyga Uzokwe",
+  "short_name": "R. T. Uzokwe",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1C2230",
+  "theme_color": "#1C2230",
+  "icons": [
+    { "src": "/assets/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

@@ -58,7 +58,16 @@ $row = [date('c'), $email, $name, $intent, $_SERVER['REMOTE_ADDR'] ?? '', substr
 $fh = @fopen($LIST, 'a');
 if ($fh) { flock($fh, LOCK_EX); fputcsv($fh, $row); flock($fh, LOCK_UN); fclose($fh); }
 
-$headers = "From: " . mb_encode_mimeheader($FROM_NAME) . " <$FROM_ADDRESS>\r\n"
+/* mb_encode_mimeheader needs the mbstring extension. It is on every Hostinger
+   plan today, but a host without it would make this whole file fatal, so the
+   name is encoded by hand when the function is not there. */
+$fromName = function_exists('mb_encode_mimeheader')
+    ? mb_encode_mimeheader($FROM_NAME)
+    : (preg_match('/[^\x20-\x7E]/', $FROM_NAME)
+        ? '=?UTF-8?B?' . base64_encode($FROM_NAME) . '?='
+        : $FROM_NAME);
+
+$headers = "From: " . $fromName . " <$FROM_ADDRESS>\r\n"
          . "Reply-To: $FROM_ADDRESS\r\n"
          . "MIME-Version: 1.0\r\n"
          . "Content-Type: text/plain; charset=UTF-8\r\n"

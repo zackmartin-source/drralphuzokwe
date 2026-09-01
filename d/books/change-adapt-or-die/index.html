@@ -271,10 +271,18 @@ header.hide{transform:translateY(-135%)}
 .fout h3{font-size:clamp(1.05rem,1.7vw,1.35rem);letter-spacing:-.02em;margin:0 0 6px}
 .fout p{margin:0 0 12px;font-size:.88rem;color:var(--paper-2);line-height:1.5}
 
-.talks{display:grid;gap:0;border-top:1px solid var(--line)}
-.talk{background:transparent;border-bottom:1px solid var(--line);
-  padding:clamp(22px,2.6vw,30px) 0;display:grid;
-  grid-template-columns:minmax(56px,max-content) minmax(0,1fr);gap:6px 18px;align-items:start}
+.talks{display:grid;gap:clamp(12px,1.4vw,18px)}
+/* a card you can see the colour field through, rather than a filled panel */
+.talk{background:rgba(246,244,247,.05);border:1px solid var(--line);border-radius:14px;
+  padding:clamp(22px,2.6vw,30px) clamp(18px,2.2vw,28px);display:grid;
+  grid-template-columns:minmax(56px,max-content) minmax(0,1fr);gap:6px 18px;align-items:start;
+  transition:background .45s var(--smooth),border-color .45s var(--smooth)}
+.talk:hover{background:rgba(246,244,247,.08);border-color:rgba(246,244,247,.26)}
+@supports (backdrop-filter:blur(6px)){
+  @media (min-width:901px) and (pointer:fine){
+    .talk{backdrop-filter:blur(7px)}
+  }
+}
 .talk .num{grid-row:1 / span 3;padding-top:6px}
 .talk h3{font-size:clamp(1.15rem,2.4vw,1.6rem)}
 .talk p{margin:10px 0 0;color:var(--paper-2);line-height:1.62;max-width:62ch}
@@ -282,9 +290,8 @@ header.hide{transform:translateY(-135%)}
 .talk .tmeta span{font-family:var(--ui);font-size:.6rem;font-weight:700;letter-spacing:.16em;
   text-transform:uppercase;color:var(--paper-3)}
 @media (max-width:640px){
-  .talk{grid-template-columns:1fr;gap:6px;padding:22px 0}
+  .talk{grid-template-columns:1fr;gap:6px;padding:20px 18px}
   .talk .num{grid-row:auto;padding-top:0}
-  .talk h3,.talk p{padding-left:0}
 }
 
 /* ---------- shelf ---------- */
@@ -999,6 +1006,17 @@ function kicker(b){
   return (repeats ? "A new book" : b.genre).toUpperCase();
 }
 
+/* the rules beside the top line, placed around the text rather than through it */
+function kickerRules(text, tone){
+  var size = 24, spacing = 8;
+  var wide = text.length * (size * 0.62 + spacing) - spacing;
+  var edge = 450 + wide / 2 + 26;          /* where the text stops, plus a gap */
+  if(edge > 742) return "";                /* no room left, so no rules at all */
+  return '<g stroke="' + tone + '" stroke-width="1.4" opacity="0.8">'
+    + '<line x1="130" y1="171" x2="' + (900 - edge).toFixed(0) + '" y2="171"/>'
+    + '<line x1="' + edge.toFixed(0) + '" y1="171" x2="770" y2="171"/></g>';
+}
+
 function drawnCover(b){
   var TOP = 300, BOT = 980, MID = (TOP + BOT) / 2;
   var f = fitTitle(b.title), size = f.size, lines = f.lines, id = b.id + "-" + (++COVER_N);
@@ -1056,8 +1074,7 @@ function drawnCover(b){
     + '<rect x="40" y="40" width="820" height="1270" fill="none" stroke="#FFFFFF" stroke-opacity="0.14" stroke-width="1.5"/>'
 
     /* band one: the kicker */
-    + '<g stroke="' + b.tone + '" stroke-width="1.4" opacity="0.8">'
-    +   '<line x1="130" y1="171" x2="296" y2="171"/><line x1="604" y1="171" x2="770" y2="171"/></g>'
+    + kickerRules(kicker(b), b.tone)
     + '<text x="450" y="179" text-anchor="middle" fill="' + b.tone + '" font-family="Sora,sans-serif" '
     +   'font-size="24" font-weight="700" letter-spacing="8">' + kicker(b) + '</text>'
 

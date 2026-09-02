@@ -83,8 +83,10 @@ p{margin:0 0 1.05em}
    whole page and not just behind the headline. Each one drifts and changes
    colour on its own clock. */
 #field{position:fixed;inset:-18%;z-index:0;pointer-events:none;contain:strict}
-#field i{position:absolute;display:block;border-radius:50%;filter:blur(76px);opacity:.74;
-  will-change:transform;transition:background-color 5s linear}
+#field i{position:absolute;display:block;border-radius:50%;opacity:.74;
+  will-change:transform;transition:background-color 5s linear;
+  -webkit-mask-image:radial-gradient(closest-side,#000 22%,rgba(0,0,0,.55) 52%,transparent 78%);
+  mask-image:radial-gradient(closest-side,#000 22%,rgba(0,0,0,.55) 52%,transparent 78%)}
 #field .a{background:var(--tone-1);width:52vw;height:52vw;left:-14vw;top:-14vw;animation:d1 38s var(--smooth) infinite alternate}
 #field .b{background:var(--tone-2);width:46vw;height:46vw;right:-14vw;top:6vh;animation:d2 46s var(--smooth) infinite alternate}
 #field .c{background:var(--acc-2);width:44vw;height:44vw;left:-12vw;top:42vh;animation:d3 52s var(--smooth) infinite alternate}
@@ -109,7 +111,11 @@ main,header,footer,#curtain,#mobile{position:relative;z-index:3}
    than a switch being thrown. */
 h1.glass,h2.glass,.fname.glass{
   background-image:var(--flow);
-  background-attachment:fixed;
+  /* A background pinned to the viewport and clipped to text has to be redrawn
+     on every scrolled frame. On the one big headline that is worth it. On the
+     dozen smaller headings it was costing most of the frame rate, so those
+     carry the same colours without being repainted as the reader moves. */
+  background-attachment:scroll;
   background-size:180% 180%;
   background-position:var(--flowpos,50% 50%);
   -webkit-background-clip:text;
@@ -118,6 +124,9 @@ h1.glass,h2.glass,.fname.glass{
   -webkit-text-fill-color:transparent;
   transition:background-position 1.6s linear;
 }
+h1.glass{background-attachment:fixed}
+@media (max-width:900px),(pointer:coarse){ h1.glass{background-attachment:scroll} }
+
 /* if a browser cannot clip a background to text, the heading stays plain */
 @supports not ((-webkit-background-clip:text) or (background-clip:text)){
   h1.glass,h2.glass,.fname.glass{color:var(--paper);-webkit-text-fill-color:var(--paper)}
@@ -1418,6 +1427,7 @@ function show(page, sub){
     a.classList.toggle("on", t === page || (page === "book" && t === "books"));
   });
   if(page === "book") detail(sub);
+  adaptRefresh();
   setTimeout(fitAllBars, 0);
   window.scrollTo(0,0);
   playPage();
@@ -1561,33 +1571,68 @@ import("/assets/motion.d1a1331c.js").then(function(mod){
    Every second we ask, for each block on screen, which wash is nearest and how
    pale it is. Pale colour under a block, dark type on it. */
 function lum(c){
+  /* accepts either the browser's rgb() form or one of our own hex tones */
   var m = c.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
-  if(!m) return 0;
-  return (0.299 * +m[1] + 0.587 * +m[2] + 0.114 * +m[3]) / 255;
+  if(m) return (0.299 * +m[1] + 0.587 * +m[2] + 0.114 * +m[3]) / 255;
+  var h = c.match(/^#([0-9a-f]{6})$/i);
+  if(!h) return 0;
+  var n = parseInt(h[1], 16);
+  return (0.299 * (n >> 16 & 255) + 0.587 * (n >> 8 & 255) + 0.114 * (n & 255)) / 255;
 }
+var WASH_LUM = [];          /* filled in by the colour field as it paints */
+var ADAPT_LIST = null;      /* the blocks on the page we are actually looking at */
+
+function adaptRefresh(){ ADAPT_LIST = null; }
+
 function adaptType(){
-  var washes = $$("#field i").map(function(w){
+  var washEls = $$("#field i");
+  if(!washEls.length) return;
+
+  if(!ADAPT_LIST){
+    var page = $(".page.on");
+    ADAPT_LIST = page ? $$("[data-adapt]", page).concat($$("footer [data-adapt]")) : $$("[data-adapt]");
+  }
+
+  /* read everything first */
+  var washes = washEls.map(function(w, i){
     var r = w.getBoundingClientRect();
-    return { x: r.left + r.width / 2, y: r.top + r.height / 2, r: r.width / 2, l: lum(getComputedStyle(w).backgroundColor) };
+    return { x: r.left + r.width / 2, y: r.top + r.height / 2, r: r.width / 2,
+             l: WASH_LUM[i] === undefined ? 0.5 : WASH_LUM[i] };
   });
-  if(!washes.length) return;
-  $$("[data-adapt]").forEach(function(sec){
+  var wanted = ADAPT_LIST.map(function(sec){
     var r = sec.getBoundingClientRect();
-    if(r.bottom < -100 || r.top > innerHeight + 100) return;
+    if(r.bottom < -100 || r.top > innerHeight + 100) return null;
     var cx = r.left + r.width / 2;
     var cy = Math.min(Math.max(r.top + r.height / 2, 40), innerHeight - 40);
     var best = 0;
-    washes.forEach(function(w){
+    for(var i = 0; i < washes.length; i++){
+      var w = washes[i];
       var d = Math.hypot(cx - w.x, cy - w.y);
-      var reach = Math.max(0, 1 - d / (w.r * 1.05));     /* how much of this wash lands here */
-      if(reach > 0.28) best = Math.max(best, w.l * reach + 0.18 * reach);
-    });
-    sec.classList.toggle("on-light", best > 0.42);
+      var reach = Math.max(0, 1 - d / (w.r * 1.05));
+      if(reach > 0.28){ var v = w.l * reach + 0.18 * reach; if(v > best) best = v; }
+    }
+    return best > 0.42;
   });
+
+  /* then write, so the measuring is never interrupted */
+  for(var i = 0; i < ADAPT_LIST.length; i++){
+    if(wanted[i] === null) continue;
+    ADAPT_LIST[i].classList.toggle("on-light", wanted[i]);
+  }
 }
+
 var TOUCH = matchMedia("(max-width:900px),(pointer:coarse)").matches;
 setInterval(adaptType, TOUCH ? 2500 : 900);
-if(!TOUCH) addEventListener("scroll", function(){ requestAnimationFrame(adaptType); }, {passive:true});
+
+/* a few times a second is plenty for a colour that takes seconds to move */
+if(!TOUCH){
+  var adaptDue = false;
+  addEventListener("scroll", function(){
+    if(adaptDue) return;
+    adaptDue = true;
+    setTimeout(function(){ adaptDue = false; adaptType(); }, 160);
+  }, {passive:true});
+}
 
 /* ---------- the colour field ----------
    Six washes on the page and a matching gradient inside the headings, both
@@ -1607,7 +1652,13 @@ if(!TOUCH) addEventListener("scroll", function(){ requestAnimationFrame(adaptTyp
   function pick(i){ return TONES[(step * stride[i % stride.length] + i * 2 + TONES.length * 9) % TONES.length]; }
 
   function paint(){
-    washes.forEach(function(w, i){ w.style.backgroundColor = pick(i); });
+    washes.forEach(function(w, i){
+      var tone = pick(i);
+      w.style.backgroundColor = tone;
+      WASH_LUM[i] = lum(tone);
+    });
+    root.style.setProperty("--flowpos",
+      (50 + (step * 7) % 60) + "% " + (50 + (step * 5) % 50) + "%");
     root.style.setProperty("--flow",
       "radial-gradient(46% 52% at 12% 18%, " + bright(pick(0)) + ", transparent 62%)," +
       "radial-gradient(44% 50% at 88% 24%, " + bright(pick(1)) + ", transparent 60%)," +
@@ -1649,7 +1700,6 @@ if(!TOUCH) addEventListener("scroll", function(){ requestAnimationFrame(adaptTyp
     ticking = true;
     requestAnimationFrame(function(){
       var y = window.pageYOffset;
-      root.style.setProperty("--flowpos", (50 + (y * 0.06) % 60) + "% " + (50 + (y * 0.04) % 50) + "%");
       if(Math.abs(y - lastPaint) > 300){ lastPaint = y; paint(); }
       ticking = false;
     });

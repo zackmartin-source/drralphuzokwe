@@ -30,6 +30,10 @@ ErrorDocument 404 /404.html
 <FilesMatch "\.(bak|log|csv|md)$">
   Require all denied
 </FilesMatch>
+# our own upload notes are not for visitors
+<Files "READ ME FIRST.txt">
+  Require all denied
+</Files>
 
 # ---------------------------------------------------------------- caching
 # Assets carry a content hash in their name, so they can be kept for a year.
